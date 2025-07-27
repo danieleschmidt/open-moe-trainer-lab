@@ -1,0 +1,157 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+.tox
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Virtual environments
+venv/
+.venv/
+env/
+.env
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Documentation
+docs/_build/
+docs/build/
+*.md
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+.travis.yml
+.circleci/
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Data and model files
+data/
+datasets/
+checkpoints/
+models/
+*.pth
+*.pt
+*.ckpt
+*.pkl
+*.safetensors
+
+# Training outputs
+outputs/
+runs/
+logs/
+wandb/
+mlruns/
+tensorboard_logs/
+lightning_logs/
+
+# Cache
+cache/
+.cache/
+tmp/
+temp/
+
+# Jupyter
+.ipynb_checkpoints
+*.ipynb
+
+# Node.js (for dashboard)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Docker
+Dockerfile*
+docker-compose*.yml
+.dockerignore
+
+# Secrets and config
+secrets/
+*.key
+*.pem
+*.crt
+config_local.yaml
+*_local.yaml
+
+# Backup files
+*.bak
+*.backup
+*.orig
+
+# Large files
+*.tar
+*.tar.gz
+*.zip
+*.7z
+
+# Profiling
+*.prof
+*.profile
+profiling_data/
+
+# Benchmarks
+benchmark_results/
+performance_logs/
+
+# Testing artifacts
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+
+# Local development
+dev/
+scratch/
+experiments/
+
+# Cloud provider configs
+.aws/
+.azure/
+.gcp/
+
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
+
+# Kubernetes
+*.kubeconfig

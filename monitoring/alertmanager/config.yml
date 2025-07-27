@@ -1,0 +1,138 @@
+# Alertmanager configuration for Open MoE Trainer Lab
+
+global:
+  smtp_smarthost: 'localhost:587'
+  smtp_from: 'alerts@your-org.com'
+  smtp_auth_username: 'alerts@your-org.com'
+  smtp_auth_password: 'your-password'
+
+# Templates for notifications
+templates:
+  - '/etc/alertmanager/templates/*.tmpl'
+
+# Route configuration
+route:
+  group_by: ['alertname', 'cluster', 'service']
+  group_wait: 30s
+  group_interval: 5m
+  repeat_interval: 12h
+  receiver: 'default'
+  routes:
+    # Critical alerts
+    - match:
+        severity: critical
+      receiver: 'critical-alerts'
+      group_wait: 10s
+      repeat_interval: 5m
+
+    # Training-specific alerts
+    - match:
+        service: training
+      receiver: 'training-team'
+      
+    # Inference-specific alerts
+    - match:
+        service: inference
+      receiver: 'inference-team'
+      
+    # Infrastructure alerts
+    - match:
+        alertname: 'InstanceDown|DiskSpaceLow|HighMemoryUsage'
+      receiver: 'infrastructure-team'
+
+# Alert receivers
+receivers:
+  - name: 'default'
+    email_configs:
+      - to: 'team@your-org.com'
+        subject: '[MoE Lab] Alert: {{ .GroupLabels.alertname }}'
+        body: |
+          {{ range .Alerts }}
+          Alert: {{ .Annotations.summary }}
+          Description: {{ .Annotations.description }}
+          Labels: {{ range .Labels.SortedPairs }}{{ .Name }}={{ .Value }} {{ end }}
+          {{ end }}
+
+  - name: 'critical-alerts'
+    email_configs:
+      - to: 'oncall@your-org.com'
+        subject: '[CRITICAL] MoE Lab Alert: {{ .GroupLabels.alertname }}'
+        body: |
+          🚨 CRITICAL ALERT 🚨
+          
+          {{ range .Alerts }}
+          Alert: {{ .Annotations.summary }}
+          Description: {{ .Annotations.description }}
+          Severity: {{ .Labels.severity }}
+          Service: {{ .Labels.service }}
+          Instance: {{ .Labels.instance }}
+          
+          Time: {{ .StartsAt.Format "2006-01-02 15:04:05" }}
+          {{ end }}
+    
+    slack_configs:
+      - api_url: 'https://hooks.slack.com/services/YOUR/SLACK/WEBHOOK'
+        channel: '#critical-alerts'
+        title: 'Critical Alert: {{ .GroupLabels.alertname }}'
+        text: |
+          {{ range .Alerts }}
+          *Alert:* {{ .Annotations.summary }}
+          *Description:* {{ .Annotations.description }}
+          *Severity:* {{ .Labels.severity }}
+          *Instance:* {{ .Labels.instance }}
+          {{ end }}
+        color: 'danger'
+
+  - name: 'training-team'
+    email_configs:
+      - to: 'ml-team@your-org.com'
+        subject: '[Training] MoE Lab Alert: {{ .GroupLabels.alertname }}'
+        body: |
+          Training Alert Details:
+          
+          {{ range .Alerts }}
+          Alert: {{ .Annotations.summary }}
+          Description: {{ .Annotations.description }}
+          Job: {{ .Labels.job }}
+          Instance: {{ .Labels.instance }}
+          {{ end }}
+    
+    slack_configs:
+      - api_url: 'https://hooks.slack.com/services/YOUR/SLACK/WEBHOOK'
+        channel: '#ml-training'
+        title: 'Training Alert: {{ .GroupLabels.alertname }}'
+
+  - name: 'inference-team'
+    email_configs:
+      - to: 'inference-team@your-org.com'
+        subject: '[Inference] MoE Lab Alert: {{ .GroupLabels.alertname }}'
+    
+    slack_configs:
+      - api_url: 'https://hooks.slack.com/services/YOUR/SLACK/WEBHOOK'
+        channel: '#inference-alerts'
+        title: 'Inference Alert: {{ .GroupLabels.alertname }}'
+
+  - name: 'infrastructure-team'
+    email_configs:
+      - to: 'infrastructure@your-org.com'
+        subject: '[Infrastructure] MoE Lab Alert: {{ .GroupLabels.alertname }}'
+    
+    pagerduty_configs:
+      - routing_key: 'YOUR_PAGERDUTY_KEY'
+        description: 'Infrastructure Alert: {{ .GroupLabels.alertname }}'
+
+# Inhibit rules
+inhibit_rules:
+  # Inhibit warning if critical is firing
+  - source_match:
+      severity: 'critical'
+    target_match:
+      severity: 'warning'
+    equal: ['alertname', 'instance']
+
+  # Inhibit training alerts if instance is down
+  - source_match:
+      alertname: 'InstanceDown'
+    target_match:
+      service: 'training'
+    equal: ['instance']

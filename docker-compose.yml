@@ -1,0 +1,375 @@
+version: '3.8'
+
+services:
+  # Development environment with all tools
+  dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+      args:
+        USERNAME: ${USER:-moeuser}
+        USER_UID: ${UID:-1000}
+        USER_GID: ${GID:-1000}
+    image: open-moe-trainer:dev
+    container_name: moe-dev
+    volumes:
+      - .:/workspace:cached
+      - moe-data:/workspace/data
+      - moe-checkpoints:/workspace/checkpoints
+      - moe-cache:/workspace/cache
+      - moe-logs:/workspace/logs
+    ports:
+      - "8080:8080"  # Dashboard
+      - "8888:8888"  # Jupyter Lab
+      - "6006:6006"  # TensorBoard
+      - "3000:3000"  # Web UI
+    environment:
+      - CUDA_VISIBLE_DEVICES=all
+      - PYTHONPATH=/workspace
+      - WANDB_MODE=${WANDB_MODE:-online}
+      - WANDB_PROJECT=${WANDB_PROJECT:-open-moe-trainer-lab}
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    stdin_open: true
+    tty: true
+    command: bash
+    networks:
+      - moe-network
+
+  # Training service
+  train:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: training
+    image: open-moe-trainer:train
+    container_name: moe-train
+    volumes:
+      - .:/workspace:cached
+      - moe-data:/workspace/data
+      - moe-checkpoints:/workspace/checkpoints
+      - moe-logs:/workspace/logs
+    environment:
+      - CUDA_VISIBLE_DEVICES=all
+      - PYTHONPATH=/workspace
+      - WANDB_PROJECT=${WANDB_PROJECT:-open-moe-trainer-lab}
+      - NCCL_DEBUG=INFO
+      - TORCH_DISTRIBUTED_DEBUG=DETAIL
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    command: ["--config", "configs/training.yaml"]
+    networks:
+      - moe-network
+    depends_on:
+      - monitoring
+
+  # Inference/serving service
+  serve:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: inference
+    image: open-moe-trainer:serve
+    container_name: moe-serve
+    volumes:
+      - moe-checkpoints:/workspace/checkpoints:ro
+      - moe-cache:/workspace/cache
+    ports:
+      - "8000:8000"
+    environment:
+      - CUDA_VISIBLE_DEVICES=0
+      - MODEL_PATH=/workspace/checkpoints/latest
+      - MAX_BATCH_SIZE=32
+      - INFERENCE_MODE=true
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - moe-network
+
+  # Dashboard service
+  dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    image: open-moe-trainer:dev
+    container_name: moe-dashboard
+    volumes:
+      - moe-logs:/workspace/logs:ro
+      - moe-checkpoints:/workspace/checkpoints:ro
+    ports:
+      - "8080:8080"
+    environment:
+      - PYTHONPATH=/workspace
+      - DASHBOARD_PORT=8080
+      - DASHBOARD_HOST=0.0.0.0
+    command: ["python", "-m", "moe_lab.dashboard", "--port", "8080"]
+    networks:
+      - moe-network
+    depends_on:
+      - train
+
+  # Jupyter Lab service
+  jupyter:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    image: open-moe-trainer:dev
+    container_name: moe-jupyter
+    volumes:
+      - .:/workspace:cached
+      - moe-data:/workspace/data
+      - moe-checkpoints:/workspace/checkpoints
+    ports:
+      - "8888:8888"
+    environment:
+      - CUDA_VISIBLE_DEVICES=all
+      - PYTHONPATH=/workspace
+      - JUPYTER_ENABLE_LAB=yes
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    command: ["jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root"]
+    networks:
+      - moe-network
+
+  # Monitoring stack
+  monitoring:
+    image: prom/prometheus:latest
+    container_name: moe-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus-data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable-lifecycle'
+    networks:
+      - moe-network
+
+  # Grafana for visualization
+  grafana:
+    image: grafana/grafana:latest
+    container_name: moe-grafana
+    ports:
+      - "3001:3000"
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=moelab
+      - GF_USERS_ALLOW_SIGN_UP=false
+    networks:
+      - moe-network
+    depends_on:
+      - monitoring
+
+  # Redis for caching
+  redis:
+    image: redis:7-alpine
+    container_name: moe-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes
+    networks:
+      - moe-network
+
+  # PostgreSQL for metadata storage
+  postgres:
+    image: postgres:15
+    container_name: moe-postgres
+    environment:
+      - POSTGRES_DB=moelab
+      - POSTGRES_USER=moelab
+      - POSTGRES_PASSWORD=moelab123
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - moe-network
+
+  # MinIO for object storage (S3-compatible)
+  minio:
+    image: minio/minio:latest
+    container_name: moe-minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio-data:/data
+    environment:
+      - MINIO_ROOT_USER=moelab
+      - MINIO_ROOT_PASSWORD=moelab123
+    command: server /data --console-address ":9001"
+    networks:
+      - moe-network
+
+  # Distributed training coordinator
+  coordinator:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: training
+    image: open-moe-trainer:train
+    container_name: moe-coordinator
+    volumes:
+      - .:/workspace:cached
+      - moe-data:/workspace/data
+      - moe-checkpoints:/workspace/checkpoints
+    environment:
+      - MASTER_ADDR=coordinator
+      - MASTER_PORT=29500
+      - WORLD_SIZE=2
+      - RANK=0
+      - LOCAL_RANK=0
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    command: ["--config", "configs/distributed.yaml", "--distributed"]
+    networks:
+      - moe-network
+
+  # Distributed training worker
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: training
+    image: open-moe-trainer:train
+    container_name: moe-worker
+    volumes:
+      - .:/workspace:cached
+      - moe-data:/workspace/data
+      - moe-checkpoints:/workspace/checkpoints
+    environment:
+      - MASTER_ADDR=coordinator
+      - MASTER_PORT=29500
+      - WORLD_SIZE=2
+      - RANK=1
+      - LOCAL_RANK=0
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    command: ["--config", "configs/distributed.yaml", "--distributed"]
+    networks:
+      - moe-network
+    depends_on:
+      - coordinator
+
+  # Testing service
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: ci
+    image: open-moe-trainer:test
+    container_name: moe-test
+    volumes:
+      - .:/workspace:cached
+      - test-reports:/workspace/test-reports
+    environment:
+      - PYTHONPATH=/workspace
+      - CI=true
+      - PYTEST_ADDOPTS=--tb=short
+    command: ["tests/", "-v", "--cov=moe_lab", "--cov-report=html:/workspace/test-reports/coverage"]
+    networks:
+      - moe-network
+
+  # Benchmark service
+  benchmark:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: benchmark
+    image: open-moe-trainer:benchmark
+    container_name: moe-benchmark
+    volumes:
+      - .:/workspace:cached
+      - benchmark-results:/workspace/benchmark-results
+    environment:
+      - CUDA_VISIBLE_DEVICES=all
+      - PYTHONPATH=/workspace
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    command: ["tests/benchmarks/", "-v", "--benchmark-json=/workspace/benchmark-results/results.json"]
+    networks:
+      - moe-network
+
+volumes:
+  moe-data:
+    driver: local
+  moe-checkpoints:
+    driver: local
+  moe-cache:
+    driver: local
+  moe-logs:
+    driver: local
+  prometheus-data:
+    driver: local
+  grafana-data:
+    driver: local
+  redis-data:
+    driver: local
+  postgres-data:
+    driver: local
+  minio-data:
+    driver: local
+  test-reports:
+    driver: local
+  benchmark-results:
+    driver: local
+
+networks:
+  moe-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
