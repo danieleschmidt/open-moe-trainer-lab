@@ -205,3 +205,94 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# =============================================================================
+# ML / Data Science specific
+# =============================================================================
+
+# Model checkpoints and weights
+checkpoints/
+models/
+*.pth
+*.pt
+*.ckpt
+*.pkl
+*.joblib
+*.safetensors
+
+# Training outputs
+outputs/
+runs/
+logs/
+wandb/
+mlruns/
+tensorboard_logs/
+lightning_logs/
+
+# Datasets
+data/
+datasets/
+*.hdf5
+*.h5
+*.npz
+*.npy
+
+# =============================================================================
+# MoE Trainer Lab specific
+# =============================================================================
+
+# Expert weights and routing data
+expert_weights/
+routing_data/
+expert_cache/
+*.routing
+*.expert
+
+# Benchmark results
+benchmark_results/
+performance_logs/
+
+# Profiling data
+*.prof
+*.profile
+profiling_data/
+
+# Visualization outputs
+visualizations/
+plots/
+*.png
+*.jpg
+*.gif
+*.mp4
+*.html
+
+# Configuration overrides
+config_local.yaml
+config_dev.yaml
+*_local.yaml
+
+# Distributed training
+nccl_debug.log
+distributed_logs/
+
+# Cache directories
+.cache/
+cache/
+tmp/
+temp/
+
+# Backup files
+*.bak
+*.backup
+*.orig
+
+# Compiled assets
+static/dist/
+node_modules/
+
+# Security
+*.key
+*.pem
+*.crt
+secrets.yaml
+api_keys.txt

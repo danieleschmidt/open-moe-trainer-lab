@@ -1,0 +1,47 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 4
+
+[*.{py,pyi}]
+max_line_length = 88
+indent_size = 4
+
+[*.{yml,yaml}]
+indent_size = 2
+
+[*.{json,jsonc}]
+indent_size = 2
+
+[*.{js,jsx,ts,tsx}]
+indent_size = 2
+
+[*.{html,css,scss}]
+indent_size = 2
+
+[*.{md,markdown}]
+trim_trailing_whitespace = false
+max_line_length = 100
+
+[*.{sh,bash}]
+indent_size = 2
+
+[Makefile]
+indent_style = tab
+
+[*.toml]
+indent_size = 4
+
+[*.cfg]
+indent_size = 4
+
+[Dockerfile*]
+indent_size = 2
+
+[*.{bat,cmd}]
+end_of_line = crlf

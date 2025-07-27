@@ -1,0 +1,151 @@
+# Prometheus configuration for Open MoE Trainer Lab
+
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    cluster: 'moe-lab'
+    environment: 'development'
+
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+          - alertmanager:9093
+
+# Rules for alerting
+rule_files:
+  - "rules/*.yml"
+
+# Scrape configurations
+scrape_configs:
+  # Prometheus self-monitoring
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+    scrape_interval: 5s
+    metrics_path: /metrics
+
+  # MoE Lab application metrics
+  - job_name: 'moe-lab-training'
+    static_configs:
+      - targets: ['train:8080']  # Training service metrics
+    scrape_interval: 10s
+    metrics_path: /metrics
+    scrape_timeout: 5s
+
+  - job_name: 'moe-lab-inference'
+    static_configs:
+      - targets: ['serve:8000']  # Inference service metrics
+    scrape_interval: 15s
+    metrics_path: /metrics
+    scrape_timeout: 5s
+
+  - job_name: 'moe-lab-dashboard'
+    static_configs:
+      - targets: ['dashboard:8080']  # Dashboard metrics
+    scrape_interval: 30s
+    metrics_path: /metrics
+
+  # System metrics
+  - job_name: 'node-exporter'
+    static_configs:
+      - targets: ['node-exporter:9100']
+    scrape_interval: 15s
+
+  # GPU metrics (if available)
+  - job_name: 'nvidia-dcgm'
+    static_configs:
+      - targets: ['dcgm-exporter:9400']
+    scrape_interval: 15s
+
+  # Container metrics
+  - job_name: 'cadvisor'
+    static_configs:
+      - targets: ['cadvisor:8080']
+    scrape_interval: 15s
+    metrics_path: /metrics
+
+  # Redis metrics
+  - job_name: 'redis'
+    static_configs:
+      - targets: ['redis-exporter:9121']
+    scrape_interval: 30s
+
+  # PostgreSQL metrics
+  - job_name: 'postgres'
+    static_configs:
+      - targets: ['postgres-exporter:9187']
+    scrape_interval: 30s
+
+  # MinIO metrics
+  - job_name: 'minio'
+    static_configs:
+      - targets: ['minio:9000']
+    scrape_interval: 30s
+    metrics_path: /minio/v2/metrics/cluster
+
+  # Distributed training metrics
+  - job_name: 'moe-lab-distributed'
+    ec2_sd_configs:
+      - region: us-west-2
+        port: 8080
+        filters:
+          - name: tag:Service
+            values: ['moe-training']
+    relabel_configs:
+      - source_labels: [__meta_ec2_tag_Name]
+        target_label: instance
+      - source_labels: [__meta_ec2_tag_Role]
+        target_label: role
+
+  # Jupyter Lab metrics (if enabled)
+  - job_name: 'jupyter'
+    static_configs:
+      - targets: ['jupyter:8888']
+    scrape_interval: 60s
+    metrics_path: /metrics
+
+  # MLflow metrics
+  - job_name: 'mlflow'
+    static_configs:
+      - targets: ['mlflow:5000']
+    scrape_interval: 30s
+    metrics_path: /metrics
+
+  # Weights & Biases local metrics
+  - job_name: 'wandb-local'
+    static_configs:
+      - targets: ['wandb-local:8080']
+    scrape_interval: 30s
+    metrics_path: /metrics
+
+# Recording rules for computed metrics
+recording_rules:
+  - record: moe_lab:training_throughput_tokens_per_second
+    expr: rate(moe_lab_training_tokens_processed_total[5m])
+  
+  - record: moe_lab:inference_latency_p99
+    expr: histogram_quantile(0.99, rate(moe_lab_inference_duration_seconds_bucket[5m]))
+  
+  - record: moe_lab:expert_utilization_variance
+    expr: stddev(moe_lab_expert_tokens_processed_total) / avg(moe_lab_expert_tokens_processed_total)
+  
+  - record: moe_lab:gpu_memory_utilization
+    expr: nvidia_gpu_memory_used_bytes / nvidia_gpu_memory_total_bytes
+  
+  - record: moe_lab:training_loss_trend
+    expr: deriv(moe_lab_training_loss[10m])
+
+# Remote write configuration (for long-term storage)
+remote_write:
+  - url: "http://victoriametrics:8428/api/v1/write"
+    queue_config:
+      max_samples_per_send: 10000
+      capacity: 20000
+      max_shards: 200
+
+# Remote read configuration
+remote_read:
+  - url: "http://victoriametrics:8428/api/v1/read"

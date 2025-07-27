@@ -1,0 +1,59 @@
+{
+  "name": "open-moe-trainer-lab",
+  "version": "0.1.0",
+  "description": "End-to-end training and visualization toolkit for Mixture of Experts (MoE) models",
+  "keywords": ["machine-learning", "deep-learning", "moe", "transformers", "pytorch", "distributed-training"],
+  "homepage": "https://github.com/your-org/open-moe-trainer-lab",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/open-moe-trainer-lab.git"
+  },
+  "license": "MIT",
+  "author": "Daniel Schmidt",
+  "scripts": {
+    "dev": "python -m moe_lab.dashboard --dev",
+    "build": "python setup.py bdist_wheel",
+    "test": "python -m pytest tests/ -v",
+    "test:watch": "python -m pytest tests/ -v --tb=short -x --looponfail",
+    "test:coverage": "python -m pytest tests/ --cov=moe_lab --cov-report=html --cov-report=term",
+    "test:distributed": "python -m pytest tests/distributed/ -v -n auto",
+    "test:slow": "python -m pytest tests/ -v -m slow",
+    "lint": "python -m pylint moe_lab/ tests/",
+    "lint:fix": "python -m black moe_lab/ tests/ && python -m isort moe_lab/ tests/",
+    "typecheck": "python -m mypy moe_lab/",
+    "format": "python -m black moe_lab/ tests/ examples/ && python -m isort moe_lab/ tests/ examples/",
+    "format:check": "python -m black --check moe_lab/ tests/ examples/ && python -m isort --check-only moe_lab/ tests/ examples/",
+    "docs": "cd docs && python -m sphinx -b html source build",
+    "docs:serve": "cd docs/build && python -m http.server 8000",
+    "docs:clean": "cd docs && rm -rf build/",
+    "clean": "find . -type d -name __pycache__ -exec rm -rf {} + && find . -type d -name .pytest_cache -exec rm -rf {} + && find . -name '*.pyc' -delete",
+    "benchmark": "python -m moe_lab.benchmark --config benchmarks/config.yaml",
+    "profile": "python -m moe_lab.profiler --model-config configs/model.yaml",
+    "dashboard": "python -m moe_lab.dashboard --port 8080",
+    "train": "python -m moe_lab.train --config configs/training.yaml",
+    "evaluate": "python -m moe_lab.evaluate --config configs/eval.yaml",
+    "export": "python -m moe_lab.export --model-path checkpoints/latest --format onnx",
+    "setup:dev": "pip install -e .[dev]",
+    "setup:gpu": "pip install -e .[gpu]",
+    "setup:distributed": "pip install -e .[distributed]",
+    "setup:all": "pip install -e .[all]",
+    "docker:build": "docker build -t open-moe-trainer:latest .",
+    "docker:build:gpu": "docker build -f Dockerfile.gpu -t open-moe-trainer:gpu .",
+    "docker:run": "docker run -it --rm -v $(pwd):/workspace open-moe-trainer:latest",
+    "docker:run:gpu": "docker run -it --rm --gpus all -v $(pwd):/workspace open-moe-trainer:gpu",
+    "prepare": "husky install",
+    "pre-commit": "pre-commit run --all-files",
+    "security:scan": "safety check && bandit -r moe_lab/",
+    "deps:update": "pip-review --auto",
+    "deps:check": "pip-audit",
+    "release:patch": "bumpversion patch && git push && git push --tags",
+    "release:minor": "bumpversion minor && git push && git push --tags",
+    "release:major": "bumpversion major && git push && git push --tags"
+  },
+  "devDependencies": {
+    "husky": "^8.0.3"
+  },
+  "engines": {
+    "python": ">=3.9"
+  }
+}

@@ -1,0 +1,131 @@
+# Docker Compose override for local development
+# This file extends docker-compose.yml with development-specific settings
+
+version: '3.8'
+
+services:
+  dev:
+    # Mount source code for live editing
+    volumes:
+      - .:/workspace:cached
+      - /var/run/docker.sock:/var/run/docker.sock  # Docker-in-Docker support
+      - ~/.ssh:/home/moeuser/.ssh:ro  # SSH keys for git operations
+      - ~/.gitconfig:/home/moeuser/.gitconfig:ro  # Git configuration
+    environment:
+      - DEBUG=true
+      - LOG_LEVEL=DEBUG
+      - WANDB_MODE=offline  # Offline mode for development
+      - TORCH_AUTOGRAD_PROFILER=false
+      - CUDA_LAUNCH_BLOCKING=0
+    # Enable debugging ports
+    ports:
+      - "5678:5678"  # Python debugger (debugpy)
+      - "8080:8080"  # Dashboard
+      - "8888:8888"  # Jupyter Lab
+      - "6006:6006"  # TensorBoard
+      - "3000:3000"  # Web UI
+      - "9000:9000"  # MinIO
+      - "9001:9001"  # MinIO Console
+
+  train:
+    environment:
+      - DEBUG=true
+      - LOG_LEVEL=DEBUG
+      - WANDB_MODE=offline
+      - NCCL_DEBUG=WARN  # Reduce distributed training logs in dev
+
+  serve:
+    environment:
+      - DEBUG=true
+      - LOG_LEVEL=DEBUG
+    # Mount development checkpoint for testing
+    volumes:
+      - ./checkpoints:/workspace/checkpoints:ro
+      - ./configs:/workspace/configs:ro
+
+  jupyter:
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+      - JUPYTER_TOKEN=moelab  # Simple token for development
+    # Mount additional development directories
+    volumes:
+      - .:/workspace:cached
+      - ./notebooks:/workspace/notebooks
+      - ./examples:/workspace/examples
+
+  # Development database with pre-populated data
+  postgres:
+    environment:
+      - POSTGRES_DB=moelab_dev
+      - POSTGRES_USER=dev
+      - POSTGRES_PASSWORD=dev123
+    volumes:
+      - ./dev/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    ports:
+      - "5433:5432"  # Different port to avoid conflicts
+
+  # Development Redis with persistence disabled for faster startup
+  redis:
+    command: redis-server --save ""
+    
+  # Development MinIO with development credentials
+  minio:
+    environment:
+      - MINIO_ROOT_USER=dev
+      - MINIO_ROOT_PASSWORD=dev12345
+    volumes:
+      - ./dev/minio-data:/data
+
+  # Mock services for testing integrations
+  mock-s3:
+    image: adobe/s3mock:latest
+    container_name: moe-mock-s3
+    ports:
+      - "9090:9090"
+    environment:
+      - initialBuckets=moe-models,moe-data,moe-artifacts
+    networks:
+      - moe-network
+
+  # Local MLflow tracking server
+  mlflow:
+    image: python:3.9-slim
+    container_name: moe-mlflow
+    ports:
+      - "5000:5000"
+    volumes:
+      - mlflow-data:/mlflow
+    environment:
+      - BACKEND_URI=sqlite:///mlflow/mlflow.db
+      - ARTIFACT_ROOT=/mlflow/artifacts
+    command: >
+      bash -c "
+        pip install mlflow &&
+        mlflow server 
+          --backend-store-uri sqlite:///mlflow/mlflow.db 
+          --default-artifact-root /mlflow/artifacts 
+          --host 0.0.0.0 
+          --port 5000
+      "
+    networks:
+      - moe-network
+
+  # Local weights & biases server (wandb-local)
+  wandb-local:
+    image: wandb/local:latest
+    container_name: moe-wandb
+    ports:
+      - "8080:8080"
+    volumes:
+      - wandb-data:/vol
+    environment:
+      - LICENSE=wandb-local-license
+      - MYSQL_PASSWORD=wandb
+    networks:
+      - moe-network
+
+volumes:
+  mlflow-data:
+    driver: local
+  wandb-data:
+    driver: local

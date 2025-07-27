@@ -1,0 +1,242 @@
+# Alert rules for Open MoE Trainer Lab
+
+groups:
+  - name: moe-lab-training
+    rules:
+      # Training throughput alerts
+      - alert: TrainingThroughputLow
+        expr: moe_lab:training_throughput_tokens_per_second < 100
+        for: 5m
+        labels:
+          severity: warning
+          service: training
+        annotations:
+          summary: "Training throughput is below threshold"
+          description: "Training throughput has been below 100 tokens/sec for more than 5 minutes. Current value: {{ $value }} tokens/sec"
+
+      - alert: TrainingStalled
+        expr: increase(moe_lab_training_tokens_processed_total[10m]) == 0
+        for: 5m
+        labels:
+          severity: critical
+          service: training
+        annotations:
+          summary: "Training appears to be stalled"
+          description: "No training progress detected for 10 minutes on instance {{ $labels.instance }}"
+
+      # Loss divergence alerts
+      - alert: TrainingLossDiverging
+        expr: moe_lab:training_loss_trend > 0.1
+        for: 15m
+        labels:
+          severity: warning
+          service: training
+        annotations:
+          summary: "Training loss is diverging"
+          description: "Training loss has been increasing for 15 minutes. Current trend: {{ $value }}"
+
+      - alert: TrainingLossNaN
+        expr: moe_lab_training_loss != moe_lab_training_loss
+        for: 1m
+        labels:
+          severity: critical
+          service: training
+        annotations:
+          summary: "Training loss is NaN"
+          description: "Training loss has become NaN, indicating numerical instability"
+
+      # Expert utilization alerts
+      - alert: ExpertLoadImbalance
+        expr: moe_lab:expert_utilization_variance > 0.5
+        for: 10m
+        labels:
+          severity: warning
+          service: training
+        annotations:
+          summary: "High expert load imbalance detected"
+          description: "Expert utilization variance is {{ $value }}, indicating poor load balancing"
+
+      - alert: ExpertNotUsed
+        expr: moe_lab_expert_tokens_processed_total == 0
+        for: 30m
+        labels:
+          severity: warning
+          service: training
+        annotations:
+          summary: "Expert {{ $labels.expert_id }} not being used"
+          description: "Expert {{ $labels.expert_id }} has not processed any tokens for 30 minutes"
+
+  - name: moe-lab-inference
+    rules:
+      # Inference latency alerts
+      - alert: HighInferenceLatency
+        expr: moe_lab:inference_latency_p99 > 1.0
+        for: 5m
+        labels:
+          severity: warning
+          service: inference
+        annotations:
+          summary: "High inference latency detected"
+          description: "P99 inference latency is {{ $value }}s, above 1s threshold"
+
+      - alert: CriticalInferenceLatency
+        expr: moe_lab:inference_latency_p99 > 5.0
+        for: 2m
+        labels:
+          severity: critical
+          service: inference
+        annotations:
+          summary: "Critical inference latency"
+          description: "P99 inference latency is {{ $value }}s, above critical 5s threshold"
+
+      # Request rate alerts
+      - alert: HighErrorRate
+        expr: rate(moe_lab_requests_total{status=~"5.."}[5m]) / rate(moe_lab_requests_total[5m]) > 0.05
+        for: 5m
+        labels:
+          severity: warning
+          service: inference
+        annotations:
+          summary: "High error rate in inference service"
+          description: "Error rate is {{ $value | humanizePercentage }}, above 5% threshold"
+
+      - alert: NoInferenceRequests
+        expr: rate(moe_lab_requests_total[10m]) == 0
+        for: 15m
+        labels:
+          severity: warning
+          service: inference
+        annotations:
+          summary: "No inference requests received"
+          description: "No inference requests have been received for 15 minutes"
+
+  - name: moe-lab-resources
+    rules:
+      # GPU memory alerts
+      - alert: HighGPUMemoryUsage
+        expr: moe_lab:gpu_memory_utilization > 0.9
+        for: 10m
+        labels:
+          severity: warning
+          service: training
+        annotations:
+          summary: "High GPU memory usage"
+          description: "GPU {{ $labels.gpu }} memory usage is {{ $value | humanizePercentage }}"
+
+      - alert: GPUMemoryLeak
+        expr: increase(nvidia_gpu_memory_used_bytes[1h]) > 1e9 and rate(moe_lab_training_tokens_processed_total[1h]) == 0
+        for: 30m
+        labels:
+          severity: warning
+          service: training
+        annotations:
+          summary: "Potential GPU memory leak detected"
+          description: "GPU memory usage increased by {{ $value | humanizeBytes }} without training progress"
+
+      # System resource alerts
+      - alert: HighSystemMemoryUsage
+        expr: (1 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes)) > 0.9
+        for: 10m
+        labels:
+          severity: warning
+          service: system
+        annotations:
+          summary: "High system memory usage"
+          description: "System memory usage is {{ $value | humanizePercentage }} on {{ $labels.instance }}"
+
+      - alert: DiskSpaceLow
+        expr: (node_filesystem_avail_bytes / node_filesystem_size_bytes) < 0.1
+        for: 5m
+        labels:
+          severity: critical
+          service: system
+        annotations:
+          summary: "Low disk space"
+          description: "Disk space is {{ $value | humanizePercentage }} available on {{ $labels.instance }}:{{ $labels.mountpoint }}"
+
+  - name: moe-lab-services
+    rules:
+      # Service availability alerts
+      - alert: ServiceDown
+        expr: up == 0
+        for: 1m
+        labels:
+          severity: critical
+          service: "{{ $labels.job }}"
+        annotations:
+          summary: "Service {{ $labels.job }} is down"
+          description: "Service {{ $labels.job }} on {{ $labels.instance }} has been down for more than 1 minute"
+
+      - alert: HighServiceRestarts
+        expr: increase(container_start_time_seconds[1h]) > 3
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High service restart rate"
+          description: "Container {{ $labels.name }} has restarted {{ $value }} times in the last hour"
+
+      # Database alerts
+      - alert: PostgreSQLDown
+        expr: up{job="postgres"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          service: database
+        annotations:
+          summary: "PostgreSQL is down"
+          description: "PostgreSQL database is not responding"
+
+      - alert: RedisDown
+        expr: up{job="redis"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          service: cache
+        annotations:
+          summary: "Redis is down"
+          description: "Redis cache is not responding"
+
+  - name: moe-lab-model-quality
+    rules:
+      # Model quality alerts
+      - alert: ModelAccuracyDrop
+        expr: moe_lab_model_accuracy < 0.7
+        for: 30m
+        labels:
+          severity: warning
+          service: training
+        annotations:
+          summary: "Model accuracy has dropped"
+          description: "Model accuracy is {{ $value }}, below 70% threshold"
+
+      - alert: ValidationLossIncreasing
+        expr: increase(moe_lab_validation_loss[1h]) > 0.5
+        for: 30m
+        labels:
+          severity: warning
+          service: training
+        annotations:
+          summary: "Validation loss is increasing"
+          description: "Validation loss has increased by {{ $value }} in the last hour, indicating possible overfitting"
+
+      # Router health alerts
+      - alert: RouterEntropyLow
+        expr: moe_lab_router_entropy < 1.0
+        for: 15m
+        labels:
+          severity: warning
+          service: training
+        annotations:
+          summary: "Router entropy is low"
+          description: "Router entropy is {{ $value }}, indicating poor expert diversity"
+
+      - alert: RouterGradientExplosion
+        expr: moe_lab_router_gradient_norm > 10.0
+        for: 5m
+        labels:
+          severity: critical
+          service: training
+        annotations:
+          summary: "Router gradient explosion detected"
+          description: "Router gradient norm is {{ $value }}, indicating numerical instability"

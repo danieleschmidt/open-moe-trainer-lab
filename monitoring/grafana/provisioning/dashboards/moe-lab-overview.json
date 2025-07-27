@@ -1,0 +1,263 @@
+{
+  "dashboard": {
+    "id": null,
+    "title": "MoE Lab - Training Overview",
+    "tags": ["moe-lab", "training", "overview"],
+    "timezone": "browser",
+    "refresh": "30s",
+    "time": {
+      "from": "now-1h",
+      "to": "now"
+    },
+    "panels": [
+      {
+        "id": 1,
+        "title": "Training Throughput",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "moe_lab:training_throughput_tokens_per_second",
+            "legendFormat": "Tokens/sec"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "ops",
+            "thresholds": {
+              "steps": [
+                {"color": "red", "value": 0},
+                {"color": "yellow", "value": 500},
+                {"color": "green", "value": 1000}
+              ]
+            }
+          }
+        },
+        "gridPos": {"h": 8, "w": 6, "x": 0, "y": 0}
+      },
+      {
+        "id": 2,
+        "title": "Training Loss",
+        "type": "timeseries",
+        "targets": [
+          {
+            "expr": "moe_lab_training_loss",
+            "legendFormat": "Training Loss"
+          },
+          {
+            "expr": "moe_lab_validation_loss",
+            "legendFormat": "Validation Loss"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "short",
+            "custom": {
+              "drawStyle": "line",
+              "lineWidth": 2,
+              "fillOpacity": 10
+            }
+          }
+        },
+        "gridPos": {"h": 8, "w": 12, "x": 6, "y": 0}
+      },
+      {
+        "id": 3,
+        "title": "GPU Memory Usage",
+        "type": "timeseries",
+        "targets": [
+          {
+            "expr": "moe_lab:gpu_memory_utilization * 100",
+            "legendFormat": "GPU {{gpu}} Memory %"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "percent",
+            "max": 100,
+            "custom": {
+              "drawStyle": "line",
+              "lineWidth": 2,
+              "fillOpacity": 20
+            }
+          }
+        },
+        "gridPos": {"h": 8, "w": 6, "x": 18, "y": 0}
+      },
+      {
+        "id": 4,
+        "title": "Expert Utilization",
+        "type": "heatmap",
+        "targets": [
+          {
+            "expr": "moe_lab_expert_tokens_processed_total",
+            "legendFormat": "Expert {{expert_id}}"
+          }
+        ],
+        "gridPos": {"h": 8, "w": 12, "x": 0, "y": 8}
+      },
+      {
+        "id": 5,
+        "title": "Router Entropy",
+        "type": "timeseries",
+        "targets": [
+          {
+            "expr": "moe_lab_router_entropy",
+            "legendFormat": "Layer {{layer}}"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "short",
+            "custom": {
+              "drawStyle": "line",
+              "lineWidth": 1
+            }
+          }
+        },
+        "gridPos": {"h": 8, "w": 12, "x": 12, "y": 8}
+      },
+      {
+        "id": 6,
+        "title": "System Resources",
+        "type": "timeseries",
+        "targets": [
+          {
+            "expr": "rate(node_cpu_seconds_total[5m]) * 100",
+            "legendFormat": "CPU Usage %"
+          },
+          {
+            "expr": "(1 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes)) * 100",
+            "legendFormat": "Memory Usage %"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "percent",
+            "max": 100
+          }
+        },
+        "gridPos": {"h": 8, "w": 24, "x": 0, "y": 16}
+      },
+      {
+        "id": 7,
+        "title": "Inference Latency",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "moe_lab:inference_latency_p99",
+            "legendFormat": "P99 Latency"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "s",
+            "thresholds": {
+              "steps": [
+                {"color": "green", "value": 0},
+                {"color": "yellow", "value": 0.1},
+                {"color": "red", "value": 0.5}
+              ]
+            }
+          }
+        },
+        "gridPos": {"h": 4, "w": 6, "x": 0, "y": 24}
+      },
+      {
+        "id": 8,
+        "title": "Active Requests",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "moe_lab_active_requests",
+            "legendFormat": "Active Requests"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "short",
+            "colorMode": "value"
+          }
+        },
+        "gridPos": {"h": 4, "w": 6, "x": 6, "y": 24}
+      },
+      {
+        "id": 9,
+        "title": "Error Rate",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "rate(moe_lab_requests_total{status=~\"5..\"}[5m]) / rate(moe_lab_requests_total[5m]) * 100",
+            "legendFormat": "Error Rate %"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "percent",
+            "thresholds": {
+              "steps": [
+                {"color": "green", "value": 0},
+                {"color": "yellow", "value": 1},
+                {"color": "red", "value": 5}
+              ]
+            }
+          }
+        },
+        "gridPos": {"h": 4, "w": 6, "x": 12, "y": 24}
+      },
+      {
+        "id": 10,
+        "title": "Model Load Balancing",
+        "type": "bargauge",
+        "targets": [
+          {
+            "expr": "moe_lab:expert_utilization_variance",
+            "legendFormat": "Load Variance"
+          }
+        ],
+        "fieldConfig": {
+          "defaults": {
+            "unit": "short",
+            "thresholds": {
+              "steps": [
+                {"color": "green", "value": 0},
+                {"color": "yellow", "value": 0.1},
+                {"color": "red", "value": 0.3}
+              ]
+            }
+          }
+        },
+        "gridPos": {"h": 4, "w": 6, "x": 18, "y": 24}
+      }
+    ],
+    "annotations": {
+      "list": [
+        {
+          "name": "Training Events",
+          "datasource": "Prometheus",
+          "expr": "changes(moe_lab_training_epoch[1h])",
+          "iconColor": "blue",
+          "textFormat": "Epoch {{epoch}}"
+        }
+      ]
+    },
+    "templating": {
+      "list": [
+        {
+          "name": "job",
+          "type": "query",
+          "query": "label_values(moe_lab_training_loss, job)",
+          "refresh": 1,
+          "includeAll": true,
+          "allValue": ".*"
+        },
+        {
+          "name": "gpu",
+          "type": "query", 
+          "query": "label_values(nvidia_gpu_memory_used_bytes, gpu)",
+          "refresh": 1,
+          "includeAll": true
+        }
+      ]
+    }
+  }
+}

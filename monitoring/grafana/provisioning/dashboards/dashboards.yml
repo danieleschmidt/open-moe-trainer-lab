@@ -1,0 +1,24 @@
+# Grafana dashboard provisioning configuration
+
+apiVersion: 1
+
+providers:
+  - name: 'moe-lab-dashboards'
+    orgId: 1
+    folder: 'MoE Lab'
+    type: file
+    disableDeletion: false
+    updateIntervalSeconds: 10
+    allowUiUpdates: true
+    options:
+      path: /etc/grafana/provisioning/dashboards
+
+  - name: 'default'
+    orgId: 1
+    folder: ''
+    type: file
+    disableDeletion: false
+    updateIntervalSeconds: 10
+    allowUiUpdates: true
+    options:
+      path: /var/lib/grafana/dashboards
