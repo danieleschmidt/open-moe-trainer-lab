@@ -1,0 +1,574 @@
+# CI/CD Pipeline for Open MoE Trainer Lab
+# Template file - Copy to ci.yml and customize as needed
+
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+  schedule:
+    # Run nightly tests
+    - cron: '0 2 * * *'
+
+env:
+  PYTHON_VERSION: '3.9'
+  PYTORCH_VERSION: '2.1.0'
+  CUDA_VERSION: '11.8'
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # =============================================================================
+  # Code Quality Checks
+  # =============================================================================
+  
+  code-quality:
+    name: Code Quality
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+        
+    - name: Cache pip dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/pyproject.toml') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+          
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e .[dev]
+        
+    - name: Format check
+      run: |
+        black --check moe_lab/ tests/ examples/
+        isort --check-only moe_lab/ tests/ examples/
+        
+    - name: Lint with pylint
+      run: pylint moe_lab/ tests/
+      
+    - name: Type check with mypy
+      run: mypy moe_lab/
+      
+    - name: Security scan with bandit
+      run: bandit -r moe_lab/
+      
+    - name: Dependency security check
+      run: safety check
+      
+    - name: Check for secrets
+      uses: Yelp/detect-secrets-action@v1.4.0
+      with:
+        baseline: .secrets.baseline
+
+  # =============================================================================
+  # Unit Tests
+  # =============================================================================
+  
+  unit-tests:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.9', '3.10', '3.11']
+        
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+        
+    - name: Cache pip dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-py${{ matrix.python-version }}-pip-${{ hashFiles('**/pyproject.toml') }}
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e .[dev]
+        
+    - name: Run unit tests
+      run: |
+        pytest tests/unit/ -v \
+          --cov=moe_lab \
+          --cov-report=xml \
+          --cov-report=html \
+          --junit-xml=test-results.xml
+          
+    - name: Upload coverage to Codecov
+      if: matrix.python-version == '3.9'
+      uses: codecov/codecov-action@v3
+      with:
+        files: ./coverage.xml
+        fail_ci_if_error: true
+        
+    - name: Upload test results
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: test-results-py${{ matrix.python-version }}
+        path: |
+          test-results.xml
+          htmlcov/
+
+  # =============================================================================
+  # GPU Tests
+  # =============================================================================
+  
+  gpu-tests:
+    name: GPU Tests
+    runs-on: [self-hosted, gpu]  # Requires self-hosted GPU runner
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e .[dev,gpu]
+        
+    - name: Check GPU availability
+      run: |
+        python -c "import torch; print(f'CUDA available: {torch.cuda.is_available()}')"
+        python -c "import torch; print(f'GPU count: {torch.cuda.device_count()}')"
+        nvidia-smi
+        
+    - name: Run GPU tests
+      run: |
+        pytest tests/unit/ tests/integration/ -v -m "gpu" \
+          --cov=moe_lab \
+          --junit-xml=gpu-test-results.xml
+          
+    - name: Upload GPU test results
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: gpu-test-results
+        path: gpu-test-results.xml
+
+  # =============================================================================
+  # Integration Tests
+  # =============================================================================
+  
+  integration-tests:
+    name: Integration Tests
+    runs-on: ubuntu-latest
+    needs: [code-quality, unit-tests]
+    
+    services:
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+          
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: moelab_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e .[dev]
+        
+    - name: Run integration tests
+      env:
+        REDIS_URL: redis://localhost:6379
+        DATABASE_URL: postgresql://postgres:postgres@localhost:5432/moelab_test
+      run: |
+        pytest tests/integration/ -v \
+          --junit-xml=integration-test-results.xml
+          
+    - name: Upload integration test results
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: integration-test-results
+        path: integration-test-results.xml
+
+  # =============================================================================
+  # Distributed Tests
+  # =============================================================================
+  
+  distributed-tests:
+    name: Distributed Tests
+    runs-on: [self-hosted, multi-gpu]  # Requires multi-GPU runner
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e .[dev,distributed]
+        
+    - name: Run distributed tests
+      run: |
+        pytest tests/distributed/ -v -m "distributed" \
+          --junit-xml=distributed-test-results.xml
+          
+    - name: Upload distributed test results
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: distributed-test-results
+        path: distributed-test-results.xml
+
+  # =============================================================================
+  # Docker Build and Test
+  # =============================================================================
+  
+  docker-build:
+    name: Docker Build
+    runs-on: ubuntu-latest
+    needs: [code-quality]
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+      
+    - name: Login to Container Registry
+      if: github.event_name != 'pull_request'
+      uses: docker/login-action@v3
+      with:
+        registry: ${{ env.REGISTRY }}
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+        
+    - name: Extract metadata
+      id: meta
+      uses: docker/metadata-action@v5
+      with:
+        images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+        tags: |
+          type=ref,event=branch
+          type=ref,event=pr
+          type=sha,prefix={{branch}}-
+          type=raw,value=latest,enable={{is_default_branch}}
+          
+    - name: Build and push development image
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        target: development
+        push: ${{ github.event_name != 'pull_request' }}
+        tags: ${{ steps.meta.outputs.tags }}-dev
+        labels: ${{ steps.meta.outputs.labels }}
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+        
+    - name: Build and push production image
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        target: production
+        push: ${{ github.event_name != 'pull_request' }}
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+        
+    - name: Test Docker images
+      run: |
+        docker run --rm ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest-dev python -c "import moe_lab; print('✅ Development image works')"
+        docker run --rm ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest python -c "import moe_lab; print('✅ Production image works')"
+
+  # =============================================================================
+  # Security Scanning
+  # =============================================================================
+  
+  security-scan:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    needs: [docker-build]
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Run Trivy vulnerability scanner
+      uses: aquasecurity/trivy-action@master
+      with:
+        image-ref: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+        format: 'sarif'
+        output: 'trivy-results.sarif'
+        
+    - name: Upload Trivy scan results to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@v2
+      if: always()
+      with:
+        sarif_file: 'trivy-results.sarif'
+        
+    - name: Run CodeQL Analysis
+      uses: github/codeql-action/analyze@v2
+      with:
+        languages: python
+
+  # =============================================================================
+  # Performance Benchmarks
+  # =============================================================================
+  
+  benchmarks:
+    name: Performance Benchmarks
+    runs-on: [self-hosted, gpu]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: [gpu-tests]
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e .[dev,gpu,benchmarking]
+        
+    - name: Run performance benchmarks
+      run: |
+        pytest tests/benchmarks/ -v \
+          --benchmark-json=benchmark-results.json \
+          --benchmark-compare-fail=mean:10%
+          
+    - name: Upload benchmark results
+      uses: actions/upload-artifact@v3
+      with:
+        name: benchmark-results
+        path: benchmark-results.json
+        
+    - name: Comment benchmark results on PR
+      if: github.event_name == 'pull_request'
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const fs = require('fs');
+          const results = JSON.parse(fs.readFileSync('benchmark-results.json', 'utf8'));
+          
+          let comment = '## 🚀 Performance Benchmark Results\n\n';
+          comment += '| Benchmark | Time (ms) | Memory (MB) | Status |\n';
+          comment += '|-----------|-----------|-------------|--------|\n';
+          
+          for (const benchmark of results.benchmarks) {
+            const name = benchmark.name;
+            const time = (benchmark.stats.mean * 1000).toFixed(2);
+            const memory = (benchmark.stats.max_rss / 1024 / 1024).toFixed(2);
+            const status = '✅ Pass';
+            comment += `| ${name} | ${time} | ${memory} | ${status} |\n`;
+          }
+          
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: comment
+          });
+
+  # =============================================================================
+  # Package Build and Test
+  # =============================================================================
+  
+  package-build:
+    name: Package Build
+    runs-on: ubuntu-latest
+    needs: [unit-tests, integration-tests]
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+        
+    - name: Install build dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install build twine
+        
+    - name: Build package
+      run: python -m build
+      
+    - name: Check package
+      run: twine check dist/*
+      
+    - name: Test installation
+      run: |
+        pip install dist/*.whl
+        python -c "import moe_lab; print('✅ Package installs correctly')"
+        
+    - name: Upload package artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: package-artifacts
+        path: dist/
+
+  # =============================================================================
+  # Documentation Build
+  # =============================================================================
+  
+  docs-build:
+    name: Documentation Build
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+        
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -e .[dev]
+        
+    - name: Build documentation
+      run: |
+        cd docs
+        make html
+        
+    - name: Check documentation links
+      run: |
+        cd docs
+        make linkcheck
+        
+    - name: Upload documentation
+      uses: actions/upload-artifact@v3
+      with:
+        name: documentation
+        path: docs/build/html/
+        
+    - name: Deploy to GitHub Pages
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: docs/build/html/
+
+  # =============================================================================
+  # Deployment
+  # =============================================================================
+  
+  deploy-staging:
+    name: Deploy to Staging
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/develop'
+    needs: [unit-tests, integration-tests, docker-build, security-scan]
+    environment: staging
+    
+    steps:
+    - name: Deploy to staging environment
+      run: |
+        echo "🚀 Deploying to staging environment"
+        # Add your staging deployment commands here
+        
+  deploy-production:
+    name: Deploy to Production
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    needs: [unit-tests, integration-tests, docker-build, security-scan, benchmarks]
+    environment: production
+    
+    steps:
+    - name: Deploy to production environment
+      run: |
+        echo "🚀 Deploying to production environment"
+        # Add your production deployment commands here
+
+  # =============================================================================
+  # Notification and Reporting
+  # =============================================================================
+  
+  notify-results:
+    name: Notify Results
+    runs-on: ubuntu-latest
+    if: always()
+    needs: [unit-tests, integration-tests, docker-build, security-scan]
+    
+    steps:
+    - name: Notify Slack on success
+      if: success()
+      uses: 8398a7/action-slack@v3
+      with:
+        status: success
+        channel: '#moe-lab-ci'
+        webhook_url: ${{ secrets.SLACK_WEBHOOK }}
+        
+    - name: Notify Slack on failure
+      if: failure()
+      uses: 8398a7/action-slack@v3
+      with:
+        status: failure
+        channel: '#moe-lab-ci'
+        webhook_url: ${{ secrets.SLACK_WEBHOOK }}
+        
+    - name: Update status badge
+      run: |
+        echo "Updating status badge based on CI results"
+        # Add status badge update logic here
