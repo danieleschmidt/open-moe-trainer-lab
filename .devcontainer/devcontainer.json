@@ -2,9 +2,30 @@
   "name": "Open MoE Trainer Lab",
   "image": "nvcr.io/nvidia/pytorch:24.01-py3",
   "features": {
-    "ghcr.io/devcontainers/features/git:1": {},
-    "ghcr.io/devcontainers/features/github-cli:1": {},
-    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": true,
+      "configureZshAsDefaultShell": true,
+      "installOhMyZsh": true,
+      "upgradePackages": true
+    },
+    "ghcr.io/devcontainers/features/git:1": {
+      "ppa": true,
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/github-cli:1": {
+      "installDirectlyFromGitHubRelease": true,
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "version": "latest",
+      "enableNonRootDocker": true,
+      "moby": true
+    },
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "18",
+      "nodeGypDependencies": true,
+      "installYarnUsingApt": true
+    }
   },
   "runArgs": [
     "--gpus=all",
@@ -25,27 +46,62 @@
     "vscode": {
       "extensions": [
         "ms-python.python",
-        "ms-python.pylint",
+        "ms-python.vscode-pylance",
+        "ms-python.mypy-type-checker",
         "ms-python.black-formatter",
         "ms-python.isort",
+        "ms-python.pylint",
+        "charliermarsh.ruff",
         "ms-toolsai.jupyter",
+        "ms-toolsai.vscode-jupyter-powertoys",
         "ms-vscode.cmake-tools",
         "ms-azuretools.vscode-docker",
+        "ms-kubernetes-tools.vscode-kubernetes-tools",
         "github.copilot",
         "github.copilot-chat",
         "ms-vscode.makefile-tools",
         "redhat.vscode-yaml",
-        "ms-vscode.vscode-json"
+        "ms-vscode.vscode-json",
+        "ms-vscode-remote.remote-containers",
+        "github.vscode-pull-request-github",
+        "eamodio.gitlens",
+        "davidanson.vscode-markdownlint",
+        "yzhang.markdown-all-in-one",
+        "bierner.markdown-mermaid",
+        "streetsidesoftware.code-spell-checker",
+        "humao.rest-client",
+        "ms-python.debugpy",
+        "redhat.vscode-prometheus",
+        "hashicorp.terraform"
       ],
       "settings": {
         "python.defaultInterpreterPath": "/opt/conda/bin/python",
+        "python.analysis.typeCheckingMode": "strict",
+        "python.analysis.autoImportCompletions": true,
+        "python.analysis.include": ["moe_lab", "tests", "examples"],
         "python.linting.enabled": true,
         "python.linting.pylintEnabled": true,
+        "python.linting.mypyEnabled": true,
         "python.formatting.provider": "black",
         "python.formatting.blackArgs": ["--line-length", "88"],
         "python.sortImports.args": ["--profile", "black"],
         "editor.formatOnSave": true,
+        "editor.formatOnPaste": true,
+        "editor.codeActionsOnSave": {
+          "source.organizeImports": true,
+          "source.fixAll.pylint": true
+        },
         "editor.rulers": [88],
+        "files.associations": {
+          "*.yml": "yaml",
+          "*.yaml": "yaml",
+          "Dockerfile*": "dockerfile",
+          "*.conf": "ini"
+        },
+        "yaml.schemas": {
+          "https://json.schemastore.org/github-workflow.json": ".github/workflows/*.yml",
+          "https://json.schemastore.org/docker-compose.json": "docker-compose*.yml"
+        },
         "files.exclude": {
           "**/__pycache__": true,
           "**/*.pyc": true,
@@ -54,15 +110,21 @@
           "**/checkpoints": true,
           "**/.git": false
         },
+        "git.autofetch": true,
+        "git.enableSmartCommit": true,
+        "terminal.integrated.defaultProfile.linux": "bash",
         "jupyter.askForKernelRestart": false,
         "jupyter.runStartupCommands": [
           "%load_ext autoreload",
           "%autoreload 2"
-        ]
+        ],
+        "jupyter.interactiveWindow.textEditor.executeSelection": true,
+        "workbench.colorTheme": "Default Dark+",
+        "workbench.iconTheme": "vs-seti"
       }
     }
   },
-  "forwardPorts": [8080, 8888, 6006, 3000],
+  "forwardPorts": [8080, 8888, 6006, 3000, 5000, 9090, 3001],
   "portsAttributes": {
     "8080": {
       "label": "MoE Dashboard",
@@ -77,8 +139,20 @@
       "onAutoForward": "notify"
     },
     "3000": {
-      "label": "Web UI",
+      "label": "React Dev Server",
+      "onAutoForward": "openBrowser"
+    },
+    "5000": {
+      "label": "API Server",
       "onAutoForward": "notify"
+    },
+    "9090": {
+      "label": "Prometheus",
+      "onAutoForward": "ignore"
+    },
+    "3001": {
+      "label": "Grafana",
+      "onAutoForward": "openBrowser"
     }
   },
   "remoteUser": "root"
