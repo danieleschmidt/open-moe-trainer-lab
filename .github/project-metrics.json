@@ -1,0 +1,277 @@
+{
+  "schema_version": "1.0",
+  "project": {
+    "name": "open-moe-trainer-lab",
+    "version": "0.1.0",
+    "description": "End-to-end training and visualization toolkit for Mixture of Experts (MoE) models",
+    "homepage": "https://github.com/your-org/open-moe-trainer-lab",
+    "language": "Python",
+    "framework": "PyTorch",
+    "license": "Apache-2.0"
+  },
+  "metrics": {
+    "code_quality": {
+      "test_coverage": {
+        "target": 90,
+        "current": 85,
+        "threshold_critical": 80,
+        "threshold_warning": 85,
+        "last_updated": "2024-01-15T10:30:00Z"
+      },
+      "code_complexity": {
+        "cyclomatic_complexity_avg": 3.2,
+        "max_function_complexity": 15,
+        "threshold_warning": 10,
+        "threshold_critical": 20
+      },
+      "technical_debt": {
+        "sonarqube_debt_ratio": 0.12,
+        "code_smells": 23,
+        "duplicated_lines_density": 2.1,
+        "target_debt_ratio": 0.05
+      },
+      "security": {
+        "vulnerabilities": {
+          "critical": 0,
+          "high": 0,
+          "medium": 2,
+          "low": 5
+        },
+        "security_hotspots": 3,
+        "last_scan": "2024-01-15T08:00:00Z"
+      }
+    },
+    "development": {
+      "velocity": {
+        "commits_per_week": 45,
+        "lines_added_per_week": 2850,
+        "lines_removed_per_week": 1200,
+        "net_lines_per_week": 1650,
+        "contributors_active": 8
+      },
+      "pull_requests": {
+        "average_time_to_merge_hours": 18.5,
+        "average_review_time_hours": 6.2,
+        "merge_rate_percentage": 92.3,
+        "revert_rate_percentage": 1.8
+      },
+      "issue_management": {
+        "average_time_to_close_days": 12.4,
+        "bug_report_resolution_days": 8.7,
+        "feature_request_completion_days": 28.3,
+        "backlog_health_score": 7.8
+      }
+    },
+    "ci_cd": {
+      "build_performance": {
+        "average_build_time_minutes": 12.3,
+        "build_success_rate_percentage": 94.7,
+        "test_execution_time_minutes": 8.9,
+        "deployment_frequency_per_week": 3.2
+      },
+      "quality_gates": {
+        "code_quality_gate_pass_rate": 96.1,
+        "security_gate_pass_rate": 98.5,
+        "performance_gate_pass_rate": 91.2,
+        "documentation_gate_pass_rate": 88.7
+      },
+      "deployment": {
+        "deployment_success_rate": 97.8,
+        "rollback_rate": 2.2,
+        "lead_time_to_production_hours": 4.5,
+        "mean_time_to_recovery_minutes": 23.7
+      }
+    },
+    "performance": {
+      "training_metrics": {
+        "training_throughput_tokens_per_second": {
+          "current": 1850,
+          "target": 2000,
+          "baseline": 1500,
+          "trend": "improving"
+        },
+        "memory_efficiency_percentage": {
+          "gpu_memory_utilization": 87.3,
+          "system_memory_utilization": 76.8,
+          "expert_cache_hit_rate": 92.1
+        },
+        "model_convergence": {
+          "average_epochs_to_convergence": 15.2,
+          "training_stability_score": 8.7,
+          "expert_load_balance_score": 9.1
+        }
+      },
+      "inference_metrics": {
+        "latency_metrics": {
+          "p50_latency_ms": 45.2,
+          "p95_latency_ms": 89.7,
+          "p99_latency_ms": 156.3,
+          "target_p95_ms": 100
+        },
+        "throughput_metrics": {
+          "requests_per_second": 234.7,
+          "tokens_per_second": 3450,
+          "concurrent_requests": 128,
+          "target_rps": 250
+        },
+        "resource_utilization": {
+          "cpu_utilization_percentage": 68.4,
+          "gpu_utilization_percentage": 91.2,
+          "memory_utilization_percentage": 79.8
+        }
+      },
+      "scalability": {
+        "distributed_training": {
+          "scaling_efficiency_2_gpus": 0.89,
+          "scaling_efficiency_4_gpus": 0.82,
+          "scaling_efficiency_8_gpus": 0.76,
+          "communication_overhead_percentage": 12.3
+        },
+        "expert_parallelism": {
+          "expert_placement_efficiency": 0.91,
+          "load_balancing_variance": 0.08,
+          "expert_utilization_skew": 0.15
+        }
+      }
+    },
+    "reliability": {
+      "availability": {
+        "uptime_percentage": 99.7,
+        "planned_downtime_hours_per_month": 2.5,
+        "unplanned_downtime_minutes_per_month": 43.2,
+        "sla_target": 99.9
+      },
+      "error_rates": {
+        "training_failure_rate": 0.8,
+        "inference_error_rate": 0.15,
+        "system_error_rate": 0.23,
+        "user_error_rate": 2.1
+      },
+      "recovery": {
+        "mean_time_to_detection_minutes": 3.7,
+        "mean_time_to_recovery_minutes": 18.4,
+        "automatic_recovery_rate": 78.3,
+        "backup_success_rate": 99.2
+      }
+    },
+    "user_experience": {
+      "documentation": {
+        "documentation_coverage_percentage": 87.4,
+        "api_documentation_completeness": 94.2,
+        "example_code_coverage": 76.8,
+        "user_guide_completeness": 91.3
+      },
+      "ease_of_use": {
+        "api_usability_score": 8.2,
+        "setup_complexity_score": 6.8,
+        "learning_curve_score": 7.4,
+        "user_satisfaction_score": 8.1
+      },
+      "community": {
+        "github_stars": 1250,
+        "forks": 189,
+        "contributors": 23,
+        "monthly_active_users": 890,
+        "community_health_score": 8.3
+      }
+    },
+    "business": {
+      "adoption": {
+        "daily_active_users": 312,
+        "monthly_active_users": 890,
+        "user_retention_rate": 76.8,
+        "feature_adoption_rate": 64.2
+      },
+      "cost_efficiency": {
+        "compute_cost_per_training_job": 23.45,
+        "infrastructure_cost_per_user": 4.67,
+        "development_cost_per_feature": 2890,
+        "roi_percentage": 145.7
+      },
+      "growth": {
+        "user_growth_rate_monthly": 12.3,
+        "api_usage_growth_rate": 18.7,
+        "community_growth_rate": 9.8,
+        "market_penetration": 3.2
+      }
+    }
+  },
+  "trends": {
+    "last_30_days": {
+      "commits": 142,
+      "pull_requests": 23,
+      "issues_closed": 18,
+      "test_coverage_change": 2.3,
+      "performance_improvement": 8.7
+    },
+    "quarterly": {
+      "feature_velocity": "increasing",
+      "bug_rate": "decreasing",
+      "user_satisfaction": "stable",
+      "performance": "improving",
+      "security_posture": "improving"
+    }
+  },
+  "benchmarks": {
+    "industry_comparison": {
+      "test_coverage": {
+        "our_score": 85,
+        "industry_average": 78,
+        "industry_top_quartile": 92,
+        "percentile": 67
+      },
+      "deployment_frequency": {
+        "our_score": 3.2,
+        "industry_average": 2.1,
+        "industry_top_quartile": 5.4,
+        "percentile": 73
+      },
+      "lead_time": {
+        "our_score_hours": 4.5,
+        "industry_average_hours": 8.2,
+        "industry_top_quartile_hours": 2.1,
+        "percentile": 82
+      }
+    }
+  },
+  "alerts": {
+    "thresholds": {
+      "test_coverage_critical": 80,
+      "build_failure_rate_critical": 10,
+      "security_vulnerabilities_critical": 1,
+      "performance_regression_critical": 15,
+      "uptime_critical": 99.0
+    },
+    "current_status": {
+      "critical_alerts": 0,
+      "warning_alerts": 2,
+      "info_alerts": 5
+    }
+  },
+  "automation": {
+    "automated_processes": {
+      "code_quality_checks": true,
+      "security_scanning": true,
+      "performance_testing": true,
+      "dependency_updates": true,
+      "documentation_generation": true,
+      "deployment_automation": true
+    },
+    "automation_coverage": 87.5,
+    "manual_intervention_rate": 12.5,
+    "automation_reliability": 94.2
+  },
+  "metadata": {
+    "last_updated": "2024-01-15T10:30:00Z",
+    "update_frequency": "daily",
+    "data_sources": [
+      "github_api",
+      "prometheus_metrics",
+      "test_results",
+      "deployment_logs",
+      "user_analytics"
+    ],
+    "version": "1.0.0",
+    "schema_url": "https://github.com/your-org/project-metrics-schema"
+  }
+}
