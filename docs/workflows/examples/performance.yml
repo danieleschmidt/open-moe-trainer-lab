@@ -1,0 +1,448 @@
+name: Performance Tests
+
+on:
+  schedule:
+    # Run nightly performance tests
+    - cron: '0 2 * * *'  # 2 AM UTC daily
+  workflow_dispatch:
+    inputs:
+      benchmark_type:
+        description: 'Type of benchmark to run'
+        required: true
+        default: 'all'
+        type: choice
+        options:
+          - all
+          - training
+          - inference
+          - distributed
+      duration_minutes:
+        description: 'Test duration in minutes'
+        required: false
+        default: '30'
+        type: string
+
+env:
+  PYTHON_VERSION: "3.11"
+
+jobs:
+  # Training Performance Tests
+  training-performance:
+    name: "Training Performance"
+    runs-on: [self-hosted, gpu]  # Requires GPU runner
+    if: github.event.inputs.benchmark_type == 'all' || github.event.inputs.benchmark_type == 'training' || github.event_name == 'schedule'
+    
+    strategy:
+      matrix:
+        model_size: [small, medium, large]
+        batch_size: [8, 16, 32]
+        exclude:
+          - model_size: large
+            batch_size: 32  # Too large for memory
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'pip'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .[dev,gpu,benchmarking]
+
+      - name: Check GPU Availability
+        run: |
+          nvidia-smi
+          python -c "import torch; print(f'CUDA available: {torch.cuda.is_available()}')"
+          python -c "import torch; print(f'GPU count: {torch.cuda.device_count()}')"
+
+      - name: Run Training Benchmarks
+        run: |
+          DURATION="${{ github.event.inputs.duration_minutes || '30' }}"
+          
+          python -m pytest tests/benchmarks/test_training_performance.py \
+            -v \
+            --benchmark-only \
+            --benchmark-json=training-benchmark-${{ matrix.model_size }}-${{ matrix.batch_size }}.json \
+            --benchmark-min-rounds=5 \
+            --benchmark-max-time=$((DURATION * 60)) \
+            -k "test_training_throughput" \
+            --model-size=${{ matrix.model_size }} \
+            --batch-size=${{ matrix.batch_size }}
+
+      - name: Extract Performance Metrics
+        run: |
+          python scripts/extract_performance_metrics.py \
+            --input training-benchmark-${{ matrix.model_size }}-${{ matrix.batch_size }}.json \
+            --output training-metrics-${{ matrix.model_size }}-${{ matrix.batch_size }}.json \
+            --type training
+
+      - name: Upload Training Results
+        uses: actions/upload-artifact@v3
+        with:
+          name: training-performance-${{ matrix.model_size }}-${{ matrix.batch_size }}
+          path: |
+            training-benchmark-${{ matrix.model_size }}-${{ matrix.batch_size }}.json
+            training-metrics-${{ matrix.model_size }}-${{ matrix.batch_size }}.json
+
+  # Inference Performance Tests
+  inference-performance:
+    name: "Inference Performance"
+    runs-on: [self-hosted, gpu]
+    if: github.event.inputs.benchmark_type == 'all' || github.event.inputs.benchmark_type == 'inference' || github.event_name == 'schedule'
+    
+    strategy:
+      matrix:
+        concurrency: [1, 4, 8, 16]
+        sequence_length: [512, 1024, 2048]
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'pip'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .[dev,gpu,benchmarking]
+
+      - name: Start Inference Service
+        run: |
+          # Start inference service in background
+          python -m moe_lab.serve \
+            --model-path checkpoints/test-model \
+            --port 8000 \
+            --workers 4 &
+          
+          # Wait for service to be ready
+          timeout 60 bash -c 'until curl -f http://localhost:8000/health; do sleep 2; done'
+
+      - name: Run Inference Benchmarks
+        run: |
+          DURATION="${{ github.event.inputs.duration_minutes || '30' }}"
+          
+          python tests/benchmarks/test_inference_performance.py \
+            --endpoint http://localhost:8000 \
+            --concurrency ${{ matrix.concurrency }} \
+            --sequence-length ${{ matrix.sequence_length }} \
+            --duration-minutes $DURATION \
+            --output inference-benchmark-${{ matrix.concurrency }}-${{ matrix.sequence_length }}.json
+
+      - name: Analyze Inference Results
+        run: |
+          python scripts/analyze_inference_performance.py \
+            --input inference-benchmark-${{ matrix.concurrency }}-${{ matrix.sequence_length }}.json \
+            --output inference-analysis-${{ matrix.concurrency }}-${{ matrix.sequence_length }}.json
+
+      - name: Upload Inference Results
+        uses: actions/upload-artifact@v3
+        with:
+          name: inference-performance-${{ matrix.concurrency }}-${{ matrix.sequence_length }}
+          path: |
+            inference-benchmark-${{ matrix.concurrency }}-${{ matrix.sequence_length }}.json
+            inference-analysis-${{ matrix.concurrency }}-${{ matrix.sequence_length }}.json
+
+  # Distributed Training Performance
+  distributed-performance:
+    name: "Distributed Performance"
+    runs-on: [self-hosted, gpu, multi-node]
+    if: github.event.inputs.benchmark_type == 'all' || github.event.inputs.benchmark_type == 'distributed' || github.event_name == 'schedule'
+    
+    strategy:
+      matrix:
+        world_size: [2, 4, 8]
+        expert_parallelism: [1, 2, 4]
+        exclude:
+          - world_size: 2
+            expert_parallelism: 4
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'pip'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .[dev,gpu,distributed,benchmarking]
+
+      - name: Check Multi-GPU Setup
+        run: |
+          nvidia-smi
+          python -c "
+          import torch
+          import torch.distributed as dist
+          print(f'CUDA devices: {torch.cuda.device_count()}')
+          print(f'Distributed available: {dist.is_available()}')
+          print(f'NCCL available: {dist.is_nccl_available()}')
+          "
+
+      - name: Run Distributed Training Benchmark
+        run: |
+          DURATION="${{ github.event.inputs.duration_minutes || '30' }}"
+          
+          torchrun \
+            --nproc_per_node=${{ matrix.world_size }} \
+            --nnodes=1 \
+            --node_rank=0 \
+            --master_addr=127.0.0.1 \
+            --master_port=29500 \
+            tests/benchmarks/test_distributed_performance.py \
+            --world-size ${{ matrix.world_size }} \
+            --expert-parallel-size ${{ matrix.expert_parallelism }} \
+            --duration-minutes $DURATION \
+            --output distributed-benchmark-${{ matrix.world_size }}-${{ matrix.expert_parallelism }}.json
+
+      - name: Analyze Distributed Results
+        run: |
+          python scripts/analyze_distributed_performance.py \
+            --input distributed-benchmark-${{ matrix.world_size }}-${{ matrix.expert_parallelism }}.json \
+            --output distributed-analysis-${{ matrix.world_size }}-${{ matrix.expert_parallelism }}.json
+
+      - name: Upload Distributed Results
+        uses: actions/upload-artifact@v3
+        with:
+          name: distributed-performance-${{ matrix.world_size }}-${{ matrix.expert_parallelism }}
+          path: |
+            distributed-benchmark-${{ matrix.world_size }}-${{ matrix.expert_parallelism }}.json
+            distributed-analysis-${{ matrix.world_size }}-${{ matrix.expert_parallelism }}.json
+
+  # Memory and Resource Usage Tests
+  resource-usage:
+    name: "Resource Usage Analysis"
+    runs-on: [self-hosted, gpu]
+    if: github.event.inputs.benchmark_type == 'all' || github.event_name == 'schedule'
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'pip'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .[dev,gpu,benchmarking]
+          pip install memory-profiler psutil pynvml
+
+      - name: Run Memory Profiling
+        run: |
+          DURATION="${{ github.event.inputs.duration_minutes || '30' }}"
+          
+          python tests/benchmarks/test_memory_usage.py \
+            --duration-minutes $DURATION \
+            --output memory-profile.json
+
+      - name: Run GPU Memory Analysis
+        run: |
+          python tests/benchmarks/test_gpu_memory.py \
+            --output gpu-memory-analysis.json
+
+      - name: Generate Resource Report
+        run: |
+          python scripts/generate_resource_report.py \
+            --memory-profile memory-profile.json \
+            --gpu-analysis gpu-memory-analysis.json \
+            --output resource-usage-report.json
+
+      - name: Upload Resource Analysis
+        uses: actions/upload-artifact@v3
+        with:
+          name: resource-usage-analysis
+          path: |
+            memory-profile.json
+            gpu-memory-analysis.json
+            resource-usage-report.json
+
+  # Performance Regression Analysis
+  regression-analysis:
+    name: "Regression Analysis"
+    runs-on: ubuntu-latest
+    needs: [training-performance, inference-performance, distributed-performance, resource-usage]
+    if: always()
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install Analysis Tools
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas numpy matplotlib seaborn plotly
+
+      - name: Download All Results
+        uses: actions/download-artifact@v3
+
+      - name: Load Historical Baselines
+        run: |
+          # Download historical performance data
+          curl -o baseline-performance.json \
+            "https://api.github.com/repos/${{ github.repository }}/contents/performance-baselines/latest.json" \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            || echo '{}' > baseline-performance.json
+
+      - name: Analyze Performance Trends
+        run: |
+          python scripts/analyze_performance_trends.py \
+            --current-results . \
+            --baseline baseline-performance.json \
+            --output performance-analysis.json \
+            --regression-threshold 0.05  # 5% regression threshold
+
+      - name: Generate Performance Report
+        run: |
+          python scripts/generate_performance_report.py \
+            --analysis performance-analysis.json \
+            --output performance-report.html \
+            --format html
+
+      - name: Check for Regressions
+        id: regression-check
+        run: |
+          REGRESSIONS=$(python scripts/check_regressions.py \
+            --analysis performance-analysis.json \
+            --threshold 0.05)
+          
+          echo "regressions=$REGRESSIONS" >> $GITHUB_OUTPUT
+          
+          if [[ "$REGRESSIONS" -gt 0 ]]; then
+            echo "⚠️ Found $REGRESSIONS performance regressions"
+            exit 1
+          else
+            echo "✅ No significant performance regressions detected"
+          fi
+
+      - name: Upload Performance Analysis
+        uses: actions/upload-artifact@v3
+        with:
+          name: performance-analysis
+          path: |
+            performance-analysis.json
+            performance-report.html
+
+      - name: Update Performance Baselines
+        if: github.ref == 'refs/heads/main' && steps.regression-check.outputs.regressions == '0'
+        run: |
+          # Update baseline performance data
+          python scripts/update_baselines.py \
+            --current-results . \
+            --output updated-baseline.json
+          
+          # Commit updated baseline (would need appropriate permissions)
+          echo "Would update performance baselines here"
+
+  # Performance Dashboard Update
+  update-dashboard:
+    name: "Update Performance Dashboard"
+    runs-on: ubuntu-latest
+    needs: [regression-analysis]
+    if: always()
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Download Performance Analysis
+        uses: actions/download-artifact@v3
+        with:
+          name: performance-analysis
+
+      - name: Update Grafana Dashboard
+        env:
+          GRAFANA_URL: ${{ secrets.GRAFANA_URL }}
+          GRAFANA_TOKEN: ${{ secrets.GRAFANA_TOKEN }}
+        run: |
+          if [[ -n "$GRAFANA_URL" && -n "$GRAFANA_TOKEN" ]]; then
+            python scripts/update_grafana_dashboard.py \
+              --grafana-url "$GRAFANA_URL" \
+              --token "$GRAFANA_TOKEN" \
+              --data performance-analysis.json
+          fi
+
+      - name: Send Performance Metrics
+        env:
+          METRICS_ENDPOINT: ${{ secrets.METRICS_ENDPOINT }}
+        run: |
+          if [[ -n "$METRICS_ENDPOINT" ]]; then
+            python scripts/send_performance_metrics.py \
+              --endpoint "$METRICS_ENDPOINT" \
+              --data performance-analysis.json
+          fi
+
+  # Notification
+  notify:
+    name: "Performance Test Notification"
+    runs-on: ubuntu-latest
+    needs: [training-performance, inference-performance, distributed-performance, regression-analysis]
+    if: always()
+    
+    steps:
+      - name: Determine Status
+        id: status
+        run: |
+          TRAINING_STATUS="${{ needs.training-performance.result }}"
+          INFERENCE_STATUS="${{ needs.inference-performance.result }}"
+          DISTRIBUTED_STATUS="${{ needs.distributed-performance.result }}"
+          REGRESSION_STATUS="${{ needs.regression-analysis.result }}"
+          
+          if [[ "$REGRESSION_STATUS" == "failure" ]]; then
+            echo "status=regression" >> $GITHUB_OUTPUT
+            echo "message=Performance regression detected!" >> $GITHUB_OUTPUT
+            echo "color=danger" >> $GITHUB_OUTPUT
+          elif [[ "$TRAINING_STATUS" == "failure" || "$INFERENCE_STATUS" == "failure" || "$DISTRIBUTED_STATUS" == "failure" ]]; then
+            echo "status=failure" >> $GITHUB_OUTPUT
+            echo "message=Performance tests failed" >> $GITHUB_OUTPUT
+            echo "color=warning" >> $GITHUB_OUTPUT
+          else
+            echo "status=success" >> $GITHUB_OUTPUT
+            echo "message=Performance tests completed successfully" >> $GITHUB_OUTPUT
+            echo "color=good" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Send Notification
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          if [[ -n "$SLACK_WEBHOOK_URL" ]]; then
+            curl -X POST "$SLACK_WEBHOOK_URL" \
+              -H 'Content-type: application/json' \
+              --data "{
+                \"attachments\": [{
+                  \"color\": \"${{ steps.status.outputs.color }}\",
+                  \"title\": \"📊 Performance Test Results\",
+                  \"text\": \"${{ steps.status.outputs.message }}\",
+                  \"fields\": [
+                    {\"title\": \"Training\", \"value\": \"${{ needs.training-performance.result }}\", \"short\": true},
+                    {\"title\": \"Inference\", \"value\": \"${{ needs.inference-performance.result }}\", \"short\": true},
+                    {\"title\": \"Distributed\", \"value\": \"${{ needs.distributed-performance.result }}\", \"short\": true},
+                    {\"title\": \"Regression Check\", \"value\": \"${{ needs.regression-analysis.result }}\", \"short\": true}
+                  ],
+                  \"footer\": \"GitHub Actions Performance Tests\",
+                  \"ts\": $(date +%s)
+                }]
+              }"
+          fi

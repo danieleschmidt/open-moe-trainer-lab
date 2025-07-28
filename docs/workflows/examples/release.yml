@@ -1,0 +1,451 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version (e.g., v1.0.0)'
+        required: true
+        type: string
+      prerelease:
+        description: 'Mark as pre-release'
+        required: false
+        type: boolean
+        default: false
+
+env:
+  PYTHON_VERSION: "3.11"
+  NODE_VERSION: "18"
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  # Pre-release validation
+  validate:
+    name: "Validate Release"
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+      tag: ${{ steps.version.outputs.tag }}
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Determine Version
+        id: version
+        run: |
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            VERSION="${{ github.event.inputs.version }}"
+          else
+            VERSION="${GITHUB_REF#refs/tags/}"
+          fi
+          
+          echo "version=${VERSION#v}" >> $GITHUB_OUTPUT
+          echo "tag=${VERSION}" >> $GITHUB_OUTPUT
+          
+          # Validate version format
+          if [[ ! "$VERSION" =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-[a-zA-Z0-9]+)?$ ]]; then
+            echo "Invalid version format: $VERSION"
+            exit 1
+          fi
+
+      - name: Check if Tag Exists
+        run: |
+          if git rev-parse "${{ steps.version.outputs.tag }}" >/dev/null 2>&1; then
+            echo "Tag ${{ steps.version.outputs.tag }} already exists"
+            if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+              exit 1
+            fi
+          fi
+
+  # Run full test suite
+  test:
+    name: "Full Test Suite"
+    runs-on: ubuntu-latest
+    needs: validate
+    
+    services:
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_DB: moelab_test
+          POSTGRES_USER: test
+          POSTGRES_PASSWORD: test123
+        ports:
+          - 5432:5432
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'pip'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .[dev,gpu,distributed]
+
+      - name: Run Full Test Suite
+        env:
+          REDIS_URL: redis://localhost:6379
+          DATABASE_URL: postgresql://test:test123@localhost:5432/moelab_test
+        run: |
+          pytest tests/ \
+            -v \
+            --cov=moe_lab \
+            --cov-report=xml \
+            --cov-fail-under=85 \
+            -m "not slow and not gpu"
+
+      - name: Upload Coverage
+        uses: codecov/codecov-action@v3
+        with:
+          file: ./coverage.xml
+          flags: release
+
+  # Build Python package
+  build-python:
+    name: "Build Python Package"
+    runs-on: ubuntu-latest
+    needs: [validate, test]
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install Build Tools
+        run: |
+          python -m pip install --upgrade pip
+          pip install build twine
+
+      - name: Update Version
+        run: |
+          VERSION="${{ needs.validate.outputs.version }}"
+          sed -i "s/version = \".*\"/version = \"$VERSION\"/" pyproject.toml
+
+      - name: Build Package
+        run: python -m build
+
+      - name: Check Package
+        run: twine check dist/*
+
+      - name: Upload Package Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: python-package
+          path: dist/
+          retention-days: 7
+
+  # Build Docker images
+  build-docker:
+    name: "Build Docker Images"
+    runs-on: ubuntu-latest
+    needs: [validate, test]
+    
+    permissions:
+      contents: read
+      packages: write
+    
+    strategy:
+      matrix:
+        target: [production, training, inference]
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract Metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=semver,pattern={{version}},suffix=-${{ matrix.target }}
+            type=semver,pattern={{major}}.{{minor}},suffix=-${{ matrix.target }}
+            type=raw,value=latest-${{ matrix.target }}
+
+      - name: Build and Push Docker Image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          target: ${{ matrix.target }}
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          build-args: |
+            VERSION=${{ needs.validate.outputs.version }}
+            BUILD_DATE=${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.created'] }}
+            REVISION=${{ github.sha }}
+
+  # Security scan for release
+  security-scan:
+    name: "Security Scan"
+    runs-on: ubuntu-latest
+    needs: [validate, build-docker]
+    
+    permissions:
+      security-events: write
+    
+    steps:
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ needs.validate.outputs.version }}-production
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+
+      - name: Upload Trivy scan results
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: 'trivy-results.sarif'
+
+  # Create GitHub release
+  create-release:
+    name: "Create GitHub Release"
+    runs-on: ubuntu-latest
+    needs: [validate, test, build-python, build-docker, security-scan]
+    
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Download Python Package
+        uses: actions/download-artifact@v3
+        with:
+          name: python-package
+          path: dist/
+
+      - name: Generate Release Notes
+        id: release-notes
+        run: |
+          # Extract changelog for this version
+          VERSION="${{ needs.validate.outputs.version }}"
+          
+          # Generate release notes from git log
+          if git tag --list | grep -q "${{ needs.validate.outputs.tag }}"; then
+            PREVIOUS_TAG=$(git describe --tags --abbrev=0 "${{ needs.validate.outputs.tag }}^" 2>/dev/null || echo "")
+          else
+            PREVIOUS_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "")
+          fi
+          
+          echo "## What's Changed" > release-notes.md
+          
+          if [[ -n "$PREVIOUS_TAG" ]]; then
+            echo "" >> release-notes.md
+            git log --pretty=format:"- %s (%h)" "$PREVIOUS_TAG..${{ github.sha }}" >> release-notes.md
+          else
+            echo "- Initial release" >> release-notes.md
+          fi
+          
+          echo "" >> release-notes.md
+          echo "## Docker Images" >> release-notes.md
+          echo "- \`${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:$VERSION-production\`" >> release-notes.md
+          echo "- \`${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:$VERSION-training\`" >> release-notes.md
+          echo "- \`${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:$VERSION-inference\`" >> release-notes.md
+          
+          echo "" >> release-notes.md
+          echo "## Installation" >> release-notes.md
+          echo "\`\`\`bash" >> release-notes.md
+          echo "pip install open-moe-trainer-lab==$VERSION" >> release-notes.md
+          echo "\`\`\`" >> release-notes.md
+
+      - name: Create Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ needs.validate.outputs.tag }}
+          release_name: Release ${{ needs.validate.outputs.tag }}
+          body_path: release-notes.md
+          draft: false
+          prerelease: ${{ github.event.inputs.prerelease == 'true' }}
+
+      - name: Upload Release Assets
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: dist/
+          asset_name: python-packages
+          asset_content_type: application/zip
+
+  # Publish to PyPI
+  publish-pypi:
+    name: "Publish to PyPI"
+    runs-on: ubuntu-latest
+    needs: [validate, test, build-python, security-scan]
+    if: startsWith(github.ref, 'refs/tags/v') && !contains(github.ref, '-')
+    
+    environment:
+      name: pypi
+      url: https://pypi.org/p/open-moe-trainer-lab
+    
+    permissions:
+      id-token: write  # For trusted publishing
+    
+    steps:
+      - name: Download Python Package
+        uses: actions/download-artifact@v3
+        with:
+          name: python-package
+          path: dist/
+
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          packages-dir: dist/
+          verify-metadata: true
+          verbose: true
+
+  # Deploy to staging
+  deploy-staging:
+    name: "Deploy to Staging"
+    runs-on: ubuntu-latest
+    needs: [validate, build-docker]
+    if: contains(github.ref, '-rc') || contains(github.ref, '-beta') || contains(github.ref, '-alpha')
+    
+    environment:
+      name: staging
+      url: https://staging.moe-lab.example.com
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Deploy to Staging
+        run: |
+          echo "Deploying version ${{ needs.validate.outputs.version }} to staging"
+          # Add actual deployment commands here
+          # kubectl apply -f k8s/staging/
+          # helm upgrade --install moe-lab-staging ./helm/moe-lab \
+          #   --set image.tag=${{ needs.validate.outputs.version }} \
+          #   --namespace staging
+
+  # Update documentation
+  update-docs:
+    name: "Update Documentation"
+    runs-on: ubuntu-latest
+    needs: [validate, create-release]
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e .[dev]
+
+      - name: Build Documentation
+        run: |
+          cd docs
+          sphinx-build -b html source build
+
+      - name: Deploy Documentation
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: docs/build
+          publish_branch: gh-pages
+          force_orphan: true
+
+  # Post-release notification
+  notify:
+    name: "Release Notification"
+    runs-on: ubuntu-latest
+    needs: [validate, create-release, publish-pypi]
+    if: always() && (needs.create-release.result == 'success' || needs.publish-pypi.result == 'success')
+    
+    steps:
+      - name: Send Release Notification
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: |
+          if [[ -n "$SLACK_WEBHOOK_URL" ]]; then
+            STATUS="success"
+            MESSAGE="🚀 Successfully released Open MoE Trainer Lab ${{ needs.validate.outputs.tag }}"
+            COLOR="good"
+            
+            if [[ "${{ needs.publish-pypi.result }}" == "failure" ]]; then
+              STATUS="warning"
+              MESSAGE="⚠️ Released ${{ needs.validate.outputs.tag }} but PyPI publishing failed"
+              COLOR="warning" 
+            fi
+            
+            curl -X POST "$SLACK_WEBHOOK_URL" \
+              -H 'Content-type: application/json' \
+              --data "{
+                \"attachments\": [{
+                  \"color\": \"$COLOR\",
+                  \"title\": \"🎉 New Release: Open MoE Trainer Lab\",
+                  \"text\": \"$MESSAGE\",
+                  \"fields\": [
+                    {\"title\": \"Version\", \"value\": \"${{ needs.validate.outputs.tag }}\", \"short\": true},
+                    {\"title\": \"PyPI\", \"value\": \"${{ needs.publish-pypi.result }}\", \"short\": true},
+                    {\"title\": \"Docker\", \"value\": \"${{ needs.build-docker.result }}\", \"short\": true},
+                    {\"title\": \"Docs\", \"value\": \"${{ needs.update-docs.result }}\", \"short\": true}
+                  ],
+                  \"actions\": [
+                    {
+                      \"type\": \"button\",
+                      \"text\": \"View Release\",
+                      \"url\": \"https://github.com/${{ github.repository }}/releases/tag/${{ needs.validate.outputs.tag }}\"
+                    },
+                    {
+                      \"type\": \"button\",
+                      \"text\": \"PyPI Package\",
+                      \"url\": \"https://pypi.org/project/open-moe-trainer-lab/${{ needs.validate.outputs.version }}/\"
+                    }
+                  ],
+                  \"footer\": \"GitHub Actions Release\",
+                  \"ts\": $(date +%s)
+                }]
+              }"
+          fi
