@@ -59,8 +59,10 @@ pip install \
     numpy \
     scikit-learn
 
-# Install project in development mode if setup.py exists
-if [ -f "setup.py" ]; then
+# Install project in development mode with all extras
+if [ -f "pyproject.toml" ]; then
+    pip install -e ".[dev,gpu,distributed,visualization,benchmarking,cloud,all]"
+elif [ -f "setup.py" ]; then
     pip install -e .
 fi
 
@@ -88,9 +90,33 @@ echo "Run: wandb login"
 echo "🔧 GPU Information:"
 nvidia-smi
 
+# Create development shortcuts
+cat > ~/.bash_aliases << 'EOF'
+# MoE Lab Development Shortcuts
+alias moe-test='pytest tests/ -v'
+alias moe-quality='python scripts/automation_helper.py quality'
+alias moe-metrics='python scripts/collect_metrics.py --summary'
+alias moe-health='python scripts/automation_helper.py health'
+alias moe-dashboard='python -c "from moe_lab.dashboard import main; main()"'
+alias moe-train='python -m moe_lab.cli train'
+alias moe-eval='python -m moe_lab.cli evaluate'
+alias gs='git status'
+alias gd='git diff'
+alias dcup='docker-compose up -d'
+alias dcdown='docker-compose down'
+EOF
+
 echo "✅ Development environment setup complete!"
-echo "🎯 Next steps:"
+echo "🎯 Available shortcuts:"
+echo "   moe-test       # Run test suite"
+echo "   moe-quality    # Check code quality"
+echo "   moe-metrics    # View project metrics"
+echo "   moe-dashboard  # Launch training dashboard"
+echo "   moe-train      # Start model training"
+echo "   moe-eval       # Evaluate models"
+echo ""
+echo "🔧 Next steps:"
 echo "   1. Run: wandb login"
-echo "   2. Start Jupyter: jupyter lab --allow-root"
-echo "   3. Run tests: pytest"
-echo "   4. Format code: black ."
+echo "   2. Start development: moe-dashboard"
+echo "   3. Run tests: moe-test"
+echo "   4. Check quality: moe-quality"
