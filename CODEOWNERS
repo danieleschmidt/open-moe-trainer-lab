@@ -1,0 +1,43 @@
+# CODEOWNERS file for Open MoE Trainer Lab
+# See: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Global owners - require review for all changes
+* @danieleschmidt
+
+# Core library code
+/moe_lab/ @danieleschmidt
+/moe_lab/models/ @danieleschmidt
+/moe_lab/training/ @danieleschmidt
+/moe_lab/inference/ @danieleschmidt
+
+# Configuration and build
+/pyproject.toml @danieleschmidt
+/Dockerfile @danieleschmidt
+/docker-compose*.yml @danieleschmidt
+/.pre-commit-config.yaml @danieleschmidt
+/.editorconfig @danieleschmidt
+
+# CI/CD and automation
+/.github/ @danieleschmidt
+/scripts/ @danieleschmidt
+
+# Documentation
+/docs/ @danieleschmidt
+/README.md @danieleschmidt
+/CONTRIBUTING.md @danieleschmidt
+/ARCHITECTURE.md @danieleschmidt
+
+# Security
+/security/ @danieleschmidt
+/SECURITY.md @danieleschmidt
+
+# Testing
+/tests/ @danieleschmidt
+/pytest.ini @danieleschmidt
+
+# Monitoring and observability
+/monitoring/ @danieleschmidt
+
+# Dependencies
+/requirements.md @danieleschmidt
+/.github/dependabot.yml @danieleschmidt
