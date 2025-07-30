@@ -1,0 +1,88 @@
+# Markdownlint configuration
+# See: https://github.com/DavidAnson/markdownlint/blob/main/doc/Rules.md
+
+default: true
+
+# Line length
+MD013:
+  line_length: 120
+  code_blocks: false
+  tables: false
+  headings: false
+
+# Multiple consecutive blank lines
+MD012:
+  maximum: 2
+
+# Trailing punctuation in header
+MD026:
+  punctuation: ".,;:!?"
+
+# Multiple headers with the same content
+MD024:
+  allow_different_nesting: true
+  siblings_only: true
+
+# Inline HTML
+MD033:
+  allowed_elements: ['br', 'sub', 'sup', 'kbd', 'img', 'details', 'summary']
+
+# Bare URL used
+MD034: false
+
+# Horizontal rule style
+MD035:
+  style: "---"
+
+# Emphasis used instead of a header
+MD036:
+  punctuation: ".,;:!?。，；：！？"
+
+# Spaces inside emphasis markers
+MD037: true
+
+# Spaces inside code span elements
+MD038:
+  ignore_code_languages: []
+
+# Spaces inside link text
+MD039: true
+
+# Fenced code blocks should have a language specified
+MD040: false
+
+# First line in file should be a top level header
+MD041: false
+
+# No empty links
+MD042: true
+
+# Required header structure
+MD043: false
+
+# Proper names should have the correct capitalization
+MD044:
+  names: ["GitHub", "PyTorch", "Python", "Docker", "Kubernetes", "MoE", "API"]
+  code_blocks: false
+
+# Images should have alternate text (alt text)
+MD045: true
+
+# Code block style
+MD046:
+  style: "fenced"
+
+# Files should end with a single newline character
+MD047: true
+
+# Code fence style
+MD048:
+  style: "backtick"
+
+# Emphasis style should be consistent
+MD049:
+  style: "asterisk"
+
+# Strong style should be consistent
+MD050:
+  style: "asterisk"

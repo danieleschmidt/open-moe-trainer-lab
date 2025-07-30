@@ -1,0 +1,29 @@
+extends: default
+
+rules:
+  document-start: disable
+  line-length:
+    max: 120
+    level: warning
+  comments:
+    min-spaces-from-content: 1
+  truthy:
+    allowed-values: ['true', 'false', 'yes', 'no']
+    check-keys: false
+  indentation:
+    spaces: 2
+  brackets:
+    min-spaces-inside: 0
+    max-spaces-inside: 1
+  braces:
+    min-spaces-inside: 0
+    max-spaces-inside: 1
+
+ignore: |
+  .github/
+  node_modules/
+  venv/
+  .venv/
+  checkpoints/
+  wandb/
+  data/
