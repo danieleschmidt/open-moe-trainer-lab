@@ -6,7 +6,7 @@ Due to GitHub App permissions, the workflow files cannot be committed directly. 
 
 ### 1. Copy Workflow Files
 
-Copy these files from the repository root to `.github/workflows/`:
+Copy the workflow files from the documentation directory to activate them:
 
 ```bash
 # Navigate to repository root
@@ -15,8 +15,21 @@ cd /path/to/open-moe-trainer-lab
 # Create workflows directory if it doesn't exist
 mkdir -p .github/workflows
 
-# Copy the workflow files (they are currently in .github/workflows/ but not committed)
-# You'll need to manually create these files with the content provided below
+# Copy the production-ready workflow files
+cp docs/workflows/production-ready/ci.yml .github/workflows/
+cp docs/workflows/production-ready/release.yml .github/workflows/
+cp docs/workflows/production-ready/security.yml .github/workflows/
+
+# Commit the workflow files
+git add .github/workflows/
+git commit -m "feat: activate production-ready GitHub Actions workflows
+
+- Add comprehensive CI pipeline with matrix testing and GPU support
+- Add automated release management with Docker and PyPI publishing  
+- Add multi-layer security scanning and compliance verification
+
+These workflows provide elite-level SDLC automation for the repository."
+git push origin main
 ```
 
 ### 2. Workflow Files to Create
