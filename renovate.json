@@ -1,0 +1,116 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":dependencyDashboard",
+    ":semanticCommits",
+    ":separatePatchReleases",
+    "group:monorepos",
+    "group:recommended",
+    "workarounds:all"
+  ],
+  "schedule": ["before 6am on monday"],
+  "timezone": "UTC",
+  "assigneesFromCodeOwners": true,
+  "reviewersFromCodeOwners": true,
+  "labels": ["dependencies", "renovate"],
+  "prConcurrentLimit": 5,
+  "prHourlyLimit": 2,
+  "separateMinorPatch": true,
+  "separateMultipleMajor": true,
+  "semanticCommits": "enabled",
+  "commitMessagePrefix": "chore:",
+  "commitMessageAction": "update",
+  "commitMessageTopic": "{{depName}}",
+  "commitMessageExtra": "to {{newVersion}}",
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": ["before 6am on monday"]
+  },
+  "packageRules": [
+    {
+      "matchPackagePatterns": ["*"],
+      "matchUpdateTypes": ["major"],
+      "addLabels": ["major-update"],
+      "assignees": ["@danieleschmidt"],
+      "reviewers": ["@danieleschmidt"]
+    },
+    {
+      "matchPackagePatterns": ["torch", "pytorch", "torchvision", "torchaudio"],
+      "groupName": "PyTorch ecosystem",
+      "addLabels": ["pytorch"],
+      "schedule": ["before 6am on monday"],
+      "separateMajorMinor": true
+    },
+    {
+      "matchPackagePatterns": ["transformers", "datasets", "accelerate", "tokenizers"],
+      "groupName": "Hugging Face ecosystem",
+      "addLabels": ["huggingface"],
+      "schedule": ["before 6am on monday"]
+    },
+    {
+      "matchPackagePatterns": ["pytest", "pytest-*", "coverage", "mypy", "black", "isort", "pylint"],
+      "groupName": "Development tools",
+      "addLabels": ["dev-tools"],
+      "automerge": true,
+      "automergeType": "pr",
+      "matchUpdateTypes": ["patch", "minor"]
+    },
+    {
+      "matchPackagePatterns": ["numpy", "pandas", "matplotlib", "seaborn", "plotly", "scipy", "scikit-learn"],
+      "groupName": "Data science libraries",
+      "addLabels": ["data-science"],
+      "schedule": ["before 6am on monday"]
+    },
+    {
+      "matchPackagePatterns": ["docker", "dockerfile"],
+      "addLabels": ["docker"],
+      "assignees": ["@danieleschmidt"]
+    },
+    {
+      "matchPackagePatterns": ["prometheus", "grafana", "redis", "postgres"],
+      "groupName": "Infrastructure",
+      "addLabels": ["infrastructure"],
+      "schedule": ["before 6am on monday"]
+    },
+    {
+      "matchPackagePatterns": ["bandit", "safety", "pre-commit"],
+      "groupName": "Security tools",
+      "addLabels": ["security"],
+      "automerge": true,
+      "automergeType": "pr",
+      "matchUpdateTypes": ["patch", "minor"]
+    },
+    {
+      "matchFiles": ["requirements*.txt", "pyproject.toml"],
+      "addLabels": ["python"],
+      "semanticCommitType": "chore",
+      "semanticCommitScope": "deps"
+    },
+    {
+      "matchFiles": ["Dockerfile*", "docker-compose*.yml"],
+      "addLabels": ["docker"],
+      "semanticCommitType": "chore",
+      "semanticCommitScope": "docker"
+    }
+  ],
+  "vulnerabilityAlerts": {
+    "enabled": true,
+    "addLabels": ["security", "vulnerability"],
+    "assignees": ["@danieleschmidt"],
+    "reviewers": ["@danieleschmidt"],
+    "commitMessageSuffix": " [SECURITY]"
+  },
+  "osvVulnerabilityAlerts": true,
+  "dependencyDashboard": true,
+  "dependencyDashboardTitle": "Renovate Dependency Dashboard",
+  "dependencyDashboardLabels": ["dependencies", "renovate"],
+  "dependencyDashboardAutoclose": true,
+  "configMigration": true,
+  "platformAutomerge": true,
+  "rebaseWhen": "conflicted",
+  "ignoreTests": false,
+  "respectLatest": true,
+  "rangeStrategy": "bump",
+  "bumpVersion": "patch"
+}
