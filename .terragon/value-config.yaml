@@ -1,0 +1,253 @@
+# Terragon Autonomous SDLC Value Discovery Configuration
+# Advanced Repository Configuration (85%+ SDLC Maturity)
+
+metadata:
+  repository: "open-moe-trainer-lab"
+  maturity_level: "advanced"
+  assessed_date: "2025-01-15"
+  language: "python"
+  framework: "pytorch"
+  architecture: "moe_training_platform"
+
+# Adaptive scoring weights based on repository maturity
+scoring:
+  weights:
+    # Advanced repository weights prioritize optimization and modernization
+    advanced:
+      wsjf: 0.5        # Business value prioritization
+      ice: 0.1         # Reduced for mature repos
+      technicalDebt: 0.3  # High priority for debt management
+      security: 0.1    # Baseline security maintenance
+    
+    # Fallback weights for different maturity levels
+    maturing:
+      wsjf: 0.6
+      ice: 0.1
+      technicalDebt: 0.2
+      security: 0.1
+    
+    developing:
+      wsjf: 0.5
+      ice: 0.2
+      technicalDebt: 0.2
+      security: 0.1
+    
+    nascent:
+      wsjf: 0.4
+      ice: 0.3
+      technicalDebt: 0.2
+      security: 0.1
+  
+  # Score thresholds and multipliers
+  thresholds:
+    minScore: 15           # Minimum composite score to execute
+    maxRisk: 0.7           # Maximum risk tolerance
+    securityBoost: 2.0     # Security vulnerability multiplier
+    complianceBoost: 1.8   # Compliance issue multiplier
+    performanceBoost: 1.5  # Performance optimization boost
+    debtInterestRate: 0.2  # Technical debt compound rate
+
+# Value discovery sources and tooling
+discovery:
+  sources:
+    static_analysis:
+      - "ruff"         # Python linting
+      - "mypy"         # Type checking
+      - "bandit"       # Security scanning
+      - "pylint"       # Code quality
+      - "vulture"      # Dead code detection
+    
+    security_scanning:
+      - "safety"       # Dependency vulnerabilities
+      - "semgrep"      # SAST scanning
+      - "trivy"        # Container scanning
+      - "pip-audit"    # Python package audit
+    
+    performance_monitoring:
+      - "py-spy"       # Python profiler
+      - "memory_profiler"  # Memory usage
+      - "pytest-benchmark"  # Performance regression
+    
+    git_analysis:
+      - "git_history"  # Commit patterns
+      - "code_churn"   # Hot spot analysis
+      - "todo_fixme"   # Inline debt markers
+    
+    dependency_analysis:
+      - "pip-outdated" # Package updates
+      - "pipdeptree"   # Dependency tree
+      - "requirements" # Dependency management
+
+# Execution configuration for advanced repositories
+execution:
+  # Conservative execution for mature repos
+  maxConcurrentTasks: 1
+  
+  # High quality standards
+  quality_gates:
+    minCoverage: 85
+    maxComplexity: 10
+    performanceRegression: 3  # Max 3% regression
+    securityGate: true
+    typeCheckingRequired: true
+  
+  # Rollback triggers
+  rollback_triggers:
+    - testFailure
+    - buildFailure
+    - securityViolation
+    - performanceRegression
+    - typeCheckFailure
+    - lintFailure
+  
+  # Advanced repository specific settings
+  advanced_features:
+    enableMutationTesting: true
+    runSecurityBaseline: true
+    validateContainerSecurity: true
+    checkComplianceRules: true
+    performanceBaseline: true
+
+# Advanced repository value categories
+value_categories:
+  optimization:
+    weight: 0.35
+    subcategories:
+      - performance_optimization
+      - memory_optimization
+      - distributed_training_efficiency
+      - inference_acceleration
+  
+  modernization:
+    weight: 0.25
+    subcategories:
+      - dependency_updates
+      - architecture_improvements
+      - tooling_upgrades
+      - container_optimization
+  
+  technical_debt:
+    weight: 0.2
+    subcategories:
+      - code_refactoring
+      - dead_code_removal
+      - complexity_reduction
+      - type_annotation_improvement
+  
+  security_compliance:
+    weight: 0.15
+    subcategories:
+      - vulnerability_patching
+      - security_hardening
+      - compliance_automation
+      - supply_chain_security
+  
+  operational_excellence:
+    weight: 0.05
+    subcategories:
+      - monitoring_enhancement
+      - logging_improvements
+      - alerting_optimization
+      - documentation_updates
+
+# Machine learning specific scoring adjustments
+ml_specific:
+  model_performance:
+    training_efficiency: 1.5
+    inference_speed: 1.3
+    memory_usage: 1.2
+    distributed_scaling: 1.4
+  
+  data_pipeline:
+    data_loading: 1.2
+    preprocessing: 1.1
+    validation: 1.3
+  
+  experiment_tracking:
+    reproducibility: 1.4
+    metrics_tracking: 1.2
+    model_versioning: 1.1
+
+# Learning and adaptation settings
+learning:
+  # Track prediction accuracy to improve scoring
+  track_outcomes: true
+  
+  # Adaptation frequency
+  model_recalibration:
+    frequency: "monthly"
+    min_samples: 10
+    accuracy_threshold: 0.75
+  
+  # Learning data retention
+  history_retention: "6_months"
+  
+  # Feedback incorporation
+  weight_adjustment:
+    learning_rate: 0.1
+    momentum: 0.9
+    decay_rate: 0.95
+
+# Repository-specific exclusions and inclusions
+repository_config:
+  # Paths to exclude from analysis
+  exclude_paths:
+    - "docs/"
+    - "examples/"
+    - "__pycache__/"
+    - ".git/"
+    - "wandb/"
+    - "checkpoints/"
+    - "models/"
+  
+  # Critical paths for higher priority
+  critical_paths:
+    - "moe_lab/"
+    - "tests/"
+    - "scripts/"
+    - "security/"
+  
+  # File patterns for specific analysis
+  patterns:
+    source_code: ["*.py"]
+    config_files: ["*.yaml", "*.yml", "*.toml", "*.ini"]
+    documentation: ["*.md", "*.rst"]
+    containers: ["Dockerfile*", "docker-compose*.yml"]
+
+# Integration settings
+integrations:
+  github:
+    api_rate_limit: 5000
+    pr_labels:
+      - "autonomous"
+      - "value-driven"
+      - "terragon-enhanced"
+    
+  monitoring:
+    prometheus_endpoint: "http://localhost:9090"
+    grafana_endpoint: "http://localhost:3000"
+    
+  ci_cd:
+    validate_workflows: true
+    check_security_scans: true
+    require_tests: true
+
+# Advanced analytics and reporting
+analytics:
+  value_tracking:
+    - composite_scores
+    - execution_outcomes
+    - time_to_value
+    - roi_metrics
+  
+  trend_analysis:
+    - technical_debt_evolution
+    - security_posture_changes
+    - performance_improvements
+    - code_quality_trends
+  
+  reporting:
+    format: "json"
+    frequency: "daily"
+    include_predictions: true
+    generate_insights: true
