@@ -6,7 +6,7 @@ ARG CUDA_VERSION=11.8
 ARG PYTHON_VERSION=3.9
 
 # Base stage with PyTorch and CUDA
-FROM nvcr.io/nvidia/pytorch:24.01-py3 as base
+FROM nvcr.io/nvidia/pytorch:25.06-py3 as base
 
 # Set environment variables
 ENV PYTHONUNBUFFERED=1 \
