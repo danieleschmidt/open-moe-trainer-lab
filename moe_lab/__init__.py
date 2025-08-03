@@ -4,13 +4,33 @@ __version__ = "0.1.0"
 __author__ = "Daniel Schmidt"
 __email__ = "daniel@example.com"
 
-from .models import MoEModel
-from .training import MoETrainer
+from .models import (
+    MoEModel, 
+    MoEOutput,
+    TopKRouter, 
+    ExpertChoice, 
+    Expert, 
+    ExpertPool,
+    SwitchTransformer,
+    MixtralModel,
+    CustomMoE
+)
+from .training import MoETrainer, TrainingResult, EvalResult
 from .inference import OptimizedMoEModel
 
 __all__ = [
     "MoEModel",
-    "MoETrainer", 
+    "MoEOutput",
+    "TopKRouter",
+    "ExpertChoice", 
+    "Expert",
+    "ExpertPool",
+    "SwitchTransformer",
+    "MixtralModel",
+    "CustomMoE",
+    "MoETrainer",
+    "TrainingResult",
+    "EvalResult",
     "OptimizedMoEModel",
     "__version__",
 ]
