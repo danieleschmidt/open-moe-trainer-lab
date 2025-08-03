@@ -72,11 +72,18 @@ class MoEModel(nn.Module):
     Core MoE model with configurable routing and expert architectures.
     
     Components:
-    - Embedding layers
-    - MoE transformer blocks
-    - Router networks
-    - Expert pools
-    - Output projections
+    - Token/position embeddings
+    - Mixed transformer layers (standard + MoE)
+    - Router networks (TopK, ExpertChoice, Switch)
+    - Expert pools with load balancing
+    - Language modeling head
+    
+    Features:
+    - Auxiliary loss for load balancing
+    - Router z-loss for stability
+    - Mixed precision training support
+    - Distributed training compatibility
+    - Text generation capabilities
     """
 ```
 
@@ -142,11 +149,17 @@ class RouterAnalyzer:
     """
     Real-time analysis of routing decisions and expert utilization.
     
-    Metrics:
-    - Expert load distribution
-    - Token routing patterns  
-    - Specialization indices
+    Implemented Features:
+    - Expert load variance tracking
+    - Routing entropy measurement
+    - Real-time statistics collection
+    - Training history logging
+    
+    Planned Features:
+    - Token routing patterns analysis
+    - Expert specialization indices
     - Cost per expert activation
+    - Interactive visualizations
     """
 ```
 
