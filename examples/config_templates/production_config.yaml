@@ -1,0 +1,325 @@
+# Production MoE Model Configuration
+# Complete configuration for enterprise-grade MoE training and deployment
+
+# Model Architecture - Production Scale
+model:
+  vocab_size: 50000
+  hidden_size: 2048                    # Large hidden size for production
+  num_experts: 32                      # Significant number of experts
+  experts_per_token: 4                 # Higher expert utilization
+  num_layers: 48                       # Deep architecture
+  num_attention_heads: 32              # Sufficient attention heads
+  max_position_embeddings: 4096        # Long context support
+  
+  # MoE layer configuration - strategic placement
+  moe_layers: [4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44]  # Distributed MoE layers
+  
+  # Expert configuration
+  expert_hidden_size: 8192            # Large expert capacity
+  activation: "gelu"
+  dropout: 0.1
+  attention_dropout: 0.1
+  expert_dropout: 0.15               # Slightly higher for regularization
+  
+  # Router configuration
+  router_type: "top_k"
+  router_jitter_noise: 0.02          # More noise for better load balancing
+  aux_loss_coef: 0.02                # Strong load balancing
+  z_loss_coef: 0.001                 # Router stability
+
+# Training Configuration - Production Grade
+training:
+  # Output and checkpointing
+  output_dir: "./production_outputs"
+  
+  # Learning rates - carefully tuned
+  learning_rate: 1e-4                # Conservative for stability
+  router_learning_rate: 5e-5         # Lower for router stability
+  expert_learning_rate: 1e-4
+  weight_decay: 0.01
+  
+  # Training schedule
+  num_epochs: 50                     # Extended training
+  warmup_steps: 5000                 # Long warmup for stability
+  lr_scheduler: "cosine"
+  
+  # Batch configuration - optimized for throughput
+  per_device_train_batch_size: 4     # Memory-conscious
+  per_device_eval_batch_size: 8
+  gradient_accumulation_steps: 16    # Large effective batch size
+  
+  # Optimization
+  optimizer: "adamw"
+  adam_beta1: 0.9
+  adam_beta2: 0.999
+  adam_epsilon: 1e-8
+  max_grad_norm: 1.0
+  
+  # Mixed precision - production recommended
+  fp16: false
+  bf16: true                         # Preferred for MoE
+  
+  # Logging and evaluation
+  logging_steps: 25
+  eval_steps: 1000
+  save_steps: 2000
+  
+  # Load balancing
+  load_balancing_loss_coef: 0.02
+  router_z_loss_coef: 0.001
+  expert_capacity_factor: 1.5        # Higher capacity for stability
+  
+  # Early stopping
+  early_stopping_patience: 10
+  early_stopping_threshold: 0.0001
+
+# Data Configuration
+data:
+  max_seq_length: 2048               # Long sequences for production
+  
+  # Preprocessing
+  preprocessing:
+    lowercase: false
+    remove_special_chars: false
+    normalize_unicode: true
+    
+  # Data loading optimization
+  num_workers: 8                     # Parallel data loading
+  pin_memory: true
+  
+  # Domain configuration
+  domain_aware: true
+  domains: ["general", "technical", "code", "academic"]
+
+# Distributed Training - Multi-Node Setup
+distributed:
+  enabled: true
+  strategy: "ddp"                    # Distributed Data Parallel
+  
+  # Expert parallelism
+  expert_parallel_size: 4            # Expert parallelism across 4 GPUs
+  model_parallel_size: 2             # Model parallelism
+  pipeline_stages: 1
+  
+  # Communication optimization
+  gradient_compression: true
+  bucket_size_mb: 50
+  
+  # DeepSpeed configuration
+  deepspeed:
+    stage: 2                         # ZeRO-2 for memory efficiency
+    offload_optimizer: false
+    offload_params: false
+
+# Monitoring and Observability
+monitoring:
+  # Experiment tracking
+  wandb:
+    enabled: true
+    project: "production-moe"
+    tags: ["production", "moe", "large-scale"]
+    
+  tensorboard:
+    enabled: true
+    log_dir: "logs/production_tensorboard"
+  
+  # Comprehensive metrics tracking
+  track_expert_utilization: true
+  track_routing_decisions: true
+  track_load_balancing: true
+  track_memory_usage: true
+  track_throughput: true
+  
+  # Checkpointing
+  checkpoint_dir: "checkpoints"
+  keep_n_checkpoints: 10             # Keep more for production
+  checkpoint_every_n_epochs: 2
+
+# Hardware Optimization
+hardware:
+  gradient_checkpointing: true       # Memory optimization
+  attention_implementation: "flash"  # Flash attention for efficiency
+  
+  # Compilation
+  torch_compile: true
+  compile_mode: "max-autotune"       # Aggressive optimization
+  
+  # Expert caching
+  expert_cache_size_gb: 16.0         # Large cache for production
+  cache_policy: "adaptive"           # Adaptive caching
+
+# Model Optimization for Inference
+optimization:
+  level: "balanced"                  # balanced, fast, memory
+  backend: "inductor"                # torch.compile backend
+  mode: "max-autotune"              # Aggressive optimization
+  benchmark: true                    # Benchmark optimizations
+  
+  # Advanced optimizations
+  optimize_routing: true
+  fuse_expert_ops: true
+  enable_memory_planning: true
+  dynamic_shapes: false              # Static shapes for production
+
+# Production Serving Configuration
+serving:
+  host: "0.0.0.0"
+  port: 8000
+  workers: 1                         # Single worker per GPU
+  max_concurrent_requests: 200       # High concurrency
+  request_timeout_seconds: 60        # Generous timeout
+  enable_metrics: true
+  enable_caching: true
+  cache_size_gb: 8.0
+  
+  # Advanced batching configuration
+  batching:
+    max_batch_size: 64               # Large batches for throughput
+    batch_timeout_ms: 5              # Low latency batching
+    max_queue_size: 2000             # Large queue
+    padding_strategy: "dynamic"       # Optimal padding
+    enable_sequence_bucketing: true
+    bucket_sizes: [256, 512, 1024, 2048, 4096]  # Comprehensive bucketing
+
+# Evaluation and Testing
+evaluation:
+  eval_datasets: ["validation", "test"]
+  
+  # Comprehensive metrics
+  compute_perplexity: true
+  compute_expert_metrics: true
+  compute_flops: true
+  compute_routing_entropy: true
+  compute_load_balance_metrics: true
+  
+  # Generation evaluation
+  generation_eval: true
+  generation_config:
+    max_new_tokens: 100
+    temperature: 0.8
+    top_p: 0.9
+    top_k: 50
+    do_sample: true
+    repetition_penalty: 1.1
+
+# Security and Compliance
+security:
+  enable_model_signing: true         # Model integrity verification
+  audit_logging: true               # Comprehensive audit logs
+  rate_limiting: true               # API rate limiting
+  input_validation: true            # Strict input validation
+  output_filtering: true            # Content filtering
+
+# Resource Management
+resources:
+  # Memory limits
+  max_memory_per_gpu_gb: 80         # High-end GPU memory
+  max_total_memory_gb: 320          # 4x 80GB GPUs
+  
+  # Compute limits
+  max_training_hours: 168           # 1 week max training
+  max_steps: 1000000               # Max training steps
+  
+  # Storage
+  checkpoint_retention_days: 30     # Keep checkpoints for 30 days
+  log_retention_days: 90           # Keep logs for 90 days
+
+# Deployment Configuration
+deployment:
+  # Container configuration
+  docker:
+    base_image: "nvidia/pytorch:24.01-py3"
+    gpu_support: true
+    memory_limit: "32g"
+    cpu_limit: "16"
+    
+  # Kubernetes configuration
+  kubernetes:
+    replicas: 3                     # High availability
+    resources:
+      requests:
+        memory: "16Gi"
+        nvidia.com/gpu: "1"
+      limits:
+        memory: "32Gi"
+        nvidia.com/gpu: "1"
+    
+    # Auto-scaling
+    hpa:
+      min_replicas: 2
+      max_replicas: 10
+      target_cpu_utilization: 70
+      target_memory_utilization: 80
+  
+  # Export formats
+  export_formats: ["huggingface", "onnx", "torchscript"]
+  
+  # Health checks
+  health_check:
+    enabled: true
+    endpoint: "/health"
+    interval_seconds: 30
+    timeout_seconds: 10
+    failure_threshold: 3
+
+# Disaster Recovery
+disaster_recovery:
+  # Backup configuration
+  backup:
+    enabled: true
+    frequency: "daily"
+    retention_days: 30
+    storage_backend: "s3"           # or "gcs", "azure"
+    
+  # Multi-region setup
+  multi_region:
+    enabled: true
+    primary_region: "us-west-2"
+    backup_regions: ["us-east-1", "eu-west-1"]
+    
+  # Failover
+  failover:
+    automatic: true
+    health_check_interval: 60
+    failure_threshold: 3
+
+# Performance Targets (SLAs)
+performance_targets:
+  # Latency targets
+  p50_latency_ms: 100               # 50th percentile
+  p95_latency_ms: 250               # 95th percentile
+  p99_latency_ms: 500               # 99th percentile
+  
+  # Throughput targets
+  min_throughput_rps: 100           # Requests per second
+  target_throughput_rps: 500
+  
+  # Availability
+  target_availability: 99.9         # 99.9% uptime
+  
+  # Resource utilization
+  target_gpu_utilization: 85        # Efficient GPU usage
+  max_memory_utilization: 90        # Memory efficiency
+
+# Advanced Features
+advanced:
+  # Experimental features
+  use_moe_layer_norm: true
+  router_temperature: 1.0
+  
+  # Load balancing strategies
+  load_balancing_strategy: "auxiliary_loss"
+  
+  # Expert initialization
+  expert_init_method: "kaiming"
+  expert_init_std: 0.02
+  
+  # Dynamic routing
+  adaptive_routing: true            # Experimental
+  routing_history_length: 1000
+  
+  # Performance profiling
+  enable_profiling: true
+  profile_memory: true
+  profile_compute: true
+  profiling_interval: 3600          # Every hour
