@@ -1,0 +1,41 @@
+{
+  "model": {
+    "model_path": "./checkpoints/final_model",
+    "device": "cuda",
+    "dtype": "float16"
+  },
+  "optimization": {
+    "compile_model": true,
+    "compile_mode": "reduce-overhead",
+    "use_expert_cache": true,
+    "cache_config": {
+      "capacity_gb": 8.0,
+      "max_experts": 32,
+      "policy": "weighted_lru",
+      "preload_top_k": 8
+    }
+  },
+  "generation": {
+    "max_new_tokens": 100,
+    "temperature": 0.8,
+    "top_p": 0.9,
+    "top_k": 50,
+    "do_sample": true,
+    "repetition_penalty": 1.1,
+    "length_penalty": 1.0,
+    "early_stopping": true
+  },
+  "serving": {
+    "max_batch_size": 16,
+    "max_sequence_length": 2048,
+    "timeout_seconds": 30,
+    "enable_streaming": false
+  },
+  "monitoring": {
+    "track_latency": true,
+    "track_throughput": true,
+    "track_memory": true,
+    "track_expert_usage": true,
+    "log_level": "INFO"
+  }
+}

@@ -1,0 +1,221 @@
+# MoE Training Configuration Template
+# This file provides a comprehensive configuration template for training MoE models
+# with the Open MoE Trainer Lab. Adjust parameters based on your specific needs.
+
+# Model Architecture Configuration
+model:
+  # Vocabulary and embeddings
+  vocab_size: 32000                    # Size of vocabulary
+  hidden_size: 1024                    # Hidden dimension size
+  max_position_embeddings: 2048        # Maximum sequence length
+  
+  # MoE specific parameters  
+  num_experts: 16                      # Total number of experts
+  experts_per_token: 2                 # Number of experts activated per token (top-k)
+  expert_hidden_size: 4096            # Hidden size within each expert (default: 4 * hidden_size)
+  
+  # Transformer architecture
+  num_layers: 24                       # Total number of transformer layers
+  num_attention_heads: 16              # Number of attention heads
+  moe_layers: [1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23]  # Which layers are MoE (others are standard)
+  
+  # Router configuration
+  router_type: "top_k"                 # Router type: "top_k", "switch", "expert_choice"
+  router_jitter_noise: 0.01           # Noise for router load balancing
+  
+  # Loss coefficients
+  aux_loss_coef: 0.01                 # Auxiliary load balancing loss coefficient
+  z_loss_coef: 0.001                  # Router z-loss coefficient for stability
+  
+  # Activation and dropout
+  activation: "gelu"                   # Activation function: "gelu", "relu", "swish"
+  dropout: 0.1                        # Dropout probability
+  attention_dropout: 0.1              # Attention dropout
+  expert_dropout: 0.1                 # Expert-specific dropout
+
+# Training Configuration
+training:
+  # Learning rates
+  learning_rate: 3e-4                 # Base learning rate
+  router_learning_rate: 1e-4          # Separate learning rate for routers (often lower)
+  expert_learning_rate: 3e-4          # Learning rate for expert parameters
+  weight_decay: 0.01                  # Weight decay for regularization
+  
+  # Training schedule
+  num_epochs: 10                      # Number of training epochs
+  warmup_steps: 2000                  # Learning rate warmup steps
+  lr_scheduler: "cosine"              # Learning rate scheduler: "linear", "cosine", "polynomial"
+  
+  # Batch configuration
+  per_device_train_batch_size: 8      # Batch size per device
+  per_device_eval_batch_size: 16      # Evaluation batch size per device  
+  gradient_accumulation_steps: 4      # Steps to accumulate gradients
+  
+  # Optimization
+  optimizer: "adamw"                  # Optimizer: "adamw", "adam", "sgd"
+  adam_beta1: 0.9                     # Adam beta1 parameter
+  adam_beta2: 0.999                   # Adam beta2 parameter
+  adam_epsilon: 1e-8                  # Adam epsilon parameter
+  max_grad_norm: 1.0                  # Gradient clipping norm
+  
+  # Mixed precision training
+  fp16: false                         # Enable FP16 mixed precision
+  bf16: true                          # Enable BF16 mixed precision (recommended for MoE)
+  
+  # Logging and evaluation
+  logging_steps: 50                   # Steps between logging
+  eval_steps: 500                     # Steps between evaluations
+  save_steps: 1000                    # Steps between model saves
+  
+  # Load balancing and stability
+  load_balancing_loss_coef: 0.01      # Load balancing loss coefficient
+  router_z_loss_coef: 0.001           # Router z-loss coefficient
+  expert_capacity_factor: 1.25        # Expert capacity factor for token dropping
+  
+  # Early stopping
+  early_stopping_patience: 5          # Epochs to wait before early stopping
+  early_stopping_threshold: 0.001     # Minimum improvement threshold
+
+# Data Configuration
+data:
+  # Data paths (override via CLI)
+  train_data_path: "data/train.jsonl"
+  eval_data_path: "data/eval.jsonl"
+  
+  # Preprocessing
+  max_seq_length: 1024                # Maximum sequence length
+  preprocessing:
+    lowercase: false                   # Convert text to lowercase
+    remove_special_chars: false       # Remove special characters
+    normalize_unicode: true           # Unicode normalization
+    
+  # Data loading
+  num_workers: 4                      # Number of data loading workers
+  pin_memory: true                    # Pin memory for faster GPU transfer
+  
+  # Domain-specific settings
+  domain_aware: false                 # Enable domain-aware preprocessing
+  domains: ["general", "code", "math", "science"]  # Predefined domains
+
+# Distributed Training Configuration
+distributed:
+  # Multi-GPU settings
+  strategy: "ddp"                     # Distributed strategy: "ddp", "deepspeed", "fsdp"
+  
+  # Expert parallelism
+  expert_parallel_size: 2             # Number of devices for expert parallelism
+  model_parallel_size: 1              # Model parallelism degree
+  pipeline_stages: 1                  # Pipeline parallelism stages
+  
+  # Communication
+  gradient_compression: false         # Enable gradient compression
+  bucket_size_mb: 25                  # Gradient bucketing size
+  
+  # DeepSpeed specific (when strategy: "deepspeed")
+  deepspeed:
+    stage: 2                          # ZeRO stage: 0, 1, 2, 3
+    offload_optimizer: false          # Offload optimizer to CPU
+    offload_params: false             # Offload parameters to CPU
+
+# Monitoring and Checkpointing
+monitoring:
+  # Experiment tracking
+  wandb:
+    enabled: true                     # Enable Weights & Biases logging
+    project: "moe-training"           # W&B project name
+    tags: ["moe", "transformer"]     # Experiment tags
+    
+  tensorboard:
+    enabled: true                     # Enable TensorBoard logging
+    log_dir: "logs/tensorboard"      # TensorBoard log directory
+  
+  # Metrics to track
+  track_expert_utilization: true      # Track expert usage patterns
+  track_routing_decisions: true       # Track routing statistics
+  track_load_balancing: true          # Track load balancing metrics
+  
+  # Checkpointing
+  checkpoint_dir: "checkpoints"       # Checkpoint directory
+  keep_n_checkpoints: 3              # Number of checkpoints to keep
+  checkpoint_every_n_epochs: 1       # Checkpoint frequency
+
+# Hardware Optimization
+hardware:
+  # Memory optimization
+  gradient_checkpointing: true        # Enable gradient checkpointing
+  attention_implementation: "flash"   # Attention implementation: "flash", "standard"
+  
+  # Compilation
+  torch_compile: true                 # Enable torch.compile optimization
+  compile_mode: "default"             # Compile mode: "default", "reduce-overhead", "max-autotune"
+  
+  # Expert caching (for inference)
+  expert_cache_size_gb: 8.0          # Expert cache size in GB
+  cache_policy: "weighted_lru"        # Cache eviction policy
+
+# Evaluation Configuration  
+evaluation:
+  # Evaluation datasets
+  eval_datasets: ["validation"]       # Datasets to evaluate on
+  
+  # Metrics
+  compute_perplexity: true            # Compute perplexity
+  compute_expert_metrics: true        # Compute expert utilization metrics
+  compute_flops: true                 # Compute FLOPs and efficiency metrics
+  
+  # Generation evaluation (for language models)
+  generation_eval: false              # Enable generation-based evaluation
+  generation_config:
+    max_new_tokens: 50
+    temperature: 0.8
+    top_p: 0.9
+    do_sample: true
+
+# Export and Deployment Configuration
+deployment:
+  # Model export formats
+  export_formats: ["huggingface", "onnx"]  # Export formats to generate
+  
+  # Optimization for inference
+  optimize_for_inference: true        # Apply inference optimizations
+  quantization: "fp16"               # Quantization: "none", "int8", "fp16"
+  
+  # Serving configuration
+  max_batch_size: 32                 # Maximum batch size for serving
+  max_sequence_length: 2048          # Maximum sequence length for serving
+
+# Development and Debugging
+debug:
+  # Debugging options
+  detect_anomaly: false              # Enable PyTorch anomaly detection
+  profile_memory: false              # Enable memory profiling
+  profile_compute: false             # Enable compute profiling
+  
+  # Testing
+  overfit_single_batch: false        # Overfit on single batch for debugging
+  limit_train_batches: null          # Limit number of training batches
+  limit_eval_batches: null           # Limit number of evaluation batches
+
+# Resource Limits
+resources:
+  # Memory limits
+  max_memory_gb: 40                  # Maximum memory usage in GB
+  
+  # Time limits  
+  max_training_hours: 72             # Maximum training time in hours
+  
+  # Compute limits
+  max_steps: null                    # Maximum training steps (null for epoch-based)
+  
+# Advanced Features
+advanced:
+  # Experimental features
+  use_moe_layer_norm: true           # Use MoE-specific layer normalization
+  router_temperature: 1.0            # Router temperature for Gumbel routing
+  
+  # Load balancing strategies
+  load_balancing_strategy: "auxiliary_loss"  # "auxiliary_loss", "switch_routing", "base_layers"
+  
+  # Expert initialization
+  expert_init_method: "normal"       # Expert weight initialization: "normal", "xavier", "kaiming"
+  expert_init_std: 0.02              # Standard deviation for normal initialization
