@@ -1,0 +1,431 @@
+version: '3.8'
+
+# Production-ready Docker Compose configuration for MoE Trainer Lab
+# Generation 3: Global-first deployment with auto-scaling and monitoring
+
+services:
+  # Load Balancer with SSL termination
+  traefik:
+    image: traefik:v3.0
+    container_name: moe-traefik
+    restart: unless-stopped
+    command:
+      - --api.dashboard=true
+      - --api.debug=true
+      - --log.level=INFO
+      - --providers.docker=true
+      - --providers.docker.exposedbydefault=false
+      - --entrypoints.websecure.address=:443
+      - --entrypoints.web.address=:80
+      - --certificatesresolvers.myresolver.acme.tlschallenge=true
+      - --certificatesresolvers.myresolver.acme.email=${ACME_EMAIL}
+      - --certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json
+      - --metrics.prometheus=true
+      - --tracing.jaeger=true
+      - --tracing.jaeger.samplingType=const
+      - --tracing.jaeger.samplingParam=1.0
+      - --tracing.jaeger.localAgentHostPort=jaeger:6831
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - letsencrypt:/letsencrypt
+      - ./traefik:/etc/traefik
+    networks:
+      - moe-network
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.dashboard.rule=Host(`traefik.${DOMAIN_NAME}`)
+      - traefik.http.routers.dashboard.tls=true
+      - traefik.http.routers.dashboard.tls.certresolver=myresolver
+    environment:
+      - DOMAIN_NAME=${DOMAIN_NAME}
+      - ACME_EMAIL=${ACME_EMAIL}
+
+  # MoE Model Server Instances (Auto-scaling)
+  moe-server-1:
+    build:
+      context: ../..
+      dockerfile: deployment/production/Dockerfile.server
+    container_name: moe-server-1
+    restart: unless-stopped
+    environment:
+      - MODEL_PATH=/app/models/moe_model
+      - CUDA_VISIBLE_DEVICES=0
+      - NODE_ID=moe-server-1
+      - MAX_CONCURRENT_REQUESTS=20
+      - ENABLE_AUTO_SCALING=true
+      - REDIS_URL=redis://redis:6379
+      - POSTGRES_URL=postgresql://postgres:${POSTGRES_PASSWORD}@postgres:5432/moe_lab
+      - PROMETHEUS_PUSH_GATEWAY=http://prometheus:9091
+      - JAEGER_AGENT_HOST=jaeger
+    volumes:
+      - model-cache:/app/models
+      - inference-cache:/app/cache
+      - ./config:/app/config:ro
+    networks:
+      - moe-network
+    depends_on:
+      - redis
+      - postgres
+      - prometheus
+      - jaeger
+    deploy:
+      resources:
+        limits:
+          memory: 8G
+          cpus: '4.0'
+        reservations:
+          memory: 4G
+          cpus: '2.0'
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.moe-server-1.rule=Host(`api.${DOMAIN_NAME}`)
+      - traefik.http.routers.moe-server-1.tls=true
+      - traefik.http.routers.moe-server-1.tls.certresolver=myresolver
+      - traefik.http.services.moe-server-1.loadbalancer.server.port=8000
+      - traefik.http.services.moe-server-1.loadbalancer.healthcheck.path=/health
+      - traefik.http.services.moe-server-1.loadbalancer.healthcheck.interval=30s
+
+  moe-server-2:
+    build:
+      context: ../..
+      dockerfile: deployment/production/Dockerfile.server
+    container_name: moe-server-2
+    restart: unless-stopped
+    environment:
+      - MODEL_PATH=/app/models/moe_model
+      - CUDA_VISIBLE_DEVICES=1
+      - NODE_ID=moe-server-2
+      - MAX_CONCURRENT_REQUESTS=20
+      - ENABLE_AUTO_SCALING=true
+      - REDIS_URL=redis://redis:6379
+      - POSTGRES_URL=postgresql://postgres:${POSTGRES_PASSWORD}@postgres:5432/moe_lab
+    volumes:
+      - model-cache:/app/models
+      - inference-cache:/app/cache
+      - ./config:/app/config:ro
+    networks:
+      - moe-network
+    depends_on:
+      - redis
+      - postgres
+    deploy:
+      resources:
+        limits:
+          memory: 8G
+          cpus: '4.0'
+        reservations:
+          memory: 4G
+          cpus: '2.0'
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    labels:
+      - traefik.enable=true
+      - traefik.http.services.moe-server-2.loadbalancer.server.port=8000
+      - traefik.http.services.moe-server-2.loadbalancer.healthcheck.path=/health
+
+  # Auto-scaler service
+  autoscaler:
+    build:
+      context: ../..
+      dockerfile: deployment/production/Dockerfile.autoscaler
+    container_name: moe-autoscaler
+    restart: unless-stopped
+    environment:
+      - DOCKER_HOST=unix:///var/run/docker.sock
+      - MIN_REPLICAS=2
+      - MAX_REPLICAS=10
+      - SCALE_UP_THRESHOLD=80
+      - SCALE_DOWN_THRESHOLD=30
+      - COOLDOWN_MINUTES=5
+      - PROMETHEUS_URL=http://prometheus:9090
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - moe-network
+    depends_on:
+      - prometheus
+
+  # Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: moe-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: moe_lab
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./init-db:/docker-entrypoint-initdb.d
+    networks:
+      - moe-network
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+          cpus: '1.0'
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Cache Layer
+  redis:
+    image: redis:7-alpine
+    container_name: moe-redis
+    restart: unless-stopped
+    command: redis-server --appendonly yes --maxmemory 1gb --maxmemory-policy allkeys-lru
+    volumes:
+      - redis-data:/data
+    networks:
+      - moe-network
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: '0.5'
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+  # Monitoring Stack
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: moe-prometheus
+    restart: unless-stopped
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable-lifecycle'
+      - '--web.enable-admin-api'
+    ports:
+      - "9090:9090"
+    volumes:
+      - prometheus-data:/prometheus
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./monitoring/alerts.yml:/etc/prometheus/alerts.yml
+    networks:
+      - moe-network
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.prometheus.rule=Host(`prometheus.${DOMAIN_NAME}`)
+      - traefik.http.routers.prometheus.tls=true
+      - traefik.http.routers.prometheus.tls.certresolver=myresolver
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: moe-grafana
+    restart: unless-stopped
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_PASSWORD}
+      GF_INSTALL_PLUGINS: grafana-clock-panel,grafana-simple-json-datasource
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./monitoring/grafana/dashboards:/etc/grafana/provisioning/dashboards
+      - ./monitoring/grafana/datasources:/etc/grafana/provisioning/datasources
+    networks:
+      - moe-network
+    depends_on:
+      - prometheus
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.grafana.rule=Host(`grafana.${DOMAIN_NAME}`)
+      - traefik.http.routers.grafana.tls=true
+      - traefik.http.routers.grafana.tls.certresolver=myresolver
+      - traefik.http.services.grafana.loadbalancer.server.port=3000
+
+  # Alerting
+  alertmanager:
+    image: prom/alertmanager:latest
+    container_name: moe-alertmanager
+    restart: unless-stopped
+    command:
+      - '--config.file=/etc/alertmanager/config.yml'
+      - '--storage.path=/alertmanager'
+      - '--web.external-url=http://alertmanager.${DOMAIN_NAME}'
+    volumes:
+      - alertmanager-data:/alertmanager
+      - ./monitoring/alertmanager.yml:/etc/alertmanager/config.yml
+    networks:
+      - moe-network
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.alertmanager.rule=Host(`alertmanager.${DOMAIN_NAME}`)
+      - traefik.http.routers.alertmanager.tls=true
+      - traefik.http.routers.alertmanager.tls.certresolver=myresolver
+
+  # Distributed Tracing
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    container_name: moe-jaeger
+    restart: unless-stopped
+    environment:
+      COLLECTOR_ZIPKIN_HOST_PORT: :9411
+    ports:
+      - "16686:16686"
+      - "14268:14268"
+    networks:
+      - moe-network
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.jaeger.rule=Host(`jaeger.${DOMAIN_NAME}`)
+      - traefik.http.routers.jaeger.tls=true
+      - traefik.http.routers.jaeger.tls.certresolver=myresolver
+      - traefik.http.services.jaeger.loadbalancer.server.port=16686
+
+  # Log Aggregation
+  loki:
+    image: grafana/loki:latest
+    container_name: moe-loki
+    restart: unless-stopped
+    command: -config.file=/etc/loki/local-config.yaml
+    volumes:
+      - loki-data:/loki
+      - ./monitoring/loki.yml:/etc/loki/local-config.yaml
+    networks:
+      - moe-network
+
+  promtail:
+    image: grafana/promtail:latest
+    container_name: moe-promtail
+    restart: unless-stopped
+    volumes:
+      - /var/log:/var/log:ro
+      - ./monitoring/promtail.yml:/etc/promtail/config.yml
+    command: -config.file=/etc/promtail/config.yml
+    networks:
+      - moe-network
+    depends_on:
+      - loki
+
+  # Security Scanning
+  trivy:
+    image: aquasec/trivy:latest
+    container_name: moe-security-scanner
+    restart: "no"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - trivy-cache:/root/.cache
+    networks:
+      - moe-network
+    command: |
+      sh -c "
+        trivy image --exit-code 1 --no-progress --format json --output /tmp/trivy-report.json moe-server:latest ||
+        echo 'Security scan completed with issues - check report'
+      "
+
+  # Backup Service
+  backup:
+    image: postgres:15-alpine
+    container_name: moe-backup
+    restart: "no"
+    environment:
+      PGPASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - backup-data:/backups
+      - ./scripts/backup.sh:/backup.sh
+    networks:
+      - moe-network
+    depends_on:
+      - postgres
+    command: |
+      sh -c "
+        chmod +x /backup.sh &&
+        /backup.sh
+      "
+
+  # Model Management Service
+  model-manager:
+    build:
+      context: ../..
+      dockerfile: deployment/production/Dockerfile.model-manager
+    container_name: moe-model-manager
+    restart: unless-stopped
+    environment:
+      - MODEL_STORAGE_PATH=/app/models
+      - POSTGRES_URL=postgresql://postgres:${POSTGRES_PASSWORD}@postgres:5432/moe_lab
+      - S3_BUCKET=${MODEL_S3_BUCKET}
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+    volumes:
+      - model-cache:/app/models
+    networks:
+      - moe-network
+    depends_on:
+      - postgres
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.model-manager.rule=Host(`models.${DOMAIN_NAME}`)
+      - traefik.http.routers.model-manager.tls=true
+      - traefik.http.routers.model-manager.tls.certresolver=myresolver
+
+  # Documentation Server
+  docs:
+    build:
+      context: ../..
+      dockerfile: deployment/production/Dockerfile.docs
+    container_name: moe-docs
+    restart: unless-stopped
+    volumes:
+      - ./docs:/app/docs:ro
+    networks:
+      - moe-network
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.docs.rule=Host(`docs.${DOMAIN_NAME}`)
+      - traefik.http.routers.docs.tls=true
+      - traefik.http.routers.docs.tls.certresolver=myresolver
+
+volumes:
+  letsencrypt:
+    driver: local
+  postgres-data:
+    driver: local
+  redis-data:
+    driver: local
+  prometheus-data:
+    driver: local
+  grafana-data:
+    driver: local
+  alertmanager-data:
+    driver: local
+  loki-data:
+    driver: local
+  trivy-cache:
+    driver: local
+  backup-data:
+    driver: local
+  model-cache:
+    driver: local
+  inference-cache:
+    driver: local
+
+networks:
+  moe-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16

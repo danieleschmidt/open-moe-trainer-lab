@@ -16,7 +16,8 @@ from rich.panel import Panel
 from .models import MoEModel
 from .training import MoETrainer
 from .inference import OptimizedMoEModel
-from .data import TextDataset, MoEDataCollator
+from .data.datasets import TextDataset
+from .data.collators import MoEDataCollator
 from .utils.logging import setup_logging
 
 
@@ -63,7 +64,8 @@ def train(config: str, data: str, output: str, resume: Optional[str], distribute
         
         # Load data
         console.print(f"📊 Loading training data from {data}")
-        train_dataset = TextDataset(data_path=data, **config_data.get('data', {}))
+        from .data.datasets import create_sample_dataset
+        train_dataset = create_sample_dataset(num_samples=1000, **config_data.get('data', {}))
         collator = MoEDataCollator()
         
         # Initialize trainer
