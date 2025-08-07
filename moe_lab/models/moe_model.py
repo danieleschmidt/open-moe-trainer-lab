@@ -74,24 +74,12 @@ class MoELayer(nn.Module):
         # Route tokens to experts
         router_logits, selected_experts, expert_weights, routing_info = self.router(hidden_states_flat)
         
-        # Process through experts
-        expert_outputs = torch.zeros_like(hidden_states_flat)
-        
-        for expert_idx in range(self.num_experts):
-            # Get tokens assigned to this expert
-            expert_mask = (selected_experts == expert_idx).any(dim=-1)
-            if not expert_mask.any():
-                continue
-                
-            expert_tokens = hidden_states_flat[expert_mask]
-            expert_weights_for_tokens = expert_weights[expert_mask]
-            
-            # Process through expert
-            expert_output = self.experts(expert_tokens, expert_idx)
-            
-            # Apply routing weights
-            weighted_output = expert_output * expert_weights_for_tokens.sum(dim=-1, keepdim=True)
-            expert_outputs[expert_mask] += weighted_output
+        # Process through experts using the improved method
+        expert_outputs = self.experts.forward_all(
+            hidden_states_flat, 
+            expert_weights, 
+            selected_experts
+        )
             
         # Compute auxiliary losses
         aux_loss = self._compute_auxiliary_loss(router_logits, selected_experts)

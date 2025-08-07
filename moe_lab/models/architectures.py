@@ -49,6 +49,9 @@ class SwitchTransformer(MoEModel):
                     drop_tokens=drop_tokens,
                     **kwargs
                 )
+                # Note: moe_layers is a set, initialized in parent
+                if not hasattr(self, 'moe_layers'):
+                    self.moe_layers = set()
                 self.moe_layers.add(i)
             else:
                 # Standard transformer layer
