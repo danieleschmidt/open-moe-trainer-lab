@@ -1,0 +1,86 @@
+{
+  "demo_config": {
+    "hidden_size": 32,
+    "num_experts": 4,
+    "top_k": 2,
+    "num_steps": 50,
+    "error_injection_rate": 0.1
+  },
+  "training_summary": {
+    "successful_steps": 50,
+    "failed_steps": 2,
+    "success_rate": 1.0
+  },
+  "health_status": {
+    "timestamp": 1754797246.227911,
+    "overall_status": "healthy",
+    "alerts": [],
+    "warnings": [],
+    "system_ok": true,
+    "training_ok": true
+  },
+  "error_summary": {
+    "total_errors": 4,
+    "error_types": {
+      "DataError": 4
+    },
+    "severity_distribution": {
+      "high": 4
+    },
+    "time_window_hours": 1.0,
+    "most_common_error": "DataError"
+  },
+  "system_performance": {
+    "avg_memory_mb": 17.703125,
+    "max_memory_mb": 17.703125,
+    "avg_cpu_percent": 0.0,
+    "max_cpu_percent": 0.0,
+    "sample_count": 1
+  },
+  "training_performance": {
+    "avg_loss": 1.1765942411703834,
+    "min_loss": 0.5175169544711893,
+    "avg_expert_load_variance": NaN,
+    "avg_routing_entropy": 1.2983594962165954,
+    "avg_tokens_per_second": 1000.0,
+    "sample_count": 50
+  },
+  "health_report": {
+    "timestamp": 1754797246.2281697,
+    "system_performance": {
+      "avg_memory_mb": 17.703125,
+      "max_memory_mb": 17.703125,
+      "avg_cpu_percent": 0.0,
+      "max_cpu_percent": 0.0,
+      "sample_count": 1
+    },
+    "training_performance": {
+      "avg_loss": 1.1765942411703834,
+      "min_loss": 0.5175169544711893,
+      "avg_expert_load_variance": NaN,
+      "avg_routing_entropy": 1.2983594962165954,
+      "avg_tokens_per_second": 1000.0,
+      "sample_count": 50
+    },
+    "health_status": {
+      "timestamp": 1754797246.228203,
+      "overall_status": "healthy",
+      "alerts": [],
+      "warnings": [],
+      "system_ok": true,
+      "training_ok": true
+    },
+    "recommendations": []
+  },
+  "generation": 2,
+  "robustness_features": [
+    "comprehensive_error_handling",
+    "automatic_retry_with_backoff",
+    "real_time_monitoring",
+    "system_health_checks",
+    "automatic_checkpointing",
+    "graceful_degradation",
+    "performance_analytics",
+    "anomaly_detection"
+  ]
+}

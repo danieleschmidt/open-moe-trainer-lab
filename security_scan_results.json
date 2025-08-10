@@ -1,0 +1,653 @@
+{
+  "project_root": "/root/repo",
+  "timestamp": 1754797663.2173817,
+  "file_scans": [
+    {
+      "file_path": "README.md",
+      "issues": [
+        {
+          "line": 418,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "compiled_model = optimizer.compile(",
+          "severity": "LOW"
+        }
+      ],
+      "issue_count": 1,
+      "file_hash": "356bc1ca"
+    },
+    {
+      "file_path": "security_scan.py",
+      "issues": [
+        {
+          "line": 35,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "(r'eval\\s*\\(', 'eval() function usage - code injection risk'),",
+          "severity": "HIGH"
+        },
+        {
+          "line": 36,
+          "issue": "exec() function usage - code execution risk",
+          "pattern": "exec\\s*\\(",
+          "code_snippet": "(r'exec\\s*\\(', 'exec() function usage - code execution risk'),",
+          "severity": "HIGH"
+        },
+        {
+          "line": 38,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "(r'compile\\s*\\(', 'compile() function - dynamic code compilation'),",
+          "severity": "LOW"
+        },
+        {
+          "line": 42,
+          "issue": "os.system() usage - command injection risk",
+          "pattern": "os\\.system\\s*\\(",
+          "code_snippet": "(r'os\\.system\\s*\\(', 'os.system() usage - command injection risk'),",
+          "severity": "HIGH"
+        },
+        {
+          "line": 56,
+          "issue": "Potential SQL injection",
+          "pattern": "SELECT.*\\+.*[\\'\\\"]+",
+          "code_snippet": "(r'SELECT.*\\+.*[\\'\\\"]+', 'Potential SQL injection'),",
+          "severity": "HIGH"
+        },
+        {
+          "line": 57,
+          "issue": "Potential SQL injection",
+          "pattern": "INSERT.*\\+.*[\\'\\\"]+",
+          "code_snippet": "(r'INSERT.*\\+.*[\\'\\\"]+', 'Potential SQL injection'),",
+          "severity": "HIGH"
+        },
+        {
+          "line": 58,
+          "issue": "Potential SQL injection",
+          "pattern": "UPDATE.*\\+.*[\\'\\\"]+",
+          "code_snippet": "(r'UPDATE.*\\+.*[\\'\\\"]+', 'Potential SQL injection'),",
+          "severity": "HIGH"
+        },
+        {
+          "line": 59,
+          "issue": "Potential SQL injection",
+          "pattern": "DELETE.*\\+.*[\\'\\\"]+",
+          "code_snippet": "(r'DELETE.*\\+.*[\\'\\\"]+', 'Potential SQL injection'),",
+          "severity": "HIGH"
+        },
+        {
+          "line": 74,
+          "issue": "dynamic import - potential code injection",
+          "pattern": "__import__\\s*\\(",
+          "code_snippet": "'timestamp': __import__('time').time(),",
+          "severity": "HIGH"
+        },
+        {
+          "line": 334,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "recommendations.append(\"Remove eval() and exec() function calls - use safer alternatives like ast.li",
+          "severity": "HIGH"
+        },
+        {
+          "line": 334,
+          "issue": "exec() function usage - code execution risk",
+          "pattern": "exec\\s*\\(",
+          "code_snippet": "recommendations.append(\"Remove eval() and exec() function calls - use safer alternatives like ast.li",
+          "severity": "HIGH"
+        }
+      ],
+      "issue_count": 11,
+      "file_hash": "56aa6dde"
+    },
+    {
+      "file_path": ".github/SECURITY.md",
+      "issues": [
+        {
+          "line": 203,
+          "issue": "Potential SQL injection",
+          "pattern": "UPDATE.*\\+.*[\\'\\\"]+",
+          "code_snippet": "Last updated: $(date +'%Y-%m-%d')",
+          "severity": "HIGH"
+        }
+      ],
+      "issue_count": 1,
+      "file_hash": "9f004a2b"
+    },
+    {
+      "file_path": ".terragon/value_discovery_simple.py",
+      "issues": [
+        {
+          "line": 319,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "if \"eval(\" in content or \"exec(\" in content:",
+          "severity": "HIGH"
+        },
+        {
+          "line": 319,
+          "issue": "exec() function usage - code execution risk",
+          "pattern": "exec\\s*\\(",
+          "code_snippet": "if \"eval(\" in content or \"exec(\" in content:",
+          "severity": "HIGH"
+        },
+        {
+          "line": 433,
+          "issue": "Potential hardcoded secret/token",
+          "pattern": "AST_ANALYSIS",
+          "code_snippet": "String: docs/workflows/examples/...",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issue_count": 3,
+      "file_hash": "dfb1254c"
+    },
+    {
+      "file_path": "docs/DEVELOPMENT.md",
+      "issues": [
+        {
+          "line": 456,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "model = torch.compile(model, mode=\"reduce-overhead\")",
+          "severity": "LOW"
+        }
+      ],
+      "issue_count": 1,
+      "file_hash": "1cbdd4c2"
+    },
+    {
+      "file_path": "docs/PERFORMANCE_OPTIMIZATION.md",
+      "issues": [
+        {
+          "line": 91,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "compiled_model = torch.compile(model, mode=\"max-autotune\")",
+          "severity": "LOW"
+        }
+      ],
+      "issue_count": 1,
+      "file_hash": "304fc309"
+    },
+    {
+      "file_path": "docs/SETUP_REQUIRED.md",
+      "issues": [
+        {
+          "line": 144,
+          "issue": "Potential SQL injection",
+          "pattern": "UPDATE.*\\+.*[\\'\\\"]+",
+          "code_snippet": "**Last Updated**: $(date +'%Y-%m-%d %H:%M:%S UTC')",
+          "severity": "HIGH"
+        }
+      ],
+      "issue_count": 1,
+      "file_hash": "90e14d6c"
+    },
+    {
+      "file_path": "examples/basic_training.py",
+      "issues": [
+        {
+          "line": 213,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "model.eval()",
+          "severity": "HIGH"
+        }
+      ],
+      "issue_count": 1,
+      "file_hash": "19bae60e"
+    },
+    {
+      "file_path": "examples/inference_optimization.py",
+      "issues": [
+        {
+          "line": 284,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "base_model.eval()",
+          "severity": "HIGH"
+        },
+        {
+          "line": 305,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "compiled_model = torch.compile(optimized_model, mode='reduce-overhead')",
+          "severity": "LOW"
+        }
+      ],
+      "issue_count": 2,
+      "file_hash": "b287ad07"
+    },
+    {
+      "file_path": "examples/production_deployment.py",
+      "issues": [
+        {
+          "line": 309,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "self.model.eval()",
+          "severity": "HIGH"
+        },
+        {
+          "line": 326,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "self.optimized_model.eval()",
+          "severity": "HIGH"
+        }
+      ],
+      "issue_count": 2,
+      "file_hash": "f12bafea"
+    },
+    {
+      "file_path": "moe_lab/cli.py",
+      "issues": [
+        {
+          "line": 124,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "moe_model.eval()",
+          "severity": "HIGH"
+        },
+        {
+          "line": 293,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "moe_model.eval()",
+          "severity": "HIGH"
+        }
+      ],
+      "issue_count": 2,
+      "file_hash": "44f8a717"
+    },
+    {
+      "file_path": "moe_lab/data/preprocessors.py",
+      "issues": [
+        {
+          "line": 27,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "self.url_pattern = re.compile(",
+          "severity": "LOW"
+        },
+        {
+          "line": 30,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "self.email_pattern = re.compile(r'\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}\\b')",
+          "severity": "LOW"
+        },
+        {
+          "line": 31,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "self.phone_pattern = re.compile(r'(\\+\\d{1,3}[-.\\s]?)?\\(?\\d{3}\\)?[-.\\s]?\\d{3}[-.\\s]?\\d{4}')",
+          "severity": "LOW"
+        },
+        {
+          "line": 32,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "self.whitespace_pattern = re.compile(r'\\s+')",
+          "severity": "LOW"
+        },
+        {
+          "line": 68,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "pattern = re.compile(pattern)",
+          "severity": "LOW"
+        },
+        {
+          "line": 270,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "self.required_patterns = [re.compile(p) for p in (required_patterns or [])]",
+          "severity": "LOW"
+        }
+      ],
+      "issue_count": 6,
+      "file_hash": "1a55b1e4"
+    },
+    {
+      "file_path": "moe_lab/distributed/__init__.py",
+      "issues": [
+        {
+          "line": 9,
+          "issue": "Potential hardcoded secret/token",
+          "pattern": "AST_ANALYSIS",
+          "code_snippet": "String: DistributedMoETrainer...",
+          "severity": "MEDIUM"
+        },
+        {
+          "line": 11,
+          "issue": "Potential hardcoded secret/token",
+          "pattern": "AST_ANALYSIS",
+          "code_snippet": "String: AllToAllExpertDispatch...",
+          "severity": "MEDIUM"
+        },
+        {
+          "line": 12,
+          "issue": "Potential hardcoded secret/token",
+          "pattern": "AST_ANALYSIS",
+          "code_snippet": "String: ExpertShardingStrategy...",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issue_count": 3,
+      "file_hash": "128b7f9a"
+    },
+    {
+      "file_path": "moe_lab/inference/optimized.py",
+      "issues": [
+        {
+          "line": 131,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "self.base_model = torch.compile(self.base_model, mode=\"reduce-overhead\")",
+          "severity": "LOW"
+        },
+        {
+          "line": 281,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "self.eval()",
+          "severity": "HIGH"
+        },
+        {
+          "line": 442,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "self.eval()",
+          "severity": "HIGH"
+        }
+      ],
+      "issue_count": 3,
+      "file_hash": "673a41f9"
+    },
+    {
+      "file_path": "moe_lab/models/moe_model.py",
+      "issues": [
+        {
+          "line": 263,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "self.eval()",
+          "severity": "HIGH"
+        }
+      ],
+      "issue_count": 1,
+      "file_hash": "8d73d3c3"
+    },
+    {
+      "file_path": "moe_lab/optimization/__init__.py",
+      "issues": [
+        {
+          "line": 13,
+          "issue": "Potential hardcoded secret/token",
+          "pattern": "AST_ANALYSIS",
+          "code_snippet": "String: ActivationCheckpointing...",
+          "severity": "MEDIUM"
+        },
+        {
+          "line": 16,
+          "issue": "Potential hardcoded secret/token",
+          "pattern": "AST_ANALYSIS",
+          "code_snippet": "String: OptimizedRouterKernel...",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issue_count": 2,
+      "file_hash": "78382634"
+    },
+    {
+      "file_path": "moe_lab/optimization/compiler.py",
+      "issues": [
+        {
+          "line": 96,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "compiled_model = self._torch_compile(optimized_model, example_inputs)",
+          "severity": "LOW"
+        },
+        {
+          "line": 122,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "def _torch_compile(self, model: nn.Module, example_inputs: Optional[Dict[str, torch.Tensor]]) -> nn.",
+          "severity": "LOW"
+        },
+        {
+          "line": 140,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "return torch.compile(model, **compile_options)",
+          "severity": "LOW"
+        },
+        {
+          "line": 147,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "model.eval()",
+          "severity": "HIGH"
+        },
+        {
+          "line": 306,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "model.eval()",
+          "severity": "HIGH"
+        },
+        {
+          "line": 421,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "trt_model = torch_tensorrt.compile(",
+          "severity": "LOW"
+        }
+      ],
+      "issue_count": 6,
+      "file_hash": "da9617e8"
+    },
+    {
+      "file_path": "moe_lab/serving/__init__.py",
+      "issues": [
+        {
+          "line": 14,
+          "issue": "Potential hardcoded secret/token",
+          "pattern": "AST_ANALYSIS",
+          "code_snippet": "String: LoadBalancingStrategy...",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issue_count": 1,
+      "file_hash": "d9067aec"
+    },
+    {
+      "file_path": "moe_lab/serving/server.py",
+      "issues": [
+        {
+          "line": 497,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "self.model.eval()",
+          "severity": "HIGH"
+        }
+      ],
+      "issue_count": 1,
+      "file_hash": "33af45ab"
+    },
+    {
+      "file_path": "moe_lab/training/trainer.py",
+      "issues": [
+        {
+          "line": 350,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "self.model.eval()",
+          "severity": "HIGH"
+        }
+      ],
+      "issue_count": 1,
+      "file_hash": "6266aff0"
+    },
+    {
+      "file_path": "moe_lab/utils/__init__.py",
+      "issues": [
+        {
+          "line": 35,
+          "issue": "Potential hardcoded secret/token",
+          "pattern": "AST_ANALYSIS",
+          "code_snippet": "String: ModelConfigurationError...",
+          "severity": "MEDIUM"
+        }
+      ],
+      "issue_count": 1,
+      "file_hash": "04cf49ca"
+    },
+    {
+      "file_path": "moe_lab/utils/optimization.py",
+      "issues": [
+        {
+          "line": 179,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "compiled_router = torch.compile(router, mode=\"reduce-overhead\")",
+          "severity": "LOW"
+        },
+        {
+          "line": 193,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "compiled_expert = torch.compile(expert, mode=\"max-autotune\")",
+          "severity": "LOW"
+        },
+        {
+          "line": 370,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "model.eval()",
+          "severity": "HIGH"
+        },
+        {
+          "line": 483,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "model = torch.compile(",
+          "severity": "LOW"
+        }
+      ],
+      "issue_count": 4,
+      "file_hash": "85a57d22"
+    },
+    {
+      "file_path": "tests/benchmarks/test_performance.py",
+      "issues": [
+        {
+          "line": 121,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "model.eval()",
+          "severity": "HIGH"
+        },
+        {
+          "line": 223,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "model.eval()",
+          "severity": "HIGH"
+        },
+        {
+          "line": 519,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "model.eval()",
+          "severity": "HIGH"
+        }
+      ],
+      "issue_count": 3,
+      "file_hash": "10819772"
+    },
+    {
+      "file_path": "tests/integration/test_training_pipeline.py",
+      "issues": [
+        {
+          "line": 226,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "self.model.eval()",
+          "severity": "HIGH"
+        }
+      ],
+      "issue_count": 1,
+      "file_hash": "7faea71f"
+    },
+    {
+      "file_path": "tests/performance/test_training_performance.py",
+      "issues": [
+        {
+          "line": 33,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "model.eval()",
+          "severity": "HIGH"
+        }
+      ],
+      "issue_count": 1,
+      "file_hash": "de02d79c"
+    }
+  ],
+  "vulnerability_summary": {
+    "total_issues": 60,
+    "severity_breakdown": {
+      "HIGH": 33,
+      "MEDIUM": 8,
+      "LOW": 19
+    },
+    "issue_types": {
+      "compile() function - dynamic code compilation": 19,
+      "eval() function usage - code injection risk": 22,
+      "exec() function usage - code execution risk": 3,
+      "os.system() usage - command injection risk": 1,
+      "Potential SQL injection": 6,
+      "dynamic import - potential code injection": 1,
+      "Potential hardcoded secret/token": 8
+    },
+    "most_vulnerable_files": [
+      [
+        "security_scan.py",
+        11
+      ],
+      [
+        "moe_lab/data/preprocessors.py",
+        6
+      ],
+      [
+        "moe_lab/optimization/compiler.py",
+        6
+      ],
+      [
+        "moe_lab/utils/optimization.py",
+        4
+      ],
+      [
+        ".terragon/value_discovery_simple.py",
+        3
+      ]
+    ]
+  },
+  "security_score": 10,
+  "recommendations": [
+    "Remove eval() and exec() function calls - use safer alternatives like ast.literal_eval()",
+    "Move hardcoded secrets to environment variables or secure configuration files",
+    "Use parameterized queries and input validation to prevent injection attacks",
+    "Implement input validation and sanitization for all user inputs",
+    "Use secure coding practices and regular security reviews",
+    "Keep dependencies updated to patch known vulnerabilities",
+    "Implement proper authentication and authorization mechanisms",
+    "Use HTTPS for all network communications",
+    "Implement logging and monitoring for security events"
+  ],
+  "total_files_scanned": 164
+}

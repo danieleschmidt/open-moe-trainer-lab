@@ -1,0 +1,12 @@
+{
+  "step": 40,
+  "successful_steps": 41,
+  "failed_steps": 2,
+  "model_config": {
+    "hidden_size": 32,
+    "num_experts": 4,
+    "top_k": 2,
+    "num_steps": 50,
+    "error_injection_rate": 0.1
+  }
+}
