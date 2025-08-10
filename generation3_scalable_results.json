@@ -1,0 +1,199 @@
+{
+  "demo_config": {
+    "hidden_size": 64,
+    "num_experts": 8,
+    "top_k": 2,
+    "num_requests": 100,
+    "batch_sizes": [
+      1,
+      4,
+      8,
+      16
+    ],
+    "complexity_levels": [
+      "low",
+      "medium",
+      "high"
+    ],
+    "concurrent_workers": 2
+  },
+  "single_request_performance": [
+    {
+      "complexity": "low",
+      "processing_time": 4.337787628173828,
+      "cache_hit": false,
+      "success": true
+    },
+    {
+      "complexity": "medium",
+      "processing_time": 2.857685089111328,
+      "cache_hit": false,
+      "success": true
+    },
+    {
+      "complexity": "high",
+      "processing_time": 2.3136138916015625,
+      "cache_hit": false,
+      "success": true
+    }
+  ],
+  "batch_performance": {
+    "1": {
+      "total_time": 7.523059844970703,
+      "avg_processing_time": 0.0066928863525390625,
+      "success_rate": 1.0,
+      "throughput_req_per_sec": 132.92463712999935
+    },
+    "4": {
+      "total_time": 22.7508544921875,
+      "avg_processing_time": 0.003101170063018799,
+      "success_rate": 1.0,
+      "throughput_req_per_sec": 175.81757209926224
+    },
+    "8": {
+      "total_time": 18.486738204956055,
+      "avg_processing_time": 0.0032947957515716553,
+      "success_rate": 1.0,
+      "throughput_req_per_sec": 432.74264563638945
+    },
+    "16": {
+      "total_time": 17.210006713867188,
+      "avg_processing_time": 0.00347939133644104,
+      "success_rate": 0.5,
+      "throughput_req_per_sec": 929.6916768258894
+    }
+  },
+  "load_test_results": {
+    "total_requests": 100,
+    "successful_requests": 104,
+    "failed_requests": 0,
+    "avg_response_time_ms": 0.0032812013075901912,
+    "p95_response_time_ms": 0.005270481109619141,
+    "overall_throughput_req_per_sec": 509.96723733989273,
+    "total_time_sec": 0.2039346694946289
+  },
+  "system_performance": {
+    "timestamp": 1754797468.7306736,
+    "global_metrics": {
+      "throughput_tokens_per_sec": 302.77430447571516,
+      "latency_ms": 4.059658903733697,
+      "memory_usage_gb": 0.02509307861328125,
+      "cpu_utilization": 0.0,
+      "cache_hit_rate": 0.0,
+      "expert_load_balance": 1.0,
+      "model_flops": 0,
+      "inference_cost_usd": 0.0,
+      "timestamp": 1754797468.7302275,
+      "batch_processing_efficiency": 1,
+      "gpu_utilization": 81.36811499387699,
+      "network_bandwidth_mbps": 602.4009209344902
+    },
+    "cache_performance": {
+      "l1_hits": 0,
+      "l1_misses": 128,
+      "l2_hits": 0,
+      "l2_misses": 0,
+      "l3_hits": 0,
+      "l3_misses": 0,
+      "evictions": 0,
+      "prefetches": 0,
+      "compression_ratio": 0.8045774647887324,
+      "total_requests": 128,
+      "overall_hit_rate": 0.0,
+      "l1_size": 31,
+      "l2_size": 97,
+      "l3_size": 0,
+      "l1_size_mb": 0.010833740234375,
+      "l2_size_mb": 0.08250713348388672,
+      "hot_keys": 0
+    },
+    "load_balancer_stats": {
+      "worker_count": 3,
+      "worker_stats": {
+        "worker_0": {
+          "requests_processed": 1,
+          "avg_response_time": 4.337787628173828,
+          "error_rate": 0.0,
+          "cpu_usage": 0.8646272714949954,
+          "memory_usage": 0.6824491973780906,
+          "last_health_check": 1754797468.4478962
+        },
+        "worker_2": {
+          "requests_processed": 67,
+          "avg_response_time": 3.058756017328479,
+          "error_rate": 0.0,
+          "cpu_usage": 0.8603943012486359,
+          "memory_usage": 0.7210040833474047,
+          "last_health_check": 1754797468.6652012
+        },
+        "worker_3": {
+          "requests_processed": 60,
+          "avg_response_time": 4.066756387101702,
+          "error_rate": 0.0,
+          "cpu_usage": 0.682770844841579,
+          "memory_usage": 0.5955054383561482,
+          "last_health_check": 1754797468.7299674
+        }
+      },
+      "load_history": [
+        {
+          "timestamp": 1754797468.4478986,
+          "load": 0.19338455860913575,
+          "response_time": 1.084446907043457,
+          "num_workers": 4
+        }
+      ],
+      "scaling_decisions": [
+        {
+          "action": "scale_down",
+          "timestamp": 1754797468.4481251,
+          "worker_count": 3,
+          "reason": "low_load",
+          "removed_worker": "worker_1"
+        }
+      ],
+      "average_load": 0.19338455860913575,
+      "average_response_time": 1.084446907043457
+    },
+    "request_processor_stats": {
+      "processed": 125,
+      "failed": 0,
+      "avg_processing_time": 0.01569982135997099,
+      "queue_depths": {
+        "high": 0,
+        "normal": 4,
+        "low": 0
+      },
+      "queue_total": 4,
+      "success_rate": 1.0,
+      "throughput_req_per_sec": 17.0,
+      "worker_utilization": 0.0
+    },
+    "optimization_history_summary": {
+      "total_requests": 128,
+      "avg_processing_time": 3.1448565423488617,
+      "success_rate": 1,
+      "complexity_distribution": {
+        "low": 0,
+        "medium": 96,
+        "high": 32
+      }
+    },
+    "scaling_recommendations": [
+      "Low cache hit rate - increase cache size or improve prefetching strategy"
+    ]
+  },
+  "generation": 3,
+  "scalability_features": [
+    "intelligent_multi_level_caching",
+    "concurrent_request_processing",
+    "adaptive_load_balancing",
+    "dynamic_worker_scaling",
+    "predictive_prefetching",
+    "optimized_batch_processing",
+    "resource_usage_optimization",
+    "performance_profiling",
+    "automatic_model_optimization",
+    "production_monitoring"
+  ]
+}
