@@ -1,0 +1,149 @@
+{
+  "demo_timestamp": "2025-08-11T17:17:45.757460+00:00",
+  "initialization": {
+    "status": "success",
+    "configured_regions": [
+      "us-east-1",
+      "eu-west-1",
+      "ap-southeast-1"
+    ],
+    "language": "en",
+    "compliance_enabled": true,
+    "failover_configured": true
+  },
+  "deployment": {
+    "deployment_id": "1fd36baa3a0281de",
+    "regional_results": {
+      "us-east-1": {
+        "status": "success",
+        "timestamp": "2025-08-11T17:17:45.757344+00:00"
+      },
+      "eu-west-1": {
+        "status": "success",
+        "timestamp": "2025-08-11T17:17:45.757358+00:00"
+      },
+      "ap-southeast-1": {
+        "status": "success",
+        "timestamp": "2025-08-11T17:17:45.757372+00:00"
+      }
+    },
+    "overall_success": true
+  },
+  "status_report": {
+    "timestamp": "2025-08-11T17:17:45.757424+00:00",
+    "global_config": {
+      "version": "1.0.0",
+      "default_language": "en",
+      "supported_regions": [
+        "us-east-1",
+        "us-west-2",
+        "eu-west-1",
+        "eu-central-1",
+        "ap-southeast-1",
+        "ap-northeast-1"
+      ],
+      "supported_languages": [
+        "en",
+        "es",
+        "fr",
+        "de",
+        "ja",
+        "zh"
+      ],
+      "supported_compliance": [
+        "gdpr",
+        "ccpa",
+        "pdpa",
+        "hipaa",
+        "soc2"
+      ],
+      "features": {
+        "multi_region_deployment": true,
+        "internationalization": true,
+        "compliance_management": true,
+        "cross_platform_compatibility": true,
+        "data_residency": true,
+        "encryption": true,
+        "audit_logging": true,
+        "failover_support": true
+      }
+    },
+    "platform": {
+      "current": "linux",
+      "validation": {
+        "platform": "linux",
+        "compatible": true,
+        "requirements_met": true,
+        "warnings": [],
+        "errors": []
+      }
+    },
+    "regions": {
+      "total_regions": 3,
+      "active_deployments": 3,
+      "regions": {
+        "us-east-1": {
+          "configured": true,
+          "active_services": 1,
+          "compliance_standards": [
+            "ccpa"
+          ],
+          "data_residency": true,
+          "encryption_enabled": true
+        },
+        "eu-west-1": {
+          "configured": true,
+          "active_services": 1,
+          "compliance_standards": [
+            "gdpr"
+          ],
+          "data_residency": true,
+          "encryption_enabled": true
+        },
+        "ap-southeast-1": {
+          "configured": true,
+          "active_services": 1,
+          "compliance_standards": [
+            "pdpa"
+          ],
+          "data_residency": true,
+          "encryption_enabled": true
+        }
+      }
+    },
+    "compliance": {
+      "timestamp": "2025-08-11T17:17:45.757418+00:00",
+      "enabled_standards": [],
+      "audit_events": 0,
+      "data_retention_policies": {},
+      "compliance_status": "compliant"
+    },
+    "internationalization": {
+      "current_language": "en",
+      "supported_languages": [
+        "en",
+        "es",
+        "fr",
+        "de",
+        "ja",
+        "zh"
+      ]
+    },
+    "global_features": {
+      "multi_region_active": true,
+      "compliance_enabled": false,
+      "i18n_enabled": true,
+      "cross_platform_validated": true
+    }
+  },
+  "features_demonstrated": [
+    "multi_region_deployment",
+    "internationalization_support",
+    "compliance_management",
+    "cross_platform_compatibility",
+    "data_residency_enforcement",
+    "encryption_implementation",
+    "audit_logging",
+    "failover_configuration"
+  ]
+}

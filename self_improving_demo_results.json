@@ -1,0 +1,375 @@
+{
+  "demo_timestamp": "2025-08-11T17:20:18.537941+00:00",
+  "system_config": {
+    "auto_adaptation_enabled": true,
+    "improvement_cycles": 2
+  },
+  "learning_insights": {
+    "learning_statistics": {
+      "total_adaptations": 2,
+      "successful_adaptations": 0,
+      "performance_improvements": 0,
+      "learning_rate": 0.0,
+      "adaptation_frequency": 0.0
+    },
+    "improvement_cycles": 2,
+    "total_experiences": 2,
+    "adaptation_history_count": 2,
+    "recent_experiences_summary": {
+      "count": 2,
+      "avg_reward": 0,
+      "strategies_used": [
+        "reinforcement"
+      ]
+    },
+    "performance_trends": {
+      "latency_ms": {
+        "improvement_percentage": 8.368262258787373,
+        "trend": "improving"
+      },
+      "throughput_req_per_sec": {
+        "improvement_percentage": 13.731390481183023,
+        "trend": "improving"
+      },
+      "accuracy": {
+        "improvement_percentage": 5.877295454640676,
+        "trend": "improving"
+      }
+    },
+    "top_performing_configurations": [
+      {
+        "config": {
+          "batch_size": 32,
+          "num_experts": 8,
+          "learning_rate": 0.002,
+          "top_k": 3
+        },
+        "timestamp": 1754932818.1348205,
+        "metrics": [
+          {
+            "name": "latency_ms",
+            "value": 25.49232510400884,
+            "timestamp": 1754932818.1348066,
+            "context": {
+              "config": {
+                "batch_size": 32,
+                "num_experts": 8,
+                "learning_rate": 0.002,
+                "top_k": 3
+              },
+              "cycle": 11
+            }
+          },
+          {
+            "name": "throughput_req_per_sec",
+            "value": 4406.867673170208,
+            "timestamp": 1754932818.1348147,
+            "context": {
+              "config": {
+                "batch_size": 32,
+                "num_experts": 8,
+                "learning_rate": 0.002,
+                "top_k": 3
+              },
+              "cycle": 11
+            }
+          },
+          {
+            "name": "accuracy",
+            "value": 0.9899016500703026,
+            "timestamp": 1754932818.1348174,
+            "context": {
+              "config": {
+                "batch_size": 32,
+                "num_experts": 8,
+                "learning_rate": 0.002,
+                "top_k": 3
+              },
+              "cycle": 11
+            }
+          }
+        ]
+      },
+      {
+        "config": {
+          "batch_size": 32,
+          "num_experts": 8,
+          "learning_rate": 0.002,
+          "top_k": 3
+        },
+        "timestamp": 1754932817.6312253,
+        "metrics": [
+          {
+            "name": "latency_ms",
+            "value": 27.76926698173625,
+            "timestamp": 1754932817.6312125,
+            "context": {
+              "config": {
+                "batch_size": 32,
+                "num_experts": 8,
+                "learning_rate": 0.002,
+                "top_k": 3
+              },
+              "cycle": 6
+            }
+          },
+          {
+            "name": "throughput_req_per_sec",
+            "value": 4057.595633815193,
+            "timestamp": 1754932817.6312196,
+            "context": {
+              "config": {
+                "batch_size": 32,
+                "num_experts": 8,
+                "learning_rate": 0.002,
+                "top_k": 3
+              },
+              "cycle": 6
+            }
+          },
+          {
+            "name": "accuracy",
+            "value": 0.9546446019554832,
+            "timestamp": 1754932817.6312222,
+            "context": {
+              "config": {
+                "batch_size": 32,
+                "num_experts": 8,
+                "learning_rate": 0.002,
+                "top_k": 3
+              },
+              "cycle": 6
+            }
+          }
+        ]
+      },
+      {
+        "config": {
+          "batch_size": 32,
+          "num_experts": 8,
+          "learning_rate": 0.002,
+          "top_k": 3
+        },
+        "timestamp": 1754932817.7318618,
+        "metrics": [
+          {
+            "name": "latency_ms",
+            "value": 25.65349812267549,
+            "timestamp": 1754932817.731849,
+            "context": {
+              "config": {
+                "batch_size": 32,
+                "num_experts": 8,
+                "learning_rate": 0.002,
+                "top_k": 3
+              },
+              "cycle": 7
+            }
+          },
+          {
+            "name": "throughput_req_per_sec",
+            "value": 4148.784386354876,
+            "timestamp": 1754932817.731856,
+            "context": {
+              "config": {
+                "batch_size": 32,
+                "num_experts": 8,
+                "learning_rate": 0.002,
+                "top_k": 3
+              },
+              "cycle": 7
+            }
+          },
+          {
+            "name": "accuracy",
+            "value": 0.9036207642878393,
+            "timestamp": 1754932817.7318587,
+            "context": {
+              "config": {
+                "batch_size": 32,
+                "num_experts": 8,
+                "learning_rate": 0.002,
+                "top_k": 3
+              },
+              "cycle": 7
+            }
+          }
+        ]
+      }
+    ],
+    "learning_recommendations": [
+      "Consider reducing exploration factor to focus on exploitation",
+      "Increase confidence threshold for adaptations",
+      "Continue collecting experience data for better learning",
+      "Allow more adaptation cycles to establish learning patterns"
+    ]
+  },
+  "performance_history_sample": [
+    {
+      "name": "accuracy",
+      "value": 0.9899016500703026,
+      "timestamp": 1754932818.1348174,
+      "context": {
+        "config": {
+          "batch_size": 32,
+          "num_experts": 8,
+          "learning_rate": 0.002,
+          "top_k": 3
+        },
+        "cycle": 11
+      }
+    },
+    {
+      "name": "latency_ms",
+      "value": 24.777682721799685,
+      "timestamp": 1754932818.2357287,
+      "context": {
+        "config": {
+          "batch_size": 32,
+          "num_experts": 8,
+          "learning_rate": 0.002,
+          "top_k": 3
+        },
+        "cycle": 12
+      }
+    },
+    {
+      "name": "throughput_req_per_sec",
+      "value": 4916.7864191045155,
+      "timestamp": 1754932818.235737,
+      "context": {
+        "config": {
+          "batch_size": 32,
+          "num_experts": 8,
+          "learning_rate": 0.002,
+          "top_k": 3
+        },
+        "cycle": 12
+      }
+    },
+    {
+      "name": "accuracy",
+      "value": 1.0408790357670181,
+      "timestamp": 1754932818.2357397,
+      "context": {
+        "config": {
+          "batch_size": 32,
+          "num_experts": 8,
+          "learning_rate": 0.002,
+          "top_k": 3
+        },
+        "cycle": 12
+      }
+    },
+    {
+      "name": "latency_ms",
+      "value": 22.835660936034053,
+      "timestamp": 1754932818.3363147,
+      "context": {
+        "config": {
+          "batch_size": 32,
+          "num_experts": 8,
+          "learning_rate": 0.002,
+          "top_k": 3
+        },
+        "cycle": 13
+      }
+    },
+    {
+      "name": "throughput_req_per_sec",
+      "value": 4682.762915821346,
+      "timestamp": 1754932818.3363216,
+      "context": {
+        "config": {
+          "batch_size": 32,
+          "num_experts": 8,
+          "learning_rate": 0.002,
+          "top_k": 3
+        },
+        "cycle": 13
+      }
+    },
+    {
+      "name": "accuracy",
+      "value": 1.02483138016025,
+      "timestamp": 1754932818.3363245,
+      "context": {
+        "config": {
+          "batch_size": 32,
+          "num_experts": 8,
+          "learning_rate": 0.002,
+          "top_k": 3
+        },
+        "cycle": 13
+      }
+    },
+    {
+      "name": "latency_ms",
+      "value": 23.12035644794624,
+      "timestamp": 1754932818.437013,
+      "context": {
+        "config": {
+          "batch_size": 32,
+          "num_experts": 8,
+          "learning_rate": 0.002,
+          "top_k": 3
+        },
+        "cycle": 14
+      }
+    },
+    {
+      "name": "throughput_req_per_sec",
+      "value": 4907.472521934371,
+      "timestamp": 1754932818.4370213,
+      "context": {
+        "config": {
+          "batch_size": 32,
+          "num_experts": 8,
+          "learning_rate": 0.002,
+          "top_k": 3
+        },
+        "cycle": 14
+      }
+    },
+    {
+      "name": "accuracy",
+      "value": 1.040289044153532,
+      "timestamp": 1754932818.437024,
+      "context": {
+        "config": {
+          "batch_size": 32,
+          "num_experts": 8,
+          "learning_rate": 0.002,
+          "top_k": 3
+        },
+        "cycle": 14
+      }
+    }
+  ],
+  "adaptation_history": [
+    {
+      "event_id": "b7bc9bfddd7ef40f",
+      "trigger": "scheduled_optimization",
+      "success": false,
+      "timestamp": 1754932817.4293203,
+      "adaptations_count": 1
+    },
+    {
+      "event_id": "565824f7d0016d82",
+      "trigger": "scheduled_optimization",
+      "success": false,
+      "timestamp": 1754932817.5304215,
+      "adaptations_count": 1
+    }
+  ],
+  "features_demonstrated": [
+    "experience_replay_learning",
+    "performance_prediction",
+    "adaptive_optimization",
+    "automatic_trigger_detection",
+    "configuration_adaptation",
+    "reward_based_learning",
+    "trend_analysis",
+    "learning_insights_generation"
+  ]
+}

@@ -1,7 +1,7 @@
 {
   "step": 20,
   "successful_steps": 21,
-  "failed_steps": 1,
+  "failed_steps": 0,
   "model_config": {
     "hidden_size": 32,
     "num_experts": 4,
