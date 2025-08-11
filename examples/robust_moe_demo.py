@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
-Robust MoE Demo - Generation 2: Make It Robust
-Demonstrates comprehensive error handling, monitoring, and recovery mechanisms.
+Robust MoE Demo - Generation 2 Enhanced: Make It Robust + Production Patterns
+Demonstrates comprehensive error handling, monitoring, recovery mechanisms,
+circuit breakers, health checks, and production-ready reliability patterns.
 """
 
 import json
@@ -9,12 +10,41 @@ import time
 import random
 import logging
 import traceback
-from typing import Dict, List, Any, Optional, Tuple
-from dataclasses import dataclass, asdict
+import os
+import hashlib
+import pickle
+import threading
+import weakref
+from typing import Dict, List, Any, Optional, Tuple, Union, Callable, Iterator
+from dataclasses import dataclass, asdict, field
 from pathlib import Path
 from contextlib import contextmanager
-import threading
 from collections import defaultdict, deque
+from enum import Enum
+from concurrent.futures import ThreadPoolExecutor, Future
+import signal
+import gc
+
+try:
+    import psutil
+    PSUTIL_AVAILABLE = True
+except ImportError:
+    PSUTIL_AVAILABLE = False
+    
+    # Mock psutil if not available
+    class MockProcess:
+        def memory_percent(self):
+            return 25.0  # Mock value
+        def memory_info(self):
+            class MockMemInfo:
+                rss = 100 * 1024 * 1024  # 100MB mock
+            return MockMemInfo()
+    
+    class MockPsutil:
+        def Process(self):
+            return MockProcess()
+    
+    psutil = MockPsutil()
 
 
 # Setup logging
@@ -25,17 +55,49 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
+class HealthStatus(Enum):
+    """System health status."""
+    HEALTHY = "healthy"
+    DEGRADED = "degraded"
+    UNHEALTHY = "unhealthy"
+    CRITICAL = "critical"
+
+
+class CircuitState(Enum):
+    """Circuit breaker states."""
+    CLOSED = "closed"
+    OPEN = "open" 
+    HALF_OPEN = "half_open"
+
+
 class MoEError(Exception):
-    """Base MoE error with context."""
+    """Base MoE error with context and recovery strategies."""
     
     def __init__(self, message: str, severity: str = "medium", context: Optional[Dict] = None, 
-                 recovery_suggestion: Optional[str] = None):
+                 recovery_suggestion: Optional[str] = None, error_code: Optional[str] = None,
+                 retry_after: Optional[float] = None):
         super().__init__(message)
         self.message = message
         self.severity = severity
         self.context = context or {}
         self.recovery_suggestion = recovery_suggestion
+        self.error_code = error_code
+        self.retry_after = retry_after
         self.timestamp = time.time()
+        self.traceback = traceback.format_exc()
+        
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert error to dictionary for logging."""
+        return {
+            "message": self.message,
+            "severity": self.severity,
+            "context": self.context,
+            "recovery_suggestion": self.recovery_suggestion,
+            "error_code": self.error_code,
+            "retry_after": self.retry_after,
+            "timestamp": self.timestamp,
+            "traceback": self.traceback
+        }
 
 
 class TrainingError(MoEError):
@@ -84,6 +146,164 @@ class ExpertMetrics:
     utilization_rate: float
     avg_routing_weight: float
     num_tokens_processed: int
+    error_rate: float = 0.0
+    avg_response_time_ms: float = 0.0
+    
+    
+@dataclass
+class HealthCheckResult:
+    """Health check result."""
+    component: str
+    status: HealthStatus
+    timestamp: float
+    details: Dict[str, Any] = field(default_factory=dict)
+    metrics: Dict[str, float] = field(default_factory=dict)
+    
+
+class CircuitBreaker:
+    """Circuit breaker for expert failure protection."""
+    
+    def __init__(self, failure_threshold: int = 5, recovery_timeout: float = 60.0,
+                 expected_exception: type = Exception):
+        self.failure_threshold = failure_threshold
+        self.recovery_timeout = recovery_timeout
+        self.expected_exception = expected_exception
+        
+        self.failure_count = 0
+        self.last_failure_time = None
+        self.state = CircuitState.CLOSED
+        
+        self._lock = threading.Lock()
+        
+    def call(self, func: Callable, *args, **kwargs):
+        """Execute function with circuit breaker protection."""
+        with self._lock:
+            if self.state == CircuitState.OPEN:
+                if time.time() - self.last_failure_time < self.recovery_timeout:
+                    raise MoEError(
+                        f"Circuit breaker is OPEN. Try again after {self.recovery_timeout}s",
+                        severity="high",
+                        error_code="CIRCUIT_BREAKER_OPEN",
+                        retry_after=self.recovery_timeout
+                    )
+                else:
+                    self.state = CircuitState.HALF_OPEN
+                    
+            try:
+                result = func(*args, **kwargs)
+                self._on_success()
+                return result
+                
+            except self.expected_exception as e:
+                self._on_failure()
+                raise
+                
+    def _on_success(self):
+        """Handle successful call."""
+        self.failure_count = 0
+        self.state = CircuitState.CLOSED
+        
+    def _on_failure(self):
+        """Handle failed call."""
+        self.failure_count += 1
+        self.last_failure_time = time.time()
+        
+        if self.failure_count >= self.failure_threshold:
+            self.state = CircuitState.OPEN
+            
+    def get_state(self) -> Dict[str, Any]:
+        """Get circuit breaker state."""
+        return {
+            "state": self.state.value,
+            "failure_count": self.failure_count,
+            "last_failure_time": self.last_failure_time,
+            "failure_threshold": self.failure_threshold
+        }
+
+
+class HealthChecker:
+    """Comprehensive health monitoring system."""
+    
+    def __init__(self, check_interval: float = 30.0):
+        self.check_interval = check_interval
+        self.health_checks: Dict[str, Callable] = {}
+        self.health_history: deque = deque(maxlen=100)
+        self.is_running = False
+        self._thread: Optional[threading.Thread] = None
+        
+    def register_check(self, name: str, check_func: Callable[[], HealthCheckResult]):
+        """Register a health check function."""
+        self.health_checks[name] = check_func
+        
+    def start_monitoring(self):
+        """Start continuous health monitoring."""
+        if self.is_running:
+            return
+            
+        self.is_running = True
+        self._thread = threading.Thread(target=self._monitor_loop, daemon=True)
+        self._thread.start()
+        
+    def stop_monitoring(self):
+        """Stop health monitoring."""
+        self.is_running = False
+        if self._thread:
+            self._thread.join(timeout=5.0)
+            
+    def _monitor_loop(self):
+        """Main monitoring loop."""
+        while self.is_running:
+            try:
+                self.run_health_checks()
+                time.sleep(self.check_interval)
+            except Exception as e:
+                logger.error(f"Health check error: {e}")
+                time.sleep(self.check_interval / 2)  # Retry sooner on error
+                
+    def run_health_checks(self) -> Dict[str, HealthCheckResult]:
+        """Run all registered health checks."""
+        results = {}
+        
+        for name, check_func in self.health_checks.items():
+            try:
+                result = check_func()
+                results[name] = result
+                
+            except Exception as e:
+                results[name] = HealthCheckResult(
+                    component=name,
+                    status=HealthStatus.CRITICAL,
+                    timestamp=time.time(),
+                    details={"error": str(e)}
+                )
+                
+        # Store in history
+        self.health_history.append({
+            "timestamp": time.time(),
+            "results": results
+        })
+        
+        return results
+    
+    def get_overall_health(self) -> HealthStatus:
+        """Get overall system health status."""
+        if not self.health_history:
+            return HealthStatus.UNHEALTHY
+            
+        latest = self.health_history[-1]["results"]
+        
+        critical_count = sum(1 for r in latest.values() if r.status == HealthStatus.CRITICAL)
+        unhealthy_count = sum(1 for r in latest.values() if r.status == HealthStatus.UNHEALTHY)
+        degraded_count = sum(1 for r in latest.values() if r.status == HealthStatus.DEGRADED)
+        
+        if critical_count > 0:
+            return HealthStatus.CRITICAL
+        elif unhealthy_count > len(latest) * 0.3:  # >30% unhealthy
+            return HealthStatus.UNHEALTHY
+        elif degraded_count > len(latest) * 0.5:   # >50% degraded
+            return HealthStatus.DEGRADED
+        else:
+            return HealthStatus.HEALTHY
 
 
 class ErrorHandler:
@@ -241,13 +461,14 @@ class MetricsCollector:
     
     def _collection_loop(self):
         """Background collection loop."""
-        import psutil
-        
         while self._collecting:
             try:
                 # Collect system metrics
                 memory_mb = psutil.Process().memory_info().rss / (1024 * 1024)
-                cpu_percent = psutil.cpu_percent(interval=None)
+                if PSUTIL_AVAILABLE:
+                    cpu_percent = psutil.cpu_percent(interval=None)
+                else:
+                    cpu_percent = 15.0  # Mock value
                 
                 system_metrics = SystemMetrics(
                     timestamp=time.time(),
@@ -574,16 +795,232 @@ class RobustMoEDemo:
         self.num_experts = num_experts
         self.top_k = top_k
         
-        # Initialize components
+        # Initialize robust components
         self.error_handler = ErrorHandler(log_file="robust_moe_errors.log")
         self.metrics_collector = MetricsCollector()
         self.checkpoint_manager = CheckpointManager("./robust_checkpoints")
         self.health_monitor = HealthMonitor(self.metrics_collector)
         
+        # Initialize new production-ready components
+        self.health_checker = HealthChecker(check_interval=10.0)  # Check every 10s
+        self.expert_circuit_breakers = {
+            i: CircuitBreaker(failure_threshold=3, recovery_timeout=30.0, expected_exception=MoEError)
+            for i in range(num_experts)
+        }
+        self.system_circuit_breaker = CircuitBreaker(failure_threshold=10, recovery_timeout=60.0)
+        
+        # Performance tracking
+        self.expert_performance_history = defaultdict(lambda: deque(maxlen=100))
+        self.system_performance_history = deque(maxlen=1000)
+        self.error_rate_window = deque(maxlen=100)
+        
+        # Self-healing configuration
+        self.auto_recovery_enabled = True
+        self.max_auto_recovery_attempts = 3
+        self.recovery_attempt_count = 0
+        
+        # Initialize health checks
+        self._register_health_checks()
+        
         # Model weights (with potential for errors)
         self._initialize_model_weights()
         
-        logger.info(f"Initialized RobustMoEDemo with robustness features enabled")
+        # Start health monitoring
+        self.health_checker.start_monitoring()
+        
+        logger.info(f"Initialized RobustMoEDemo with production-ready robustness features")
+    
+    def _register_health_checks(self):
+        """Register system health checks."""
+        
+        def check_memory_usage() -> HealthCheckResult:
+            try:
+                process = psutil.Process()
+                memory_percent = process.memory_percent()
+                memory_mb = process.memory_info().rss / 1024 / 1024
+                
+                if memory_percent > 90:
+                    status = HealthStatus.CRITICAL
+                elif memory_percent > 70:
+                    status = HealthStatus.UNHEALTHY
+                elif memory_percent > 50:
+                    status = HealthStatus.DEGRADED
+                else:
+                    status = HealthStatus.HEALTHY
+                    
+                return HealthCheckResult(
+                    component="memory",
+                    status=status,
+                    timestamp=time.time(),
+                    metrics={"memory_percent": memory_percent, "memory_mb": memory_mb}
+                )
+            except Exception as e:
+                return HealthCheckResult(
+                    component="memory",
+                    status=HealthStatus.CRITICAL,
+                    timestamp=time.time(),
+                    details={"error": str(e)}
+                )
+        
+        def check_expert_health() -> HealthCheckResult:
+            """Check expert performance and error rates."""
+            try:
+                critical_experts = 0
+                unhealthy_experts = 0
+                
+                for expert_id, cb in self.expert_circuit_breakers.items():
+                    if cb.state == CircuitState.OPEN:
+                        critical_experts += 1
+                    elif cb.failure_count > 1:
+                        unhealthy_experts += 1
+                
+                total_experts = len(self.expert_circuit_breakers)
+                if critical_experts > total_experts * 0.5:
+                    status = HealthStatus.CRITICAL
+                elif critical_experts > 0 or unhealthy_experts > total_experts * 0.3:
+                    status = HealthStatus.UNHEALTHY
+                elif unhealthy_experts > 0:
+                    status = HealthStatus.DEGRADED
+                else:
+                    status = HealthStatus.HEALTHY
+                
+                return HealthCheckResult(
+                    component="experts",
+                    status=status,
+                    timestamp=time.time(),
+                    metrics={
+                        "critical_experts": critical_experts,
+                        "unhealthy_experts": unhealthy_experts,
+                        "total_experts": total_experts
+                    }
+                )
+            except Exception as e:
+                return HealthCheckResult(
+                    component="experts",
+                    status=HealthStatus.CRITICAL,
+                    timestamp=time.time(),
+                    details={"error": str(e)}
+                )
+        
+        def check_error_rate() -> HealthCheckResult:
+            """Check recent error rates."""
+            try:
+                if not self.error_rate_window:
+                    return HealthCheckResult(
+                        component="error_rate",
+                        status=HealthStatus.HEALTHY,
+                        timestamp=time.time(),
+                        metrics={"error_rate": 0.0}
+                    )
+                
+                recent_errors = sum(self.error_rate_window) / len(self.error_rate_window)
+                
+                if recent_errors > 0.1:  # >10% error rate
+                    status = HealthStatus.CRITICAL
+                elif recent_errors > 0.05:  # >5% error rate
+                    status = HealthStatus.UNHEALTHY
+                elif recent_errors > 0.01:  # >1% error rate
+                    status = HealthStatus.DEGRADED
+                else:
+                    status = HealthStatus.HEALTHY
+                
+                return HealthCheckResult(
+                    component="error_rate",
+                    status=status,
+                    timestamp=time.time(),
+                    metrics={"error_rate": recent_errors}
+                )
+            except Exception as e:
+                return HealthCheckResult(
+                    component="error_rate",
+                    status=HealthStatus.CRITICAL,
+                    timestamp=time.time(),
+                    details={"error": str(e)}
+                )
+        
+        # Register all health checks
+        self.health_checker.register_check("memory", check_memory_usage)
+        self.health_checker.register_check("experts", check_expert_health)
+        self.health_checker.register_check("error_rate", check_error_rate)
+    
+    def trigger_self_healing(self, component: str, error: MoEError):
+        """Trigger self-healing mechanisms."""
+        if not self.auto_recovery_enabled or self.recovery_attempt_count >= self.max_auto_recovery_attempts:
+            logger.warning(f"Self-healing disabled or max attempts reached for {component}")
+            return False
+        
+        self.recovery_attempt_count += 1
+        logger.info(f"Attempting self-healing for {component} (attempt {self.recovery_attempt_count})")
+        
+        try:
+            if component == "weights":
+                self._recover_model_weights()
+            elif component == "expert":
+                expert_id = error.context.get("expert_id")
+                if expert_id is not None:
+                    self._recover_expert_weights(expert_id)
+            elif component == "memory":
+                self._recover_memory()
+            else:
+                logger.warning(f"No recovery strategy for component: {component}")
+                return False
+            
+            logger.info(f"Self-healing successful for {component}")
+            return True
+            
+        except Exception as recovery_error:
+            logger.error(f"Self-healing failed for {component}: {recovery_error}")
+            return False
+    
+    def _recover_model_weights(self):
+        """Recover corrupted model weights."""
+        logger.info("Recovering model weights from checkpoint or reinitializing")
+        try:
+            # Try loading from checkpoint first
+            if self.checkpoint_manager.load_checkpoint("emergency"):
+                logger.info("Weights recovered from emergency checkpoint")
+            else:
+                # Fallback to reinitialization
+                self._initialize_model_weights()
+                logger.info("Weights reinitialized")
+        except Exception as e:
+            raise MoEError(f"Weight recovery failed: {e}", severity="critical")
+    
+    def _recover_expert_weights(self, expert_id: int):
+        """Recover specific expert weights."""
+        logger.info(f"Recovering weights for expert {expert_id}")
+        try:
+            # Reinitialize specific expert
+            self.expert_weights[expert_id] = [
+                [random.gauss(0, 0.02) for _ in range(self.hidden_size)] 
+                for _ in range(self.hidden_size)
+            ]
+            # Reset circuit breaker
+            self.expert_circuit_breakers[expert_id] = CircuitBreaker(
+                failure_threshold=3, recovery_timeout=30.0, expected_exception=MoEError
+            )
+            logger.info(f"Expert {expert_id} recovered")
+        except Exception as e:
+            raise MoEError(f"Expert {expert_id} recovery failed: {e}", severity="high")
+    
+    def _recover_memory(self):
+        """Recover from memory issues."""
+        logger.info("Attempting memory recovery")
+        try:
+            # Force garbage collection
+            gc.collect()
+            
+            # Clear performance history
+            for history in self.expert_performance_history.values():
+                history.clear()
+            
+            # Clear old system performance data
+            while len(self.system_performance_history) > 500:
+                self.system_performance_history.popleft()
+                
+            logger.info("Memory recovery completed")
+        except Exception as e:
+            raise MoEError(f"Memory recovery failed: {e}", severity="high")
     
     def _initialize_model_weights(self):
         """Initialize model weights with error handling."""
@@ -664,8 +1101,9 @@ class RobustMoEDemo:
             )
     
     def forward_with_monitoring(self, token_embedding, step: int):
-        """Forward pass with comprehensive monitoring."""
+        """Forward pass with comprehensive monitoring and circuit breaker protection."""
         start_time = time.time()
+        error_occurred = False
         
         with self.error_context({'step': step, 'input_shape': len(token_embedding)}):
             try:
@@ -710,29 +1148,58 @@ class RobustMoEDemo:
                 expert_logits = [x[1] for x in top_experts]
                 expert_probs = self.softmax(expert_logits)
                 
-                # Process through experts
+                # Process through experts with circuit breaker protection
                 final_output = [0.0] * self.hidden_size
                 expert_computations = []
+                successful_experts = 0
                 
                 for i, expert_idx in enumerate(expert_indices):
-                    try:
+                    circuit_breaker = self.expert_circuit_breakers[expert_idx]
+                    
+                    def expert_computation():
+                        """Protected expert computation."""
                         expert_start = time.time()
-                        expert_output = self.matrix_vector_mult(
-                            self.expert_weights[expert_idx], 
-                            token_embedding
-                        )
                         
-                        # Apply activation (ReLU)
-                        expert_output = [max(0, x) for x in expert_output]
+                        # Validate expert weights for corruption
+                        expert_weights = self.expert_weights[expert_idx]
+                        if any(any(abs(w) > 1e3 for w in row) for row in expert_weights):
+                            raise MoEError(
+                                f"Expert {expert_idx} weights corrupted",
+                                severity="high",
+                                context={"expert_id": expert_idx},
+                                error_code="EXPERT_WEIGHTS_CORRUPTED"
+                            )
+                        
+                        expert_output = self.matrix_vector_mult(expert_weights, token_embedding)
+                        
+                        # Apply activation (ReLU) with overflow protection
+                        expert_output = [max(0, min(x, 1e6)) for x in expert_output]
+                        
+                        expert_time = (time.time() - expert_start) * 1000
+                        
+                        # Check for numerical instability
+                        if any(abs(x) > 1e6 or math.isnan(x) or math.isinf(x) for x in expert_output):
+                            raise MoEError(
+                                f"Expert {expert_idx} output unstable",
+                                severity="medium",
+                                context={"expert_id": expert_idx},
+                                error_code="EXPERT_OUTPUT_UNSTABLE"
+                            )
+                        
+                        return expert_output, expert_time
+                    
+                    try:
+                        # Use circuit breaker to call expert
+                        expert_output, expert_time = circuit_breaker.call(expert_computation)
+                        successful_experts += 1
                         
                         weight = expert_probs[i]
-                        expert_time = (time.time() - expert_start) * 1000
                         
                         # Add weighted contribution
                         for j in range(self.hidden_size):
                             final_output[j] += weight * expert_output[j]
                         
-                        # Record expert metrics
+                        # Record expert metrics with health tracking
                         self.metrics_collector.record_expert_metrics(
                             expert_id=expert_idx,
                             utilization_rate=weight,
@@ -740,16 +1207,85 @@ class RobustMoEDemo:
                             num_tokens_processed=1
                         )
                         
+                        # Track performance history for health monitoring
+                        self.expert_performance_history[expert_idx].append({
+                            'timestamp': time.time(),
+                            'processing_time_ms': expert_time,
+                            'success': True,
+                            'weight': weight
+                        })
+                        
                         expert_computations.append({
                             'expert_id': expert_idx,
                             'weight': weight,
-                            'computation_time_ms': expert_time
+                            'computation_time_ms': expert_time,
+                            'circuit_breaker_state': circuit_breaker.state.value,
+                            'status': 'success'
                         })
                         
-                    except Exception as e:
-                        logger.warning(f"Expert {expert_idx} computation failed: {e}")
+                    except MoEError as e:
+                        error_occurred = True
+                        logger.warning(f"Expert {expert_idx} failed with MoEError: {e.message}")
+                        
+                        # Track failure
+                        self.expert_performance_history[expert_idx].append({
+                            'timestamp': time.time(),
+                            'success': False,
+                            'error': e.message,
+                            'error_code': e.error_code
+                        })
+                        
+                        expert_computations.append({
+                            'expert_id': expert_idx,
+                            'weight': 0.0,
+                            'computation_time_ms': 0.0,
+                            'circuit_breaker_state': circuit_breaker.state.value,
+                            'status': 'circuit_breaker_open' if circuit_breaker.state == CircuitState.OPEN else 'failed',
+                            'error': e.message
+                        })
+                        
+                        # Trigger self-healing for critical errors
+                        if e.severity in ["high", "critical"]:
+                            self.trigger_self_healing("expert", e)
+                        
                         # Continue with other experts (graceful degradation)
                         continue
+                        
+                    except Exception as e:
+                        error_occurred = True
+                        logger.warning(f"Expert {expert_idx} failed with unexpected error: {e}")
+                        
+                        # Track failure
+                        self.expert_performance_history[expert_idx].append({
+                            'timestamp': time.time(),
+                            'success': False,
+                            'error': str(e)
+                        })
+                        
+                        expert_computations.append({
+                            'expert_id': expert_idx,
+                            'weight': 0.0,
+                            'computation_time_ms': 0.0,
+                            'circuit_breaker_state': circuit_breaker.state.value,
+                            'status': 'unexpected_error',
+                            'error': str(e)
+                        })
+                        
+                        continue
+                
+                # Check if we have enough successful experts
+                if successful_experts == 0:
+                    raise MoEError(
+                        "All experts failed - system degraded",
+                        severity="critical",
+                        error_code="ALL_EXPERTS_FAILED",
+                        recovery_suggestion="Check expert weights and trigger recovery"
+                    )
+                elif successful_experts < len(expert_indices) * 0.5:
+                    logger.warning(f"Only {successful_experts}/{len(expert_indices)} experts succeeded")
+                    # Normalize final output since we're missing some expert contributions
+                    normalization_factor = len(expert_indices) / successful_experts
+                    final_output = [x * normalization_factor for x in final_output]
                 
                 # Calculate metrics
                 processing_time = (time.time() - start_time) * 1000
@@ -765,7 +1301,20 @@ class RobustMoEDemo:
                 
                 entropy = -sum(p * math.log(p + 1e-8) for p in all_probs if p > 0)
                 
-                # Record training metrics
+                # Track error rate for health monitoring
+                self.error_rate_window.append(1.0 if error_occurred else 0.0)
+                
+                # Record system performance for monitoring
+                self.system_performance_history.append({
+                    'timestamp': time.time(),
+                    'processing_time_ms': processing_time,
+                    'successful_experts': successful_experts,
+                    'total_experts': len(expert_indices),
+                    'error_occurred': error_occurred,
+                    'step': step
+                })
+                
+                # Record training metrics with enhanced tracking
                 loss = random.uniform(0.5, 2.0)  # Simulated loss
                 gradient_norm = random.uniform(0.1, 1.0)  # Simulated gradient norm
                 
@@ -778,6 +1327,15 @@ class RobustMoEDemo:
                     gradient_norm=gradient_norm
                 )
                 
+                # Get system health status
+                overall_health = self.health_checker.get_overall_health()
+                
+                # Get circuit breaker states
+                circuit_breaker_states = {
+                    expert_id: cb.get_state()
+                    for expert_id, cb in self.expert_circuit_breakers.items()
+                }
+                
                 return {
                     'output': final_output,
                     'routing_info': {
@@ -789,7 +1347,17 @@ class RobustMoEDemo:
                     },
                     'performance': {
                         'processing_time_ms': processing_time,
-                        'expert_computations': expert_computations
+                        'expert_computations': expert_computations,
+                        'successful_experts': successful_experts,
+                        'total_experts': len(expert_indices),
+                        'success_rate': successful_experts / len(expert_indices)
+                    },
+                    'health_status': {
+                        'overall_health': overall_health.value,
+                        'circuit_breaker_states': circuit_breaker_states,
+                        'error_occurred': error_occurred,
+                        'recovery_attempts': self.recovery_attempt_count,
+                        'auto_recovery_enabled': self.auto_recovery_enabled
                     },
                     'step': step
                 }
@@ -797,6 +1365,73 @@ class RobustMoEDemo:
             except Exception as e:
                 self.error_handler.handle_error(e, {'step': step})
                 raise
+    
+    def get_system_status(self) -> Dict[str, Any]:
+        """Get comprehensive system status report."""
+        return {
+            'health_status': self.health_checker.get_overall_health().value,
+            'circuit_breakers': {
+                expert_id: cb.get_state()
+                for expert_id, cb in self.expert_circuit_breakers.items()
+            },
+            'error_rate': sum(self.error_rate_window) / len(self.error_rate_window) if self.error_rate_window else 0.0,
+            'recovery_attempts': self.recovery_attempt_count,
+            'auto_recovery_enabled': self.auto_recovery_enabled,
+            'recent_performance': {
+                'avg_processing_time_ms': sum(p['processing_time_ms'] for p in self.system_performance_history[-10:]) / min(10, len(self.system_performance_history)) if self.system_performance_history else 0,
+                'recent_success_rate': sum(1 for p in self.system_performance_history[-10:] if not p['error_occurred']) / min(10, len(self.system_performance_history)) if self.system_performance_history else 1.0
+            }
+        }
+    
+    def reset_recovery_state(self):
+        """Reset recovery attempt counter."""
+        self.recovery_attempt_count = 0
+        logger.info("Recovery state reset")
+    
+    def enable_auto_recovery(self, enable: bool = True):
+        """Enable or disable auto-recovery."""
+        self.auto_recovery_enabled = enable
+        logger.info(f"Auto-recovery {'enabled' if enable else 'disabled'}")
+    
+    def shutdown(self):
+        """Gracefully shutdown the robust MoE system."""
+        logger.info("Shutting down RobustMoEDemo...")
+        
+        # Stop health monitoring
+        self.health_checker.stop_monitoring()
+        
+        # Save final checkpoint
+        try:
+            self.checkpoint_manager.save_checkpoint("final_shutdown")
+            logger.info("Final checkpoint saved")
+        except Exception as e:
+            logger.error(f"Failed to save final checkpoint: {e}")
+        
+        # Save performance history
+        try:
+            performance_summary = {
+                'expert_performance_history': {
+                    str(k): list(v) for k, v in self.expert_performance_history.items()
+                },
+                'system_performance_history': list(self.system_performance_history),
+                'final_status': self.get_system_status()
+            }
+            
+            with open("robust_demo_final_performance.json", "w") as f:
+                json.dump(performance_summary, f, indent=2, default=str)
+                
+            logger.info("Performance history saved")
+        except Exception as e:
+            logger.error(f"Failed to save performance history: {e}")
+        
+        logger.info("RobustMoEDemo shutdown complete")
+    
+    def __del__(self):
+        """Destructor to ensure cleanup."""
+        try:
+            self.shutdown()
+        except:
+            pass  # Ignore errors during cleanup
 
 
 def run_robust_demo():
@@ -1009,8 +1644,6 @@ def run_robust_demo():
 import math
 
 if __name__ == "__main__":
-    import psutil  # For system monitoring
-    
     # Run the robust demonstration
     results = run_robust_demo()
     
