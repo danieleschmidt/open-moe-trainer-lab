@@ -1,7 +1,77 @@
 {
   "project_root": "/root/repo",
-  "timestamp": 1754797663.2173817,
+  "timestamp": 1755057052.985962,
   "file_scans": [
+    {
+      "file_path": "AUTONOMOUS_SDLC_COMPLETION_REPORT.md",
+      "issues": [
+        {
+          "line": 165,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "1. **Code Execution Vulnerabilities**: eval() and exec() function usage",
+          "severity": "HIGH"
+        },
+        {
+          "line": 165,
+          "issue": "exec() function usage - code execution risk",
+          "pattern": "exec\\s*\\(",
+          "code_snippet": "1. **Code Execution Vulnerabilities**: eval() and exec() function usage",
+          "severity": "HIGH"
+        },
+        {
+          "line": 172,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "- **Immediate**: Remove all eval()/exec() calls and hardcoded secrets",
+          "severity": "HIGH"
+        },
+        {
+          "line": 172,
+          "issue": "exec() function usage - code execution risk",
+          "pattern": "exec\\s*\\(",
+          "code_snippet": "- **Immediate**: Remove all eval()/exec() calls and hardcoded secrets",
+          "severity": "HIGH"
+        }
+      ],
+      "issue_count": 4,
+      "file_hash": "4e0dc580"
+    },
+    {
+      "file_path": "PRODUCTION_DEPLOYMENT_GUIDE.md",
+      "issues": [
+        {
+          "line": 61,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "- eval()/exec() function usage detected",
+          "severity": "HIGH"
+        },
+        {
+          "line": 61,
+          "issue": "exec() function usage - code execution risk",
+          "pattern": "exec\\s*\\(",
+          "code_snippet": "- eval()/exec() function usage detected",
+          "severity": "HIGH"
+        },
+        {
+          "line": 277,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "- [ ] **CRITICAL**: Remove all eval()/exec() function calls",
+          "severity": "HIGH"
+        },
+        {
+          "line": 277,
+          "issue": "exec() function usage - code execution risk",
+          "pattern": "exec\\s*\\(",
+          "code_snippet": "- [ ] **CRITICAL**: Remove all eval()/exec() function calls",
+          "severity": "HIGH"
+        }
+      ],
+      "issue_count": 4,
+      "file_hash": "93cb1dcd"
+    },
     {
       "file_path": "README.md",
       "issues": [
@@ -99,6 +169,804 @@
       ],
       "issue_count": 11,
       "file_hash": "56aa6dde"
+    },
+    {
+      "file_path": "security_scan_results.json",
+      "issues": [
+        {
+          "line": 10,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "\"issue\": \"compile() function - dynamic code compilation\",",
+          "severity": "LOW"
+        },
+        {
+          "line": 12,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "\"code_snippet\": \"compiled_model = optimizer.compile(\",",
+          "severity": "LOW"
+        },
+        {
+          "line": 24,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "\"issue\": \"eval() function usage - code injection risk\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 26,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "\"code_snippet\": \"(r'eval\\\\s*\\\\(', 'eval() function usage - code injection risk'),\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 31,
+          "issue": "exec() function usage - code execution risk",
+          "pattern": "exec\\s*\\(",
+          "code_snippet": "\"issue\": \"exec() function usage - code execution risk\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 33,
+          "issue": "exec() function usage - code execution risk",
+          "pattern": "exec\\s*\\(",
+          "code_snippet": "\"code_snippet\": \"(r'exec\\\\s*\\\\(', 'exec() function usage - code execution risk'),\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 38,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "\"issue\": \"compile() function - dynamic code compilation\",",
+          "severity": "LOW"
+        },
+        {
+          "line": 40,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "\"code_snippet\": \"(r'compile\\\\s*\\\\(', 'compile() function - dynamic code compilation'),\",",
+          "severity": "LOW"
+        },
+        {
+          "line": 45,
+          "issue": "os.system() usage - command injection risk",
+          "pattern": "os\\.system\\s*\\(",
+          "code_snippet": "\"issue\": \"os.system() usage - command injection risk\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 47,
+          "issue": "os.system() usage - command injection risk",
+          "pattern": "os\\.system\\s*\\(",
+          "code_snippet": "\"code_snippet\": \"(r'os\\\\.system\\\\s*\\\\(', 'os.system() usage - command injection risk'),\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 53,
+          "issue": "Potential SQL injection",
+          "pattern": "SELECT.*\\+.*[\\'\\\"]+",
+          "code_snippet": "\"pattern\": \"SELECT.*\\\\+.*[\\\\'\\\\\\\"]+\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 54,
+          "issue": "Potential SQL injection",
+          "pattern": "SELECT.*\\+.*[\\'\\\"]+",
+          "code_snippet": "\"code_snippet\": \"(r'SELECT.*\\\\+.*[\\\\'\\\\\\\"]+', 'Potential SQL injection'),\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 60,
+          "issue": "Potential SQL injection",
+          "pattern": "INSERT.*\\+.*[\\'\\\"]+",
+          "code_snippet": "\"pattern\": \"INSERT.*\\\\+.*[\\\\'\\\\\\\"]+\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 61,
+          "issue": "Potential SQL injection",
+          "pattern": "INSERT.*\\+.*[\\'\\\"]+",
+          "code_snippet": "\"code_snippet\": \"(r'INSERT.*\\\\+.*[\\\\'\\\\\\\"]+', 'Potential SQL injection'),\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 67,
+          "issue": "Potential SQL injection",
+          "pattern": "UPDATE.*\\+.*[\\'\\\"]+",
+          "code_snippet": "\"pattern\": \"UPDATE.*\\\\+.*[\\\\'\\\\\\\"]+\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 68,
+          "issue": "Potential SQL injection",
+          "pattern": "UPDATE.*\\+.*[\\'\\\"]+",
+          "code_snippet": "\"code_snippet\": \"(r'UPDATE.*\\\\+.*[\\\\'\\\\\\\"]+', 'Potential SQL injection'),\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 74,
+          "issue": "Potential SQL injection",
+          "pattern": "DELETE.*\\+.*[\\'\\\"]+",
+          "code_snippet": "\"pattern\": \"DELETE.*\\\\+.*[\\\\'\\\\\\\"]+\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 75,
+          "issue": "Potential SQL injection",
+          "pattern": "DELETE.*\\+.*[\\'\\\"]+",
+          "code_snippet": "\"code_snippet\": \"(r'DELETE.*\\\\+.*[\\\\'\\\\\\\"]+', 'Potential SQL injection'),\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 82,
+          "issue": "dynamic import - potential code injection",
+          "pattern": "__import__\\s*\\(",
+          "code_snippet": "\"code_snippet\": \"'timestamp': __import__('time').time(),\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 87,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "\"issue\": \"eval() function usage - code injection risk\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 89,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "\"code_snippet\": \"recommendations.append(\\\"Remove eval() and exec() function calls - use safer altern",
+          "severity": "HIGH"
+        },
+        {
+          "line": 89,
+          "issue": "exec() function usage - code execution risk",
+          "pattern": "exec\\s*\\(",
+          "code_snippet": "\"code_snippet\": \"recommendations.append(\\\"Remove eval() and exec() function calls - use safer altern",
+          "severity": "HIGH"
+        },
+        {
+          "line": 94,
+          "issue": "exec() function usage - code execution risk",
+          "pattern": "exec\\s*\\(",
+          "code_snippet": "\"issue\": \"exec() function usage - code execution risk\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 96,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "\"code_snippet\": \"recommendations.append(\\\"Remove eval() and exec() function calls - use safer altern",
+          "severity": "HIGH"
+        },
+        {
+          "line": 96,
+          "issue": "exec() function usage - code execution risk",
+          "pattern": "exec\\s*\\(",
+          "code_snippet": "\"code_snippet\": \"recommendations.append(\\\"Remove eval() and exec() function calls - use safer altern",
+          "severity": "HIGH"
+        },
+        {
+          "line": 109,
+          "issue": "Potential SQL injection",
+          "pattern": "UPDATE.*\\+.*[\\'\\\"]+",
+          "code_snippet": "\"pattern\": \"UPDATE.*\\\\+.*[\\\\'\\\\\\\"]+\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 110,
+          "issue": "Potential SQL injection",
+          "pattern": "UPDATE.*\\+.*[\\'\\\"]+",
+          "code_snippet": "\"code_snippet\": \"Last updated: $(date +'%Y-%m-%d')\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 122,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "\"issue\": \"eval() function usage - code injection risk\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 124,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "\"code_snippet\": \"if \\\"eval(\\\" in content or \\\"exec(\\\" in content:\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 124,
+          "issue": "exec() function usage - code execution risk",
+          "pattern": "exec\\s*\\(",
+          "code_snippet": "\"code_snippet\": \"if \\\"eval(\\\" in content or \\\"exec(\\\" in content:\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 129,
+          "issue": "exec() function usage - code execution risk",
+          "pattern": "exec\\s*\\(",
+          "code_snippet": "\"issue\": \"exec() function usage - code execution risk\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 131,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "\"code_snippet\": \"if \\\"eval(\\\" in content or \\\"exec(\\\" in content:\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 131,
+          "issue": "exec() function usage - code execution risk",
+          "pattern": "exec\\s*\\(",
+          "code_snippet": "\"code_snippet\": \"if \\\"eval(\\\" in content or \\\"exec(\\\" in content:\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 150,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "\"issue\": \"compile() function - dynamic code compilation\",",
+          "severity": "LOW"
+        },
+        {
+          "line": 152,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "\"code_snippet\": \"model = torch.compile(model, mode=\\\"reduce-overhead\\\")\",",
+          "severity": "LOW"
+        },
+        {
+          "line": 164,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "\"issue\": \"compile() function - dynamic code compilation\",",
+          "severity": "LOW"
+        },
+        {
+          "line": 166,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "\"code_snippet\": \"compiled_model = torch.compile(model, mode=\\\"max-autotune\\\")\",",
+          "severity": "LOW"
+        },
+        {
+          "line": 179,
+          "issue": "Potential SQL injection",
+          "pattern": "UPDATE.*\\+.*[\\'\\\"]+",
+          "code_snippet": "\"pattern\": \"UPDATE.*\\\\+.*[\\\\'\\\\\\\"]+\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 180,
+          "issue": "Potential SQL injection",
+          "pattern": "UPDATE.*\\+.*[\\'\\\"]+",
+          "code_snippet": "\"code_snippet\": \"**Last Updated**: $(date +'%Y-%m-%d %H:%M:%S UTC')\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 192,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "\"issue\": \"eval() function usage - code injection risk\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 194,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "\"code_snippet\": \"model.eval()\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 206,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "\"issue\": \"eval() function usage - code injection risk\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 208,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "\"code_snippet\": \"base_model.eval()\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 213,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "\"issue\": \"compile() function - dynamic code compilation\",",
+          "severity": "LOW"
+        },
+        {
+          "line": 215,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "\"code_snippet\": \"compiled_model = torch.compile(optimized_model, mode='reduce-overhead')\",",
+          "severity": "LOW"
+        },
+        {
+          "line": 227,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "\"issue\": \"eval() function usage - code injection risk\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 229,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "\"code_snippet\": \"self.model.eval()\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 234,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "\"issue\": \"eval() function usage - code injection risk\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 236,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "\"code_snippet\": \"self.optimized_model.eval()\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 248,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "\"issue\": \"eval() function usage - code injection risk\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 250,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "\"code_snippet\": \"moe_model.eval()\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 255,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "\"issue\": \"eval() function usage - code injection risk\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 257,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "\"code_snippet\": \"moe_model.eval()\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 269,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "\"issue\": \"compile() function - dynamic code compilation\",",
+          "severity": "LOW"
+        },
+        {
+          "line": 271,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "\"code_snippet\": \"self.url_pattern = re.compile(\",",
+          "severity": "LOW"
+        },
+        {
+          "line": 276,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "\"issue\": \"compile() function - dynamic code compilation\",",
+          "severity": "LOW"
+        },
+        {
+          "line": 278,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "\"code_snippet\": \"self.email_pattern = re.compile(r'\\\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\\\.[A-Z|a-z]{2",
+          "severity": "LOW"
+        },
+        {
+          "line": 283,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "\"issue\": \"compile() function - dynamic code compilation\",",
+          "severity": "LOW"
+        },
+        {
+          "line": 285,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "\"code_snippet\": \"self.phone_pattern = re.compile(r'(\\\\+\\\\d{1,3}[-.\\\\s]?)?\\\\(?\\\\d{3}\\\\)?[-.\\\\s]?\\\\d{3",
+          "severity": "LOW"
+        },
+        {
+          "line": 290,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "\"issue\": \"compile() function - dynamic code compilation\",",
+          "severity": "LOW"
+        },
+        {
+          "line": 292,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "\"code_snippet\": \"self.whitespace_pattern = re.compile(r'\\\\s+')\",",
+          "severity": "LOW"
+        },
+        {
+          "line": 297,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "\"issue\": \"compile() function - dynamic code compilation\",",
+          "severity": "LOW"
+        },
+        {
+          "line": 299,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "\"code_snippet\": \"pattern = re.compile(pattern)\",",
+          "severity": "LOW"
+        },
+        {
+          "line": 304,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "\"issue\": \"compile() function - dynamic code compilation\",",
+          "severity": "LOW"
+        },
+        {
+          "line": 306,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "\"code_snippet\": \"self.required_patterns = [re.compile(p) for p in (required_patterns or [])]\",",
+          "severity": "LOW"
+        },
+        {
+          "line": 346,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "\"issue\": \"compile() function - dynamic code compilation\",",
+          "severity": "LOW"
+        },
+        {
+          "line": 348,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "\"code_snippet\": \"self.base_model = torch.compile(self.base_model, mode=\\\"reduce-overhead\\\")\",",
+          "severity": "LOW"
+        },
+        {
+          "line": 353,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "\"issue\": \"eval() function usage - code injection risk\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 355,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "\"code_snippet\": \"self.eval()\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 360,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "\"issue\": \"eval() function usage - code injection risk\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 362,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "\"code_snippet\": \"self.eval()\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 374,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "\"issue\": \"eval() function usage - code injection risk\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 376,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "\"code_snippet\": \"self.eval()\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 409,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "\"issue\": \"compile() function - dynamic code compilation\",",
+          "severity": "LOW"
+        },
+        {
+          "line": 411,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "\"code_snippet\": \"compiled_model = self._torch_compile(optimized_model, example_inputs)\",",
+          "severity": "LOW"
+        },
+        {
+          "line": 416,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "\"issue\": \"compile() function - dynamic code compilation\",",
+          "severity": "LOW"
+        },
+        {
+          "line": 418,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "\"code_snippet\": \"def _torch_compile(self, model: nn.Module, example_inputs: Optional[Dict[str, torch",
+          "severity": "LOW"
+        },
+        {
+          "line": 423,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "\"issue\": \"compile() function - dynamic code compilation\",",
+          "severity": "LOW"
+        },
+        {
+          "line": 425,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "\"code_snippet\": \"return torch.compile(model, **compile_options)\",",
+          "severity": "LOW"
+        },
+        {
+          "line": 430,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "\"issue\": \"eval() function usage - code injection risk\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 432,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "\"code_snippet\": \"model.eval()\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 437,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "\"issue\": \"eval() function usage - code injection risk\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 439,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "\"code_snippet\": \"model.eval()\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 444,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "\"issue\": \"compile() function - dynamic code compilation\",",
+          "severity": "LOW"
+        },
+        {
+          "line": 446,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "\"code_snippet\": \"trt_model = torch_tensorrt.compile(\",",
+          "severity": "LOW"
+        },
+        {
+          "line": 472,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "\"issue\": \"eval() function usage - code injection risk\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 474,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "\"code_snippet\": \"self.model.eval()\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 486,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "\"issue\": \"eval() function usage - code injection risk\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 488,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "\"code_snippet\": \"self.model.eval()\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 514,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "\"issue\": \"compile() function - dynamic code compilation\",",
+          "severity": "LOW"
+        },
+        {
+          "line": 516,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "\"code_snippet\": \"compiled_router = torch.compile(router, mode=\\\"reduce-overhead\\\")\",",
+          "severity": "LOW"
+        },
+        {
+          "line": 521,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "\"issue\": \"compile() function - dynamic code compilation\",",
+          "severity": "LOW"
+        },
+        {
+          "line": 523,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "\"code_snippet\": \"compiled_expert = torch.compile(expert, mode=\\\"max-autotune\\\")\",",
+          "severity": "LOW"
+        },
+        {
+          "line": 528,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "\"issue\": \"eval() function usage - code injection risk\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 530,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "\"code_snippet\": \"model.eval()\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 535,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "\"issue\": \"compile() function - dynamic code compilation\",",
+          "severity": "LOW"
+        },
+        {
+          "line": 537,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "\"code_snippet\": \"model = torch.compile(\",",
+          "severity": "LOW"
+        },
+        {
+          "line": 549,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "\"issue\": \"eval() function usage - code injection risk\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 551,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "\"code_snippet\": \"model.eval()\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 556,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "\"issue\": \"eval() function usage - code injection risk\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 558,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "\"code_snippet\": \"model.eval()\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 563,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "\"issue\": \"eval() function usage - code injection risk\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 565,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "\"code_snippet\": \"model.eval()\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 577,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "\"issue\": \"eval() function usage - code injection risk\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 579,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "\"code_snippet\": \"self.model.eval()\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 591,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "\"issue\": \"eval() function usage - code injection risk\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 593,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "\"code_snippet\": \"model.eval()\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 609,
+          "issue": "compile() function - dynamic code compilation",
+          "pattern": "compile\\s*\\(",
+          "code_snippet": "\"compile() function - dynamic code compilation\": 19,",
+          "severity": "LOW"
+        },
+        {
+          "line": 610,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "\"eval() function usage - code injection risk\": 22,",
+          "severity": "HIGH"
+        },
+        {
+          "line": 611,
+          "issue": "exec() function usage - code execution risk",
+          "pattern": "exec\\s*\\(",
+          "code_snippet": "\"exec() function usage - code execution risk\": 3,",
+          "severity": "HIGH"
+        },
+        {
+          "line": 612,
+          "issue": "os.system() usage - command injection risk",
+          "pattern": "os\\.system\\s*\\(",
+          "code_snippet": "\"os.system() usage - command injection risk\": 1,",
+          "severity": "HIGH"
+        },
+        {
+          "line": 642,
+          "issue": "eval() function usage - code injection risk",
+          "pattern": "eval\\s*\\(",
+          "code_snippet": "\"Remove eval() and exec() function calls - use safer alternatives like ast.literal_eval()\",",
+          "severity": "HIGH"
+        },
+        {
+          "line": 642,
+          "issue": "exec() function usage - code execution risk",
+          "pattern": "exec\\s*\\(",
+          "code_snippet": "\"Remove eval() and exec() function calls - use safer alternatives like ast.literal_eval()\",",
+          "severity": "HIGH"
+        }
+      ],
+      "issue_count": 113,
+      "file_hash": "37659542"
     },
     {
       "file_path": ".github/SECURITY.md",
@@ -599,22 +1467,26 @@
     }
   ],
   "vulnerability_summary": {
-    "total_issues": 60,
+    "total_issues": 181,
     "severity_breakdown": {
-      "HIGH": 33,
+      "HIGH": 115,
       "MEDIUM": 8,
-      "LOW": 19
+      "LOW": 58
     },
     "issue_types": {
-      "compile() function - dynamic code compilation": 19,
-      "eval() function usage - code injection risk": 22,
-      "exec() function usage - code execution risk": 3,
-      "os.system() usage - command injection risk": 1,
-      "Potential SQL injection": 6,
-      "dynamic import - potential code injection": 1,
+      "eval() function usage - code injection risk": 74,
+      "exec() function usage - code execution risk": 17,
+      "compile() function - dynamic code compilation": 58,
+      "os.system() usage - command injection risk": 4,
+      "Potential SQL injection": 18,
+      "dynamic import - potential code injection": 2,
       "Potential hardcoded secret/token": 8
     },
     "most_vulnerable_files": [
+      [
+        "security_scan_results.json",
+        113
+      ],
       [
         "security_scan.py",
         11
@@ -628,12 +1500,8 @@
         6
       ],
       [
-        "moe_lab/utils/optimization.py",
+        "AUTONOMOUS_SDLC_COMPLETION_REPORT.md",
         4
-      ],
-      [
-        ".terragon/value_discovery_simple.py",
-        3
       ]
     ]
   },
@@ -649,5 +1517,5 @@
     "Use HTTPS for all network communications",
     "Implement logging and monitoring for security events"
   ],
-  "total_files_scanned": 164
+  "total_files_scanned": 178
 }

@@ -8,11 +8,11 @@
   },
   "training_summary": {
     "successful_steps": 50,
-    "failed_steps": 0,
+    "failed_steps": 1,
     "success_rate": 1.0
   },
   "health_status": {
-    "timestamp": 1754932482.8413072,
+    "timestamp": 1755057039.0679731,
     "overall_status": "healthy",
     "alerts": [],
     "warnings": [],
@@ -20,11 +20,15 @@
     "training_ok": true
   },
   "error_summary": {
-    "total_errors": 0,
-    "error_types": {},
-    "severity_distribution": {},
+    "total_errors": 2,
+    "error_types": {
+      "DataError": 2
+    },
+    "severity_distribution": {
+      "high": 2
+    },
     "time_window_hours": 1.0,
-    "most_common_error": null
+    "most_common_error": "DataError"
   },
   "system_performance": {
     "avg_memory_mb": 100.0,
@@ -34,15 +38,15 @@
     "sample_count": 1
   },
   "training_performance": {
-    "avg_loss": 1.2984480005673982,
-    "min_loss": 0.5028692829215555,
-    "avg_expert_load_variance": 0.06278803466441892,
-    "avg_routing_entropy": 1.3827528139119605,
+    "avg_loss": 1.0972613597547534,
+    "min_loss": 0.5114581199570887,
+    "avg_expert_load_variance": NaN,
+    "avg_routing_entropy": 1.2770207526490218,
     "avg_tokens_per_second": 1000.0,
     "sample_count": 50
   },
   "health_report": {
-    "timestamp": 1754932482.8415585,
+    "timestamp": 1755057039.0683062,
     "system_performance": {
       "avg_memory_mb": 100.0,
       "max_memory_mb": 100.0,
@@ -51,15 +55,15 @@
       "sample_count": 1
     },
     "training_performance": {
-      "avg_loss": 1.2984480005673982,
-      "min_loss": 0.5028692829215555,
-      "avg_expert_load_variance": 0.06278803466441892,
-      "avg_routing_entropy": 1.3827528139119605,
+      "avg_loss": 1.0972613597547534,
+      "min_loss": 0.5114581199570887,
+      "avg_expert_load_variance": NaN,
+      "avg_routing_entropy": 1.2770207526490218,
       "avg_tokens_per_second": 1000.0,
       "sample_count": 50
     },
     "health_status": {
-      "timestamp": 1754932482.8415809,
+      "timestamp": 1755057039.0683281,
       "overall_status": "healthy",
       "alerts": [],
       "warnings": [],
