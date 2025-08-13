@@ -1,6 +1,41 @@
 {
-  "export_timestamp": 1754932482.8450744,
+  "export_timestamp": 1755057039.0720766,
   "time_window_hours": 1.0,
-  "total_errors": 0,
-  "errors": []
+  "total_errors": 2,
+  "errors": [
+    {
+      "timestamp": 1755057038.0863385,
+      "error_type": "DataError",
+      "message": "Invalid input dimensions: expected 32, got 27",
+      "context": {
+        "step": 34
+      },
+      "traceback": [
+        "Traceback (most recent call last):\n",
+        "  File \"/root/repo/examples/robust_moe_demo.py\", line 1112, in forward_with_monitoring\n    raise DataError(\n",
+        "robust_moe_demo.DataError: Invalid input dimensions: expected 32, got 27\n"
+      ],
+      "severity": "high",
+      "recovery_suggestion": "Check input preprocessing pipeline",
+      "moe_context": {}
+    },
+    {
+      "timestamp": 1755057038.0872266,
+      "error_type": "DataError",
+      "message": "Invalid input dimensions: expected 32, got 27",
+      "context": {
+        "step": 34,
+        "input_shape": 27
+      },
+      "traceback": [
+        "Traceback (most recent call last):\n",
+        "  File \"/root/repo/examples/robust_moe_demo.py\", line 1052, in error_context\n    yield\n",
+        "  File \"/root/repo/examples/robust_moe_demo.py\", line 1112, in forward_with_monitoring\n    raise DataError(\n",
+        "robust_moe_demo.DataError: Invalid input dimensions: expected 32, got 27\n"
+      ],
+      "severity": "high",
+      "recovery_suggestion": "Check input preprocessing pipeline",
+      "moe_context": {}
+    }
+  ]
 }
