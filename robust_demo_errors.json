@@ -1,14 +1,14 @@
 {
-  "export_timestamp": 1755057039.0720766,
+  "export_timestamp": 1755211459.4935682,
   "time_window_hours": 1.0,
-  "total_errors": 2,
+  "total_errors": 4,
   "errors": [
     {
-      "timestamp": 1755057038.0863385,
+      "timestamp": 1755211458.493676,
       "error_type": "DataError",
       "message": "Invalid input dimensions: expected 32, got 27",
       "context": {
-        "step": 34
+        "step": 9
       },
       "traceback": [
         "Traceback (most recent call last):\n",
@@ -20,11 +20,45 @@
       "moe_context": {}
     },
     {
-      "timestamp": 1755057038.0872266,
+      "timestamp": 1755211458.4947083,
       "error_type": "DataError",
       "message": "Invalid input dimensions: expected 32, got 27",
       "context": {
-        "step": 34,
+        "step": 9,
+        "input_shape": 27
+      },
+      "traceback": [
+        "Traceback (most recent call last):\n",
+        "  File \"/root/repo/examples/robust_moe_demo.py\", line 1052, in error_context\n    yield\n",
+        "  File \"/root/repo/examples/robust_moe_demo.py\", line 1112, in forward_with_monitoring\n    raise DataError(\n",
+        "robust_moe_demo.DataError: Invalid input dimensions: expected 32, got 27\n"
+      ],
+      "severity": "high",
+      "recovery_suggestion": "Check input preprocessing pipeline",
+      "moe_context": {}
+    },
+    {
+      "timestamp": 1755211458.5183992,
+      "error_type": "DataError",
+      "message": "Invalid input dimensions: expected 32, got 27",
+      "context": {
+        "step": 46
+      },
+      "traceback": [
+        "Traceback (most recent call last):\n",
+        "  File \"/root/repo/examples/robust_moe_demo.py\", line 1112, in forward_with_monitoring\n    raise DataError(\n",
+        "robust_moe_demo.DataError: Invalid input dimensions: expected 32, got 27\n"
+      ],
+      "severity": "high",
+      "recovery_suggestion": "Check input preprocessing pipeline",
+      "moe_context": {}
+    },
+    {
+      "timestamp": 1755211458.5187523,
+      "error_type": "DataError",
+      "message": "Invalid input dimensions: expected 32, got 27",
+      "context": {
+        "step": 46,
         "input_shape": 27
       },
       "traceback": [
