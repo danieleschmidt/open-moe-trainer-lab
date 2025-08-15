@@ -20,63 +20,63 @@
   "single_request_performance": [
     {
       "complexity": "low",
-      "processing_time": 1.7893314361572266,
+      "processing_time": 1.7693042755126953,
       "cache_hit": false,
       "success": true
     },
     {
       "complexity": "medium",
-      "processing_time": 1.481771469116211,
+      "processing_time": 1.4829635620117188,
       "cache_hit": false,
       "success": true
     },
     {
       "complexity": "high",
-      "processing_time": 1.6138553619384766,
+      "processing_time": 1.3494491577148438,
       "cache_hit": false,
       "success": true
     }
   ],
   "batch_performance": {
     "1": {
-      "total_time": 2.0895004272460938,
-      "avg_processing_time": 0.0013720989227294922,
+      "total_time": 2.1708011627197266,
+      "avg_processing_time": 0.001590728759765625,
       "success_rate": 1.0,
-      "throughput_req_per_sec": 478.58329529895025
+      "throughput_req_per_sec": 460.6594179022515
     },
     "4": {
-      "total_time": 7.284879684448242,
-      "avg_processing_time": 0.0015245676040649414,
+      "total_time": 6.585121154785156,
+      "avg_processing_time": 0.0014342665672302246,
       "success_rate": 1.0,
-      "throughput_req_per_sec": 549.0825069546719
+      "throughput_req_per_sec": 607.4299782766111
     },
     "8": {
-      "total_time": 13.730049133300781,
-      "avg_processing_time": 0.002462714910507202,
+      "total_time": 12.795209884643555,
+      "avg_processing_time": 0.0022248923778533936,
       "success_rate": 1.0,
-      "throughput_req_per_sec": 582.6636104744044
+      "throughput_req_per_sec": 625.2339799131682
     },
     "16": {
-      "total_time": 14.843463897705078,
-      "avg_processing_time": 0.0027755796909332275,
+      "total_time": 12.75777816772461,
+      "avg_processing_time": 0.0022774338722229004,
       "success_rate": 0.5,
-      "throughput_req_per_sec": 1077.9155128658165
+      "throughput_req_per_sec": 1254.1368716127827
     }
   },
   "load_test_results": {
     "total_requests": 100,
     "successful_requests": 104,
     "failed_requests": 0,
-    "avg_response_time_ms": 0.003068733673829299,
-    "p95_response_time_ms": 0.004763603210449219,
-    "overall_throughput_req_per_sec": 532.8715877634687,
-    "total_time_sec": 0.19516897201538086
+    "avg_response_time_ms": 0.003036347719339224,
+    "p95_response_time_ms": 0.0039865970611572266,
+    "overall_throughput_req_per_sec": 539.128283594818,
+    "total_time_sec": 0.19290399551391602
   },
   "system_performance": {
-    "timestamp": 1755057039.415072,
+    "timestamp": 1755211459.8131297,
     "global_metrics": {
-      "throughput_tokens_per_sec": 384.4260353877351,
-      "latency_ms": 2.942235325395297,
+      "throughput_tokens_per_sec": 342.09423955399325,
+      "latency_ms": 3.264502262916039,
       "p95_latency_ms": 0.0,
       "p99_latency_ms": 0.0,
       "memory_usage_gb": 0.0,
@@ -85,7 +85,7 @@
       "expert_load_balance": 1.0,
       "model_flops": 0,
       "inference_cost_usd": 0.0,
-      "timestamp": 1755057039.414675,
+      "timestamp": 1755211459.8127306,
       "batch_processing_efficiency": 0.0,
       "gpu_utilization": 0.0,
       "network_bandwidth_mbps": 0.0,
@@ -104,68 +104,68 @@
       "l3_misses": 0,
       "evictions": 0,
       "prefetches": 0,
-      "compression_ratio": 0.7552816901408451,
+      "compression_ratio": 0.8098591549295775,
       "total_requests": 128,
       "overall_hit_rate": 0.0,
-      "l1_size": 32,
-      "l2_size": 96,
+      "l1_size": 36,
+      "l2_size": 92,
       "l3_size": 0,
       "l1_size_mb": 0.010833740234375,
-      "l2_size_mb": 0.0813283920288086,
+      "l2_size_mb": 0.07816791534423828,
       "hot_keys": 0
     },
     "load_balancer_stats": {
       "worker_count": 3,
       "worker_stats": {
         "worker_0": {
-          "requests_processed": 25,
-          "avg_response_time": 2.7882073414066064,
+          "requests_processed": 27,
+          "avg_response_time": 2.8924085546731977,
           "error_rate": 0.0,
-          "cpu_usage": 0.3697827353537106,
-          "memory_usage": 0.41255062559697453,
-          "last_health_check": 1755057039.4145832
+          "cpu_usage": 0.7312860333916886,
+          "memory_usage": 0.7930607935272451,
+          "last_health_check": 1755211459.8126419
         },
         "worker_2": {
-          "requests_processed": 64,
-          "avg_response_time": 3.350827520933945,
+          "requests_processed": 34,
+          "avg_response_time": 3.3317026922423314,
           "error_rate": 0.0,
-          "cpu_usage": 0.6615221591447367,
-          "memory_usage": 0.7659221575949189,
-          "last_health_check": 1755057039.3848965
+          "cpu_usage": 0.4985452728695091,
+          "memory_usage": 0.7798040716401209,
+          "last_health_check": 1755211459.809119
         },
         "worker_3": {
-          "requests_processed": 39,
-          "avg_response_time": 2.851958370284913,
+          "requests_processed": 67,
+          "avg_response_time": 3.091946864874534,
           "error_rate": 0.0,
-          "cpu_usage": 0.7098176252292696,
-          "memory_usage": 0.7971491981493468,
-          "last_health_check": 1755057039.3863525
+          "cpu_usage": 0.7951249845493018,
+          "memory_usage": 0.6135325025366701,
+          "last_health_check": 1755211459.7609332
         }
       },
       "load_history": [
         {
-          "timestamp": 1755057039.1716719,
-          "load": 0.11230672068299224,
-          "response_time": 0.44733285903930664,
+          "timestamp": 1755211459.5760043,
+          "load": 0.12775462237153468,
+          "response_time": 0.44232606887817383,
           "num_workers": 4
         }
       ],
       "scaling_decisions": [
         {
           "action": "scale_down",
-          "timestamp": 1755057039.171854,
+          "timestamp": 1755211459.5761812,
           "worker_count": 3,
           "reason": "low_load",
           "removed_worker": "worker_1"
         }
       ],
-      "average_load": 0.11230672068299224,
-      "average_response_time": 0.44733285903930664
+      "average_load": 0.12775462237153468,
+      "average_response_time": 0.44232606887817383
     },
     "request_processor_stats": {
       "processed": 125,
       "failed": 0,
-      "avg_processing_time": 0.01354235761305865,
+      "avg_processing_time": 0.013194855521706975,
       "queue_depths": {
         "high": 0,
         "normal": 4,
@@ -178,12 +178,12 @@
     },
     "optimization_history_summary": {
       "total_requests": 128,
-      "avg_processing_time": 2.773744985461235,
+      "avg_processing_time": 2.726459875702858,
       "success_rate": 1,
       "complexity_distribution": {
         "low": 0,
-        "medium": 95,
-        "high": 33
+        "medium": 91,
+        "high": 37
       }
     },
     "scaling_recommendations": [

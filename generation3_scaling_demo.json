@@ -1,0 +1,121 @@
+{
+  "demo_type": "generation_3_scaling",
+  "config": {
+    "hidden_size": 64,
+    "num_experts": 8,
+    "initial_workers": 2,
+    "max_workers": 5,
+    "target_latency_ms": 100.0,
+    "cache_enabled": true,
+    "auto_scaling": true
+  },
+  "final_stats": {
+    "config": {
+      "hidden_size": 64,
+      "num_experts": 8,
+      "initial_workers": 2,
+      "max_workers": 5,
+      "target_latency_ms": 100.0,
+      "cache_enabled": true,
+      "auto_scaling": true
+    },
+    "current_workers": 2,
+    "cache_size": 280,
+    "performance": {
+      "total_requests": 280,
+      "avg_latency_ms": 93.62561787877765,
+      "recent_avg_latency_ms": 94.38556432723999,
+      "p95_latency_ms": 117.66195297241211,
+      "cache_hit_rate": 0.0,
+      "worker_utilization": {
+        "worker_1": 140,
+        "worker_0": 140
+      },
+      "scaling_events": 0,
+      "recent_scaling_events": []
+    },
+    "worker_details": {
+      "worker_0": {
+        "processed_requests": 140,
+        "current_load": 0,
+        "utilization": 0.0
+      },
+      "worker_1": {
+        "processed_requests": 140,
+        "current_load": 0,
+        "utilization": 0.0
+      }
+    }
+  },
+  "scenario_stats": {
+    "Light Load": {
+      "requests": 20,
+      "successful": 20,
+      "duration_s": 6.001413345336914,
+      "throughput_rps": 3.3325483263938085,
+      "avg_latency_ms": 90.22456407546997,
+      "p95_latency_ms": 116.9273853302002,
+      "cache_hit_rate": 0.0,
+      "workers_used": 2
+    },
+    "Medium Load": {
+      "requests": 50,
+      "successful": 50,
+      "duration_s": 3.0986225605010986,
+      "throughput_rps": 16.136202142643075,
+      "avg_latency_ms": 90.91612339019775,
+      "p95_latency_ms": 116.53270721435547,
+      "cache_hit_rate": 0.0,
+      "workers_used": 2
+    },
+    "Heavy Load": {
+      "requests": 100,
+      "successful": 100,
+      "duration_s": 2.6794686317443848,
+      "throughput_rps": 37.32083250211372,
+      "avg_latency_ms": 94.44079875946045,
+      "p95_latency_ms": 116.59091711044312,
+      "cache_hit_rate": 0.0,
+      "workers_used": 2
+    },
+    "Spike Load": {
+      "requests": 80,
+      "successful": 80,
+      "duration_s": 1.7571489810943604,
+      "throughput_rps": 45.52829661044201,
+      "avg_latency_ms": 96.11485004425049,
+      "p95_latency_ms": 117.95707941055298,
+      "cache_hit_rate": 0.0,
+      "workers_used": 2
+    },
+    "Cool Down": {
+      "requests": 30,
+      "successful": 30,
+      "duration_s": 4.017312288284302,
+      "throughput_rps": 7.4676793455886115,
+      "avg_latency_ms": 91.05358918507893,
+      "p95_latency_ms": 112.9376769065857,
+      "cache_hit_rate": 0.0,
+      "workers_used": 2
+    }
+  },
+  "overall_metrics": {
+    "total_requests": 280,
+    "successful_requests": 280,
+    "success_rate": 1.0,
+    "overall_p95_latency_ms": 116.28174781799316,
+    "performance_grade": "A"
+  },
+  "scaling_features": [
+    "Dynamic auto-scaling based on latency",
+    "Intelligent caching with LRU eviction",
+    "Load balancing across worker nodes",
+    "Real-time performance monitoring",
+    "Batch processing for efficiency",
+    "Graceful handling of load spikes",
+    "SLA compliance monitoring",
+    "Production-ready worker management"
+  ],
+  "demo_completed": true,
+  "timestamp": 1755210821.660268
+}

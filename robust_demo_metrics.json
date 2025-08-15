@@ -1,11 +1,11 @@
 {
   "metadata": {
-    "export_timestamp": 1755057039.0684726,
+    "export_timestamp": 1755211459.4891171,
     "time_window_hours": 1.0
   },
   "system_metrics": [
     {
-      "timestamp": 1755057038.066864,
+      "timestamp": 1755211458.4880188,
       "memory_usage_mb": 100.0,
       "cpu_percent": 15.0,
       "processing_time_ms": 0.0,
@@ -15,648 +15,531 @@
   ],
   "training_metrics": [
     {
-      "timestamp": 1755057038.0677338,
+      "timestamp": 1755211458.4888175,
       "step": 0,
-      "loss": 1.34445841242042,
-      "expert_load_variance": 0.06319012830304703,
-      "routing_entropy": 1.3812247564291615,
+      "loss": 1.2200961033046218,
+      "expert_load_variance": 0.06271306798995818,
+      "routing_entropy": 1.3819786779194556,
       "tokens_per_second": 1000.0,
-      "gradient_norm": 0.9843843943611
+      "gradient_norm": 0.9686771598458033
     },
     {
-      "timestamp": 1755057038.0682852,
+      "timestamp": 1755211458.4894667,
       "step": 1,
-      "loss": 1.0400601820095967,
-      "expert_load_variance": 0.06250223766501577,
-      "routing_entropy": 1.3849232116230383,
+      "loss": 1.095043917992748,
+      "expert_load_variance": 0.06268792223099556,
+      "routing_entropy": 1.3835028201886659,
       "tokens_per_second": 1000.0,
-      "gradient_norm": 0.34171037394049897
+      "gradient_norm": 0.7200155093138573
     },
     {
-      "timestamp": 1755057038.0687983,
+      "timestamp": 1755211458.4900248,
       "step": 2,
-      "loss": 1.2877688445646014,
-      "expert_load_variance": 0.06250043190713751,
-      "routing_entropy": 1.3849961761030534,
+      "loss": 1.9259245563823995,
+      "expert_load_variance": 0.06250881576554149,
+      "routing_entropy": 1.3855874058352566,
       "tokens_per_second": 1000.0,
-      "gradient_norm": 0.6225358511396963
+      "gradient_norm": 0.35144031296795797
     },
     {
-      "timestamp": 1755057038.069272,
+      "timestamp": 1755211458.4905424,
       "step": 3,
-      "loss": 1.2317183868564063,
-      "expert_load_variance": 0.06368199604599734,
-      "routing_entropy": 1.3733706100930023,
+      "loss": 1.9471643380094306,
+      "expert_load_variance": 0.0647243330019715,
+      "routing_entropy": 1.3769808313837277,
       "tokens_per_second": 1000.0,
-      "gradient_norm": 0.15588875714909387
+      "gradient_norm": 0.9024977326994849
     },
     {
-      "timestamp": 1755057038.069855,
+      "timestamp": 1755211458.4910538,
       "step": 4,
-      "loss": 1.2224459220544202,
-      "expert_load_variance": 0.06288648269387438,
-      "routing_entropy": 1.3814751328315156,
+      "loss": 1.1787622057911644,
+      "expert_load_variance": 0.06255412779046562,
+      "routing_entropy": 1.3832157800499496,
       "tokens_per_second": 1000.0,
-      "gradient_norm": 0.8571216471584925
+      "gradient_norm": 0.902298733159357
     },
     {
-      "timestamp": 1755057038.070344,
+      "timestamp": 1755211458.4915962,
       "step": 5,
-      "loss": 1.1195712346442346,
-      "expert_load_variance": 0.06250711867697215,
-      "routing_entropy": 1.385770585813285,
+      "loss": 1.3023032107897226,
+      "expert_load_variance": 0.06250403223145451,
+      "routing_entropy": 1.379270815057994,
       "tokens_per_second": 1000.0,
-      "gradient_norm": 0.48765026446556914
+      "gradient_norm": 0.5356780162266533
     },
     {
-      "timestamp": 1755057038.070869,
+      "timestamp": 1755211458.4921167,
       "step": 6,
-      "loss": 1.828937036880168,
-      "expert_load_variance": 0.06298465942506766,
-      "routing_entropy": 1.3729988730990832,
+      "loss": 1.4077593834253228,
+      "expert_load_variance": 0.06295412482677673,
+      "routing_entropy": 1.379044115668587,
       "tokens_per_second": 1000.0,
-      "gradient_norm": 0.9706742935038168
+      "gradient_norm": 0.9317417438065637
     },
     {
-      "timestamp": 1755057038.0715823,
+      "timestamp": 1755211458.4926586,
       "step": 7,
-      "loss": 1.8890880764342457,
-      "expert_load_variance": NaN,
-      "routing_entropy": 0,
+      "loss": 1.2101919712734488,
+      "expert_load_variance": 0.06267411129640263,
+      "routing_entropy": 1.3834995940460086,
       "tokens_per_second": 1000.0,
-      "gradient_norm": 0.11495322978279973
+      "gradient_norm": 0.23107918731162203
     },
     {
-      "timestamp": 1755057038.0720668,
+      "timestamp": 1755211458.4931612,
       "step": 8,
-      "loss": 1.0087982016212271,
-      "expert_load_variance": 0.0635409654535615,
-      "routing_entropy": 1.375342509827418,
+      "loss": 0.6501454331781391,
+      "expert_load_variance": 0.06310691399066333,
+      "routing_entropy": 1.3812238515077697,
       "tokens_per_second": 1000.0,
-      "gradient_norm": 0.12641679724071525
+      "gradient_norm": 0.8170367662422023
     },
     {
-      "timestamp": 1755057038.0725865,
+      "timestamp": 1755211458.495687,
       "step": 9,
-      "loss": 1.6296105046509248,
-      "expert_load_variance": 0.06305864025474926,
-      "routing_entropy": 1.3768309913434016,
+      "loss": 1.5899391756066634,
+      "expert_load_variance": 0.06287510421625447,
+      "routing_entropy": 1.3778125309646527,
       "tokens_per_second": 1000.0,
-      "gradient_norm": 0.24683409147356414
+      "gradient_norm": 0.3044098311033155
     },
     {
-      "timestamp": 1755057038.073056,
+      "timestamp": 1755211458.4962077,
       "step": 10,
-      "loss": 1.1516790095095,
-      "expert_load_variance": 0.06255496317452372,
-      "routing_entropy": 1.3847321306637812,
+      "loss": 1.3111278334591112,
+      "expert_load_variance": 0.06263610541991249,
+      "routing_entropy": 1.3717348398147338,
       "tokens_per_second": 1000.0,
-      "gradient_norm": 0.5727040944902474
+      "gradient_norm": 0.5530536786897354
     },
     {
-      "timestamp": 1755057038.0735934,
+      "timestamp": 1755211458.4967468,
       "step": 11,
-      "loss": 0.9115673418276355,
-      "expert_load_variance": 0.0625004701419883,
-      "routing_entropy": 1.3857668993435537,
+      "loss": 1.472307255807774,
+      "expert_load_variance": 0.06303076245083958,
+      "routing_entropy": 1.3743249251376455,
       "tokens_per_second": 1000.0,
-      "gradient_norm": 0.6897327528216698
+      "gradient_norm": 0.5036027255359473
     },
     {
-      "timestamp": 1755057038.0740497,
+      "timestamp": 1755211458.4973125,
       "step": 12,
-      "loss": 0.8812847208574952,
-      "expert_load_variance": 0.06258977853451235,
-      "routing_entropy": 1.3834844371397508,
+      "loss": 0.5817696252520759,
+      "expert_load_variance": 0.06273139063499214,
+      "routing_entropy": 1.3819896818657462,
       "tokens_per_second": 1000.0,
-      "gradient_norm": 0.6969690793097436
+      "gradient_norm": 0.9827097948756307
     },
     {
-      "timestamp": 1755057038.074549,
+      "timestamp": 1755211458.4978313,
       "step": 13,
-      "loss": 0.6605659257661307,
-      "expert_load_variance": 0.06280909032577632,
-      "routing_entropy": 1.3771209944601377,
+      "loss": 1.8823385116490141,
+      "expert_load_variance": 0.06257261189823647,
+      "routing_entropy": 1.3836703064654388,
       "tokens_per_second": 1000.0,
-      "gradient_norm": 0.10360398477036259
+      "gradient_norm": 0.6297284577646963
     },
     {
-      "timestamp": 1755057038.0750215,
+      "timestamp": 1755211458.4984446,
       "step": 14,
-      "loss": 1.4450779745763358,
-      "expert_load_variance": 0.06275308398366178,
-      "routing_entropy": 1.3852475273872265,
-      "tokens_per_second": 1000.0,
-      "gradient_norm": 0.7050890398190243
-    },
-    {
-      "timestamp": 1755057038.0756116,
-      "step": 15,
-      "loss": 0.5114581199570887,
-      "expert_load_variance": 0.06255064325587487,
-      "routing_entropy": 1.3838866674594517,
-      "tokens_per_second": 1000.0,
-      "gradient_norm": 0.7112422929795208
-    },
-    {
-      "timestamp": 1755057038.0761185,
-      "step": 16,
-      "loss": 1.8163876831603574,
-      "expert_load_variance": 0.0625049780421258,
-      "routing_entropy": 1.3820362922175555,
-      "tokens_per_second": 1000.0,
-      "gradient_norm": 0.5089328050983871
-    },
-    {
-      "timestamp": 1755057038.0766258,
-      "step": 17,
-      "loss": 1.2658847715956978,
-      "expert_load_variance": 0.0628621561153317,
-      "routing_entropy": 1.3803242747230122,
-      "tokens_per_second": 1000.0,
-      "gradient_norm": 0.8281172076494263
-    },
-    {
-      "timestamp": 1755057038.0771103,
-      "step": 18,
-      "loss": 0.6493952292633375,
-      "expert_load_variance": 0.06272380506163695,
-      "routing_entropy": 1.3814026170822964,
-      "tokens_per_second": 1000.0,
-      "gradient_norm": 0.34989183922307515
-    },
-    {
-      "timestamp": 1755057038.0776129,
-      "step": 19,
-      "loss": 1.0880373112133526,
-      "expert_load_variance": 0.06253222974027323,
-      "routing_entropy": 1.3803575357219995,
-      "tokens_per_second": 1000.0,
-      "gradient_norm": 0.7414207352929209
-    },
-    {
-      "timestamp": 1755057038.0780785,
-      "step": 20,
-      "loss": 1.1725170330632206,
-      "expert_load_variance": 0.06259381791580168,
-      "routing_entropy": 1.3857192939963505,
-      "tokens_per_second": 1000.0,
-      "gradient_norm": 0.4126155223913268
-    },
-    {
-      "timestamp": 1755057038.0798914,
-      "step": 21,
-      "loss": 0.6355323904530872,
-      "expert_load_variance": 0.06252619705234953,
-      "routing_entropy": 1.3827120526397227,
-      "tokens_per_second": 1000.0,
-      "gradient_norm": 0.5493291514459129
-    },
-    {
-      "timestamp": 1755057038.0803752,
-      "step": 22,
-      "loss": 0.8851835543205864,
-      "expert_load_variance": 0.06374874493190222,
-      "routing_entropy": 1.3803378348019821,
-      "tokens_per_second": 1000.0,
-      "gradient_norm": 0.9138046664635119
-    },
-    {
-      "timestamp": 1755057038.0810716,
-      "step": 23,
-      "loss": 0.5494021773429654,
-      "expert_load_variance": 0.06268256464534086,
-      "routing_entropy": 1.385501377083033,
-      "tokens_per_second": 1000.0,
-      "gradient_norm": 0.35045155087536684
-    },
-    {
-      "timestamp": 1755057038.0815701,
-      "step": 24,
-      "loss": 0.8805372184560001,
-      "expert_load_variance": 0.062734054009209,
-      "routing_entropy": 1.3819496876208865,
-      "tokens_per_second": 1000.0,
-      "gradient_norm": 0.7759996020844891
-    },
-    {
-      "timestamp": 1755057038.08202,
-      "step": 25,
-      "loss": 0.5350508079240675,
-      "expert_load_variance": 0.06256126224325544,
-      "routing_entropy": 1.3800250013623785,
-      "tokens_per_second": 1000.0,
-      "gradient_norm": 0.6111174607789887
-    },
-    {
-      "timestamp": 1755057038.0825253,
-      "step": 26,
-      "loss": 1.3750938480501405,
-      "expert_load_variance": 0.06273563717808663,
-      "routing_entropy": 1.3848549224129474,
-      "tokens_per_second": 1000.0,
-      "gradient_norm": 0.625066444866024
-    },
-    {
-      "timestamp": 1755057038.0829902,
-      "step": 27,
-      "loss": 0.6105730206058281,
-      "expert_load_variance": 0.06254506607930196,
-      "routing_entropy": 1.383326718048398,
-      "tokens_per_second": 1000.0,
-      "gradient_norm": 0.19455584897010186
-    },
-    {
-      "timestamp": 1755057038.0835707,
-      "step": 28,
-      "loss": 1.9540407724798101,
-      "expert_load_variance": 0.06268027166112664,
-      "routing_entropy": 1.3839105325905838,
-      "tokens_per_second": 1000.0,
-      "gradient_norm": 0.5322774564384471
-    },
-    {
-      "timestamp": 1755057038.0840404,
-      "step": 29,
-      "loss": 0.9239695240503991,
-      "expert_load_variance": 0.06323761866728153,
-      "routing_entropy": 1.3774882137338562,
-      "tokens_per_second": 1000.0,
-      "gradient_norm": 0.15036782747246158
-    },
-    {
-      "timestamp": 1755057038.0845423,
-      "step": 30,
-      "loss": 1.1223342582656195,
-      "expert_load_variance": 0.06252744381573777,
-      "routing_entropy": 1.3846223791865844,
-      "tokens_per_second": 1000.0,
-      "gradient_norm": 0.9438801906580823
-    },
-    {
-      "timestamp": 1755057038.0850234,
-      "step": 31,
-      "loss": 0.7966071865793263,
-      "expert_load_variance": 0.06259644165616171,
-      "routing_entropy": 1.3812964539024375,
-      "tokens_per_second": 1000.0,
-      "gradient_norm": 0.4509089430925487
-    },
-    {
-      "timestamp": 1755057038.0855236,
-      "step": 32,
-      "loss": 0.5379787881142832,
-      "expert_load_variance": 0.06250073208442289,
-      "routing_entropy": 1.3850767961986497,
-      "tokens_per_second": 1000.0,
-      "gradient_norm": 0.3465282704843353
-    },
-    {
-      "timestamp": 1755057038.0859897,
-      "step": 33,
-      "loss": 1.2551278325606279,
-      "expert_load_variance": 0.06264451445614837,
-      "routing_entropy": 1.3832494900994896,
-      "tokens_per_second": 1000.0,
-      "gradient_norm": 0.10229182617708217
-    },
-    {
-      "timestamp": 1755057038.0881107,
-      "step": 34,
-      "loss": 1.284727973931935,
-      "expert_load_variance": 0.0625429829838754,
-      "routing_entropy": 1.3826965660429649,
-      "tokens_per_second": 1000.0,
-      "gradient_norm": 0.3094842381162202
-    },
-    {
-      "timestamp": 1755057038.0886524,
-      "step": 35,
-      "loss": 1.0184757967214912,
-      "expert_load_variance": 0.06252691760914039,
-      "routing_entropy": 1.3860152773262004,
-      "tokens_per_second": 1000.0,
-      "gradient_norm": 0.40341430243295895
-    },
-    {
-      "timestamp": 1755057038.0891256,
-      "step": 36,
-      "loss": 1.066992203149755,
-      "expert_load_variance": 0.06311202142230697,
-      "routing_entropy": 1.378375699170356,
-      "tokens_per_second": 1000.0,
-      "gradient_norm": 0.2554773629476691
-    },
-    {
-      "timestamp": 1755057038.0896358,
-      "step": 37,
-      "loss": 1.4140703273744402,
-      "expert_load_variance": 0.06266017308957211,
-      "routing_entropy": 1.3843583149015437,
-      "tokens_per_second": 1000.0,
-      "gradient_norm": 0.4867072829185094
-    },
-    {
-      "timestamp": 1755057038.0902288,
-      "step": 38,
-      "loss": 0.6432970747484137,
-      "expert_load_variance": 0.1848168939432362,
-      "routing_entropy": 0.03357900580151172,
-      "tokens_per_second": 1000.0,
-      "gradient_norm": 0.7453031446653477
-    },
-    {
-      "timestamp": 1755057038.0907629,
-      "step": 39,
-      "loss": 1.246394347282607,
-      "expert_load_variance": 0.06260906822308362,
-      "routing_entropy": 1.3833011285409527,
-      "tokens_per_second": 1000.0,
-      "gradient_norm": 0.3010321062052289
-    },
-    {
-      "timestamp": 1755057038.0914514,
-      "step": 40,
-      "loss": 1.92394006768016,
+      "loss": 1.7757404058080748,
       "expert_load_variance": NaN,
       "routing_entropy": 0,
       "tokens_per_second": 1000.0,
-      "gradient_norm": 0.7180678007742759
+      "gradient_norm": 0.7898099819810414
     },
     {
-      "timestamp": 1755057038.0927873,
+      "timestamp": 1755211458.4989681,
+      "step": 15,
+      "loss": 1.0313524658038427,
+      "expert_load_variance": 0.06250125061063488,
+      "routing_entropy": 1.3722014171781196,
+      "tokens_per_second": 1000.0,
+      "gradient_norm": 0.5549941228937668
+    },
+    {
+      "timestamp": 1755211458.4994383,
+      "step": 16,
+      "loss": 1.5810067071732585,
+      "expert_load_variance": 0.06375656145122935,
+      "routing_entropy": 1.3797738623324984,
+      "tokens_per_second": 1000.0,
+      "gradient_norm": 0.9071901391817859
+    },
+    {
+      "timestamp": 1755211458.4999373,
+      "step": 17,
+      "loss": 1.5001848746737403,
+      "expert_load_variance": 0.06254039416060994,
+      "routing_entropy": 1.3859319601134248,
+      "tokens_per_second": 1000.0,
+      "gradient_norm": 0.8697820240464743
+    },
+    {
+      "timestamp": 1755211458.5004108,
+      "step": 18,
+      "loss": 0.9033231146154368,
+      "expert_load_variance": 0.06274504998990371,
+      "routing_entropy": 1.38458737509109,
+      "tokens_per_second": 1000.0,
+      "gradient_norm": 0.4215481037558655
+    },
+    {
+      "timestamp": 1755211458.500911,
+      "step": 19,
+      "loss": 1.5633102422996297,
+      "expert_load_variance": 0.06353623223548646,
+      "routing_entropy": 1.37923201190419,
+      "tokens_per_second": 1000.0,
+      "gradient_norm": 0.22423654837952434
+    },
+    {
+      "timestamp": 1755211458.5014734,
+      "step": 20,
+      "loss": 0.8720187950302003,
+      "expert_load_variance": 0.06252673614108865,
+      "routing_entropy": 1.382668903404841,
+      "tokens_per_second": 1000.0,
+      "gradient_norm": 0.4652586728560911
+    },
+    {
+      "timestamp": 1755211458.5036526,
+      "step": 21,
+      "loss": 1.8392785376748915,
+      "expert_load_variance": 0.06333351970554452,
+      "routing_entropy": 1.3691689199305634,
+      "tokens_per_second": 1000.0,
+      "gradient_norm": 0.4835306228209256
+    },
+    {
+      "timestamp": 1755211458.5041547,
+      "step": 22,
+      "loss": 1.6415175674789162,
+      "expert_load_variance": 0.06250527569814214,
+      "routing_entropy": 1.3847591859178698,
+      "tokens_per_second": 1000.0,
+      "gradient_norm": 0.8861248088121193
+    },
+    {
+      "timestamp": 1755211458.5046682,
+      "step": 23,
+      "loss": 0.9251368503109756,
+      "expert_load_variance": 0.06347304028652427,
+      "routing_entropy": 1.3811654380822764,
+      "tokens_per_second": 1000.0,
+      "gradient_norm": 0.12818383513522255
+    },
+    {
+      "timestamp": 1755211458.505271,
+      "step": 24,
+      "loss": 1.8326390607532868,
+      "expert_load_variance": 0.06250569912309166,
+      "routing_entropy": 1.3830341210580652,
+      "tokens_per_second": 1000.0,
+      "gradient_norm": 0.3113682439592708
+    },
+    {
+      "timestamp": 1755211458.5058136,
+      "step": 25,
+      "loss": 1.5192670285659173,
+      "expert_load_variance": 0.06250279260148796,
+      "routing_entropy": 1.382389419592224,
+      "tokens_per_second": 1000.0,
+      "gradient_norm": 0.43655656727897396
+    },
+    {
+      "timestamp": 1755211458.506318,
+      "step": 26,
+      "loss": 1.6996150244594346,
+      "expert_load_variance": 0.06250393287704512,
+      "routing_entropy": 1.3839614958763915,
+      "tokens_per_second": 1000.0,
+      "gradient_norm": 0.8200901874374508
+    },
+    {
+      "timestamp": 1755211458.5068495,
+      "step": 27,
+      "loss": 1.3317515566545908,
+      "expert_load_variance": 0.06268076254341713,
+      "routing_entropy": 1.385596649472348,
+      "tokens_per_second": 1000.0,
+      "gradient_norm": 0.7338953688251562
+    },
+    {
+      "timestamp": 1755211458.5073602,
+      "step": 28,
+      "loss": 0.7481261693160468,
+      "expert_load_variance": 0.06335909239542782,
+      "routing_entropy": 1.3809395757038812,
+      "tokens_per_second": 1000.0,
+      "gradient_norm": 0.26946310914582294
+    },
+    {
+      "timestamp": 1755211458.508102,
+      "step": 29,
+      "loss": 1.436918329099874,
+      "expert_load_variance": 0.1844687988630471,
+      "routing_entropy": 0.03721602164400989,
+      "tokens_per_second": 1000.0,
+      "gradient_norm": 0.23105315133515755
+    },
+    {
+      "timestamp": 1755211458.5091312,
+      "step": 30,
+      "loss": 1.4400305816702867,
+      "expert_load_variance": 0.06266628504218184,
+      "routing_entropy": 1.3854174625371598,
+      "tokens_per_second": 1000.0,
+      "gradient_norm": 0.343816089190083
+    },
+    {
+      "timestamp": 1755211458.5097764,
+      "step": 31,
+      "loss": 0.9885217655336113,
+      "expert_load_variance": 0.06260430302774735,
+      "routing_entropy": 1.3837378473460982,
+      "tokens_per_second": 1000.0,
+      "gradient_norm": 0.9967253768477142
+    },
+    {
+      "timestamp": 1755211458.5102649,
+      "step": 32,
+      "loss": 0.7589554300210688,
+      "expert_load_variance": 0.06274842992653751,
+      "routing_entropy": 1.3804045092394466,
+      "tokens_per_second": 1000.0,
+      "gradient_norm": 0.48943911868557566
+    },
+    {
+      "timestamp": 1755211458.5107772,
+      "step": 33,
+      "loss": 1.5752888548484474,
+      "expert_load_variance": 0.06348481274341058,
+      "routing_entropy": 1.3786265574383898,
+      "tokens_per_second": 1000.0,
+      "gradient_norm": 0.8564590121341006
+    },
+    {
+      "timestamp": 1755211458.5113053,
+      "step": 34,
+      "loss": 1.0132977555347547,
+      "expert_load_variance": 0.06270210049765493,
+      "routing_entropy": 1.3831370660144586,
+      "tokens_per_second": 1000.0,
+      "gradient_norm": 0.6266662588598482
+    },
+    {
+      "timestamp": 1755211458.511813,
+      "step": 35,
+      "loss": 1.1411085348351764,
+      "expert_load_variance": 0.06252931447819299,
+      "routing_entropy": 1.3857027511066167,
+      "tokens_per_second": 1000.0,
+      "gradient_norm": 0.15490370868977074
+    },
+    {
+      "timestamp": 1755211458.5122933,
+      "step": 36,
+      "loss": 0.6973289881442896,
+      "expert_load_variance": 0.06270715371303812,
+      "routing_entropy": 1.3793286008801313,
+      "tokens_per_second": 1000.0,
+      "gradient_norm": 0.739981874597748
+    },
+    {
+      "timestamp": 1755211458.5127952,
+      "step": 37,
+      "loss": 0.9274906139657868,
+      "expert_load_variance": 0.06293188634057724,
+      "routing_entropy": 1.3811083155153847,
+      "tokens_per_second": 1000.0,
+      "gradient_norm": 0.6497399536652033
+    },
+    {
+      "timestamp": 1755211458.5133667,
+      "step": 38,
+      "loss": 0.9612693596451249,
+      "expert_load_variance": 0.06252492987394774,
+      "routing_entropy": 1.367176510959959,
+      "tokens_per_second": 1000.0,
+      "gradient_norm": 0.21682964743454308
+    },
+    {
+      "timestamp": 1755211458.513879,
+      "step": 39,
+      "loss": 0.8748329154433516,
+      "expert_load_variance": 0.06391556650827718,
+      "routing_entropy": 1.3793160988327,
+      "tokens_per_second": 1000.0,
+      "gradient_norm": 0.2872446713265213
+    },
+    {
+      "timestamp": 1755211458.5143623,
+      "step": 40,
+      "loss": 1.4739920846923722,
+      "expert_load_variance": 0.06262731415354009,
+      "routing_entropy": 1.3858258783804085,
+      "tokens_per_second": 1000.0,
+      "gradient_norm": 0.862787179749413
+    },
+    {
+      "timestamp": 1755211458.5159302,
       "step": 41,
-      "loss": 1.1819425288343803,
-      "expert_load_variance": 0.06250210700916932,
-      "routing_entropy": 1.382455319570556,
+      "loss": 0.9973578770029377,
+      "expert_load_variance": 0.06280615952140291,
+      "routing_entropy": 1.37865979163534,
       "tokens_per_second": 1000.0,
-      "gradient_norm": 0.11174188414238899
+      "gradient_norm": 0.7333057564417781
     },
     {
-      "timestamp": 1755057038.0934143,
+      "timestamp": 1755211458.51642,
       "step": 42,
-      "loss": 0.8686318870020724,
-      "expert_load_variance": 0.16358125355111097,
-      "routing_entropy": 0.24303328385712406,
+      "loss": 1.9614501873616286,
+      "expert_load_variance": 0.06252100471064215,
+      "routing_entropy": 1.3851458812003208,
       "tokens_per_second": 1000.0,
-      "gradient_norm": 0.5644033970054256
+      "gradient_norm": 0.31296929140837765
     },
     {
-      "timestamp": 1755057038.093913,
+      "timestamp": 1755211458.5169206,
       "step": 43,
-      "loss": 0.6056930869040653,
-      "expert_load_variance": 0.06311215462119306,
-      "routing_entropy": 1.3813962846044006,
+      "loss": 0.7105318776388603,
+      "expert_load_variance": 0.06279380199811571,
+      "routing_entropy": 1.383174828444449,
       "tokens_per_second": 1000.0,
-      "gradient_norm": 0.36976565895053626
+      "gradient_norm": 0.865398114913437
     },
     {
-      "timestamp": 1755057038.0943885,
+      "timestamp": 1755211458.517515,
       "step": 44,
-      "loss": 1.5493293395012273,
-      "expert_load_variance": 0.0631393516269109,
-      "routing_entropy": 1.3826129647892886,
+      "loss": 0.9390763460806535,
+      "expert_load_variance": 0.06267622427071283,
+      "routing_entropy": 1.3850918277575583,
       "tokens_per_second": 1000.0,
-      "gradient_norm": 0.30516674566195606
+      "gradient_norm": 0.9845818083571328
     },
     {
-      "timestamp": 1755057038.0948822,
+      "timestamp": 1755211458.518183,
       "step": 45,
-      "loss": 1.4331121464075869,
-      "expert_load_variance": 0.06253707898603268,
-      "routing_entropy": 1.3820680502264255,
+      "loss": 0.5305593421617528,
+      "expert_load_variance": 0.18319609146877092,
+      "routing_entropy": 0.0551893941649776,
       "tokens_per_second": 1000.0,
-      "gradient_norm": 0.5666376045042795
+      "gradient_norm": 0.20023242861221968
     },
     {
-      "timestamp": 1755057038.0954125,
+      "timestamp": 1755211458.5196154,
       "step": 46,
-      "loss": 0.5756290555096941,
-      "expert_load_variance": 0.06253463409881163,
-      "routing_entropy": 1.3857814183717363,
+      "loss": 0.7387190143254755,
+      "expert_load_variance": 0.06250025284931476,
+      "routing_entropy": 1.384664757339114,
       "tokens_per_second": 1000.0,
-      "gradient_norm": 0.44955296960478575
+      "gradient_norm": 0.2688255304300165
     },
     {
-      "timestamp": 1755057038.0958683,
+      "timestamp": 1755211458.5201259,
       "step": 47,
-      "loss": 0.7115043023573387,
-      "expert_load_variance": 0.0629417508835365,
-      "routing_entropy": 1.384090580433263,
+      "loss": 0.9593148807459502,
+      "expert_load_variance": 0.06250468416476787,
+      "routing_entropy": 1.3801770328709473,
       "tokens_per_second": 1000.0,
-      "gradient_norm": 0.8747552813028668
+      "gradient_norm": 0.4290778655066295
     },
     {
-      "timestamp": 1755057038.0963228,
+      "timestamp": 1755211458.5207248,
       "step": 48,
-      "loss": 0.8839135421037677,
-      "expert_load_variance": 0.0627020088533117,
-      "routing_entropy": 1.3747693558951466,
+      "loss": 0.6387019605704656,
+      "expert_load_variance": NaN,
+      "routing_entropy": 0,
       "tokens_per_second": 1000.0,
-      "gradient_norm": 0.6309323568909724
+      "gradient_norm": 0.4596256118335289
     },
     {
-      "timestamp": 1755057038.0968022,
+      "timestamp": 1755211458.5212855,
       "step": 49,
-      "loss": 1.2376710060995906,
-      "expert_load_variance": 0.06252196396958745,
-      "routing_entropy": 1.3851414058806,
+      "loss": 0.8751389902829987,
+      "expert_load_variance": 0.06267590844495284,
+      "routing_entropy": 1.3640745132771834,
       "tokens_per_second": 1000.0,
-      "gradient_norm": 0.9488159189409414
+      "gradient_norm": 0.6898829093586951
     }
   ],
   "expert_metrics": [
     {
-      "timestamp": 1755057038.0674639,
+      "timestamp": 1755211458.4885414,
       "expert_id": 0,
-      "utilization_rate": 0.5371518048833975,
-      "avg_routing_weight": 0.5371518048833975,
+      "utilization_rate": 0.5206430613019576,
+      "avg_routing_weight": 0.5206430613019576,
       "num_tokens_processed": 1,
       "error_rate": 0.0,
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.0682647,
+      "timestamp": 1755211458.489149,
       "expert_id": 0,
-      "utilization_rate": 0.49788450241514515,
-      "avg_routing_weight": 0.49788450241514515,
+      "utilization_rate": 0.5193867083846411,
+      "avg_routing_weight": 0.5193867083846411,
       "num_tokens_processed": 1,
       "error_rate": 0.0,
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.0695841,
+      "timestamp": 1755211458.4905205,
       "expert_id": 0,
-      "utilization_rate": 0.5278022550838734,
-      "avg_routing_weight": 0.5278022550838734,
+      "utilization_rate": 0.43330167915199796,
+      "avg_routing_weight": 0.43330167915199796,
       "num_tokens_processed": 1,
       "error_rate": 0.0,
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.0706618,
+      "timestamp": 1755211458.4910338,
       "expert_id": 0,
-      "utilization_rate": 0.5311338858823518,
-      "avg_routing_weight": 0.5311338858823518,
+      "utilization_rate": 0.48959540577767446,
+      "avg_routing_weight": 0.48959540577767446,
       "num_tokens_processed": 1,
       "error_rate": 0.0,
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.071331,
+      "timestamp": 1755211458.491552,
       "expert_id": 0,
-      "utilization_rate": NaN,
-      "avg_routing_weight": NaN,
+      "utilization_rate": 0.49716020019912976,
+      "avg_routing_weight": 0.49716020019912976,
       "num_tokens_processed": 1,
       "error_rate": 0.0,
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.0718546,
+      "timestamp": 1755211458.493143,
       "expert_id": 0,
-      "utilization_rate": 0.5456281810630557,
-      "avg_routing_weight": 0.5456281810630557,
+      "utilization_rate": 0.46515996582483526,
+      "avg_routing_weight": 0.46515996582483526,
       "num_tokens_processed": 1,
       "error_rate": 0.0,
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.0745308,
+      "timestamp": 1755211458.4956582,
       "expert_id": 0,
-      "utilization_rate": 0.47513676104059066,
-      "avg_routing_weight": 0.47513676104059066,
+      "utilization_rate": 0.47261006694953506,
+      "avg_routing_weight": 0.47261006694953506,
       "num_tokens_processed": 1,
       "error_rate": 0.0,
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.0750074,
+      "timestamp": 1755211458.4970188,
       "expert_id": 0,
-      "utilization_rate": 0.4775018230222196,
-      "avg_routing_weight": 0.4775018230222196,
+      "utilization_rate": 0.5215123515679781,
+      "avg_routing_weight": 0.5215123515679781,
       "num_tokens_processed": 1,
       "error_rate": 0.0,
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.0753658,
-      "expert_id": 0,
-      "utilization_rate": 0.5100641200186463,
-      "avg_routing_weight": 0.5100641200186463,
-      "num_tokens_processed": 1,
-      "error_rate": 0.0,
-      "avg_response_time_ms": 0.0
-    },
-    {
-      "timestamp": 1755057038.0759177,
-      "expert_id": 0,
-      "utilization_rate": 0.5031553263304518,
-      "avg_routing_weight": 0.5031553263304518,
-      "num_tokens_processed": 1,
-      "error_rate": 0.0,
-      "avg_response_time_ms": 0.0
-    },
-    {
-      "timestamp": 1755057038.0768862,
-      "expert_id": 0,
-      "utilization_rate": 0.5211567985119189,
-      "avg_routing_weight": 0.5211567985119189,
-      "num_tokens_processed": 1,
-      "error_rate": 0.0,
-      "avg_response_time_ms": 0.0
-    },
-    {
-      "timestamp": 1755057038.079873,
-      "expert_id": 0,
-      "utilization_rate": 0.49276162278552227,
-      "avg_routing_weight": 0.49276162278552227,
-      "num_tokens_processed": 1,
-      "error_rate": 0.0,
-      "avg_response_time_ms": 0.0
-    },
-    {
-      "timestamp": 1755057038.0801678,
-      "expert_id": 0,
-      "utilization_rate": 0.5499748923340954,
-      "avg_routing_weight": 0.5499748923340954,
-      "num_tokens_processed": 1,
-      "error_rate": 0.0,
-      "avg_response_time_ms": 0.0
-    },
-    {
-      "timestamp": 1755057038.0815518,
-      "expert_id": 0,
-      "utilization_rate": 0.47836419591468826,
-      "avg_routing_weight": 0.47836419591468826,
-      "num_tokens_processed": 1,
-      "error_rate": 0.0,
-      "avg_response_time_ms": 0.0
-    },
-    {
-      "timestamp": 1755057038.082273,
-      "expert_id": 0,
-      "utilization_rate": 0.5217088543265934,
-      "avg_routing_weight": 0.5217088543265934,
-      "num_tokens_processed": 1,
-      "error_rate": 0.0,
-      "avg_response_time_ms": 0.0
-    },
-    {
-      "timestamp": 1755057038.0827866,
-      "expert_id": 0,
-      "utilization_rate": 0.5094937957953563,
-      "avg_routing_weight": 0.5094937957953563,
-      "num_tokens_processed": 1,
-      "error_rate": 0.0,
-      "avg_response_time_ms": 0.0
-    },
-    {
-      "timestamp": 1755057038.083551,
-      "expert_id": 0,
-      "utilization_rate": 0.48101202163859275,
-      "avg_routing_weight": 0.48101202163859275,
-      "num_tokens_processed": 1,
-      "error_rate": 0.0,
-      "avg_response_time_ms": 0.0
-    },
-    {
-      "timestamp": 1755057038.0838358,
-      "expert_id": 0,
-      "utilization_rate": 0.538408818447891,
-      "avg_routing_weight": 0.538408818447891,
-      "num_tokens_processed": 1,
-      "error_rate": 0.0,
-      "avg_response_time_ms": 0.0
-    },
-    {
-      "timestamp": 1755057038.0850093,
-      "expert_id": 0,
-      "utilization_rate": 0.4861117563269003,
-      "avg_routing_weight": 0.4861117563269003,
-      "num_tokens_processed": 1,
-      "error_rate": 0.0,
-      "avg_response_time_ms": 0.0
-    },
-    {
-      "timestamp": 1755057038.0859766,
-      "expert_id": 0,
-      "utilization_rate": 0.48299914965959806,
-      "avg_routing_weight": 0.48299914965959806,
-      "num_tokens_processed": 1,
-      "error_rate": 0.0,
-      "avg_response_time_ms": 0.0
-    },
-    {
-      "timestamp": 1755057038.088919,
-      "expert_id": 0,
-      "utilization_rate": 0.534986323679603,
-      "avg_routing_weight": 0.534986323679603,
-      "num_tokens_processed": 1,
-      "error_rate": 0.0,
-      "avg_response_time_ms": 0.0
-    },
-    {
-      "timestamp": 1755057038.0911095,
+      "timestamp": 1755211458.4982362,
       "expert_id": 0,
       "utilization_rate": NaN,
       "avg_routing_weight": NaN,
@@ -665,79 +548,286 @@
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.0931735,
+      "timestamp": 1755211458.4987493,
       "expert_id": 0,
-      "utilization_rate": 0.9496248515175979,
-      "avg_routing_weight": 0.9496248515175979,
+      "utilization_rate": 0.5015815249823438,
+      "avg_routing_weight": 0.5015815249823438,
       "num_tokens_processed": 1,
       "error_rate": 0.0,
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.093691,
+      "timestamp": 1755211458.499424,
       "expert_id": 0,
-      "utilization_rate": 0.5349901306425986,
-      "avg_routing_weight": 0.5349901306425986,
+      "utilization_rate": 0.4498689427354787,
+      "avg_routing_weight": 0.4498689427354787,
       "num_tokens_processed": 1,
       "error_rate": 0.0,
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.0953698,
+      "timestamp": 1755211458.499727,
       "expert_id": 0,
-      "utilization_rate": 0.49167724819406033,
-      "avg_routing_weight": 0.49167724819406033,
+      "utilization_rate": 0.5089882323746037,
+      "avg_routing_weight": 0.5089882323746037,
       "num_tokens_processed": 1,
       "error_rate": 0.0,
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.0967882,
+      "timestamp": 1755211458.5002048,
       "expert_id": 0,
-      "utilization_rate": 0.4933721844341515,
-      "avg_routing_weight": 0.4933721844341515,
+      "utilization_rate": 0.5221382018196475,
+      "avg_routing_weight": 0.5221382018196475,
       "num_tokens_processed": 1,
       "error_rate": 0.0,
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.0676956,
+      "timestamp": 1755211458.5006957,
+      "expert_id": 0,
+      "utilization_rate": 0.5455243283418101,
+      "avg_routing_weight": 0.5455243283418101,
+      "num_tokens_processed": 1,
+      "error_rate": 0.0,
+      "avg_response_time_ms": 0.0
+    },
+    {
+      "timestamp": 1755211458.503937,
+      "expert_id": 0,
+      "utilization_rate": 0.5032482912868564,
+      "avg_routing_weight": 0.5032482912868564,
+      "num_tokens_processed": 1,
+      "error_rate": 0.0,
+      "avg_response_time_ms": 0.0
+    },
+    {
+      "timestamp": 1755211458.5044217,
+      "expert_id": 0,
+      "utilization_rate": 0.5441144032380416,
+      "avg_routing_weight": 0.5441144032380416,
+      "num_tokens_processed": 1,
+      "error_rate": 0.0,
+      "avg_response_time_ms": 0.0
+    },
+    {
+      "timestamp": 1755211458.5052469,
+      "expert_id": 0,
+      "utilization_rate": 0.496623871124596,
+      "avg_routing_weight": 0.496623871124596,
+      "num_tokens_processed": 1,
+      "error_rate": 0.0,
+      "avg_response_time_ms": 0.0
+    },
+    {
+      "timestamp": 1755211458.5055947,
+      "expert_id": 0,
+      "utilization_rate": 0.5023633034032718,
+      "avg_routing_weight": 0.5023633034032718,
+      "num_tokens_processed": 1,
+      "error_rate": 0.0,
+      "avg_response_time_ms": 0.0
+    },
+    {
+      "timestamp": 1755211458.5062995,
+      "expert_id": 0,
+      "utilization_rate": 0.49719540482596364,
+      "avg_routing_weight": 0.49719540482596364,
+      "num_tokens_processed": 1,
+      "error_rate": 0.0,
+      "avg_response_time_ms": 0.0
+    },
+    {
+      "timestamp": 1755211458.5066252,
+      "expert_id": 0,
+      "utilization_rate": 0.5190138130535211,
+      "avg_routing_weight": 0.5190138130535211,
+      "num_tokens_processed": 1,
+      "error_rate": 0.0,
+      "avg_response_time_ms": 0.0
+    },
+    {
+      "timestamp": 1755211458.5071306,
+      "expert_id": 0,
+      "utilization_rate": 0.5414509926401727,
+      "avg_routing_weight": 0.5414509926401727,
+      "num_tokens_processed": 1,
+      "error_rate": 0.0,
+      "avg_response_time_ms": 0.0
+    },
+    {
+      "timestamp": 1755211458.5080824,
+      "expert_id": 0,
+      "utilization_rate": 0.006099607485381425,
+      "avg_routing_weight": 0.006099607485381425,
+      "num_tokens_processed": 1,
+      "error_rate": 0.0,
+      "avg_response_time_ms": 0.0
+    },
+    {
+      "timestamp": 1755211458.5091023,
+      "expert_id": 0,
+      "utilization_rate": 0.48176349582941697,
+      "avg_routing_weight": 0.48176349582941697,
+      "num_tokens_processed": 1,
+      "error_rate": 0.0,
+      "avg_response_time_ms": 0.0
+    },
+    {
+      "timestamp": 1755211458.5110712,
+      "expert_id": 0,
+      "utilization_rate": 0.5201047505657203,
+      "avg_routing_weight": 0.5201047505657203,
+      "num_tokens_processed": 1,
+      "error_rate": 0.0,
+      "avg_response_time_ms": 0.0
+    },
+    {
+      "timestamp": 1755211458.513065,
+      "expert_id": 0,
+      "utilization_rate": 0.5070611435260498,
+      "avg_routing_weight": 0.5070611435260498,
+      "num_tokens_processed": 1,
+      "error_rate": 0.0,
+      "avg_response_time_ms": 0.0
+    },
+    {
+      "timestamp": 1755211458.514155,
+      "expert_id": 0,
+      "utilization_rate": 0.5159570770218166,
+      "avg_routing_weight": 0.5159570770218166,
+      "num_tokens_processed": 1,
+      "error_rate": 0.0,
+      "avg_response_time_ms": 0.0
+    },
+    {
+      "timestamp": 1755211458.5162127,
+      "expert_id": 0,
+      "utilization_rate": 0.506481467525513,
+      "avg_routing_weight": 0.506481467525513,
+      "num_tokens_processed": 1,
+      "error_rate": 0.0,
+      "avg_response_time_ms": 0.0
+    },
+    {
+      "timestamp": 1755211458.516711,
+      "expert_id": 0,
+      "utilization_rate": 0.524240544470606,
+      "avg_routing_weight": 0.524240544470606,
+      "num_tokens_processed": 1,
+      "error_rate": 0.0,
+      "avg_response_time_ms": 0.0
+    },
+    {
+      "timestamp": 1755211458.517275,
+      "expert_id": 0,
+      "utilization_rate": 0.5187736129028405,
+      "avg_routing_weight": 0.5187736129028405,
+      "num_tokens_processed": 1,
+      "error_rate": 0.0,
+      "avg_response_time_ms": 0.0
+    },
+    {
+      "timestamp": 1755211458.5193574,
+      "expert_id": 0,
+      "utilization_rate": 0.5007111249043288,
+      "avg_routing_weight": 0.5007111249043288,
+      "num_tokens_processed": 1,
+      "error_rate": 0.0,
+      "avg_response_time_ms": 0.0
+    },
+    {
+      "timestamp": 1755211458.519896,
+      "expert_id": 0,
+      "utilization_rate": 0.5030607727024015,
+      "avg_routing_weight": 0.5030607727024015,
+      "num_tokens_processed": 1,
+      "error_rate": 0.0,
+      "avg_response_time_ms": 0.0
+    },
+    {
+      "timestamp": 1755211458.5205102,
+      "expert_id": 0,
+      "utilization_rate": NaN,
+      "avg_routing_weight": NaN,
+      "num_tokens_processed": 1,
+      "error_rate": 0.0,
+      "avg_response_time_ms": 0.0
+    },
+    {
+      "timestamp": 1755211458.4887776,
       "expert_id": 1,
-      "utilization_rate": 0.4628481951166025,
-      "avg_routing_weight": 0.4628481951166025,
+      "utilization_rate": 0.4793569386980424,
+      "avg_routing_weight": 0.4793569386980424,
       "num_tokens_processed": 1,
       "error_rate": 0.0,
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.0687814,
+      "timestamp": 1755211458.489799,
       "expert_id": 1,
-      "utilization_rate": 0.49907058390641224,
-      "avg_routing_weight": 0.49907058390641224,
+      "utilization_rate": 0.5041989916745505,
+      "avg_routing_weight": 0.5041989916745505,
       "num_tokens_processed": 1,
       "error_rate": 0.0,
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.069053,
+      "timestamp": 1755211458.490296,
       "expert_id": 1,
-      "utilization_rate": 0.5486209018015366,
-      "avg_routing_weight": 0.5486209018015366,
+      "utilization_rate": 0.566698320848002,
+      "avg_routing_weight": 0.566698320848002,
       "num_tokens_processed": 1,
       "error_rate": 0.0,
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.0703275,
+      "timestamp": 1755211458.491885,
       "expert_id": 1,
-      "utilization_rate": 0.49622675816515,
-      "avg_routing_weight": 0.49622675816515,
+      "utilization_rate": 0.5301371805840139,
+      "avg_routing_weight": 0.5301371805840139,
       "num_tokens_processed": 1,
       "error_rate": 0.0,
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.0715625,
+      "timestamp": 1755211458.492637,
+      "expert_id": 1,
+      "utilization_rate": 0.48133927673413346,
+      "avg_routing_weight": 0.48133927673413346,
+      "num_tokens_processed": 1,
+      "error_rate": 0.0,
+      "avg_response_time_ms": 0.0
+    },
+    {
+      "timestamp": 1755211458.4929364,
+      "expert_id": 1,
+      "utilization_rate": 0.5348400341751648,
+      "avg_routing_weight": 0.5348400341751648,
+      "num_tokens_processed": 1,
+      "error_rate": 0.0,
+      "avg_response_time_ms": 0.0
+    },
+    {
+      "timestamp": 1755211458.4959948,
+      "expert_id": 1,
+      "utilization_rate": 0.5164988132853537,
+      "avg_routing_weight": 0.5164988132853537,
+      "num_tokens_processed": 1,
+      "error_rate": 0.0,
+      "avg_response_time_ms": 0.0
+    },
+    {
+      "timestamp": 1755211458.497616,
+      "expert_id": 1,
+      "utilization_rate": 0.5120508836386771,
+      "avg_routing_weight": 0.5120508836386771,
+      "num_tokens_processed": 1,
+      "error_rate": 0.0,
+      "avg_response_time_ms": 0.0
+    },
+    {
+      "timestamp": 1755211458.4984293,
       "expert_id": 1,
       "utilization_rate": NaN,
       "avg_routing_weight": NaN,
@@ -746,151 +836,124 @@
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.072337,
+      "timestamp": 1755211458.4999213,
       "expert_id": 1,
-      "utilization_rate": 0.5334257462070563,
-      "avg_routing_weight": 0.5334257462070563,
+      "utilization_rate": 0.49101176762539633,
+      "avg_routing_weight": 0.49101176762539633,
       "num_tokens_processed": 1,
       "error_rate": 0.0,
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.0738494,
+      "timestamp": 1755211458.5012593,
       "expert_id": 1,
-      "utilization_rate": 0.5133998906348042,
-      "avg_routing_weight": 0.5133998906348042,
+      "utilization_rate": 0.5073124744223346,
+      "avg_routing_weight": 0.5073124744223346,
       "num_tokens_processed": 1,
       "error_rate": 0.0,
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.0743065,
+      "timestamp": 1755211458.507342,
       "expert_id": 1,
-      "utilization_rate": 0.5248632389594092,
-      "avg_routing_weight": 0.5248632389594092,
+      "utilization_rate": 0.4585490073598273,
+      "avg_routing_weight": 0.4585490073598273,
       "num_tokens_processed": 1,
       "error_rate": 0.0,
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.0748017,
+      "timestamp": 1755211458.5105639,
       "expert_id": 1,
-      "utilization_rate": 0.5224981769777804,
-      "avg_routing_weight": 0.5224981769777804,
+      "utilization_rate": 0.5443804628955261,
+      "avg_routing_weight": 0.5443804628955261,
       "num_tokens_processed": 1,
       "error_rate": 0.0,
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.0766087,
+      "timestamp": 1755211458.5117958,
       "expert_id": 1,
-      "utilization_rate": 0.47308695055064515,
-      "avg_routing_weight": 0.47308695055064515,
+      "utilization_rate": 0.4923430452276405,
+      "avg_routing_weight": 0.4923430452276405,
       "num_tokens_processed": 1,
       "error_rate": 0.0,
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.0773716,
+      "timestamp": 1755211458.5122788,
       "expert_id": 1,
-      "utilization_rate": 0.5080286661748055,
-      "avg_routing_weight": 0.5080286661748055,
+      "utilization_rate": 0.47964545686888926,
+      "avg_routing_weight": 0.47964545686888926,
       "num_tokens_processed": 1,
       "error_rate": 0.0,
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.0780647,
+      "timestamp": 1755211458.5133479,
       "expert_id": 1,
-      "utilization_rate": 0.48630197709144085,
-      "avg_routing_weight": 0.48630197709144085,
+      "utilization_rate": 0.4929388564739502,
+      "avg_routing_weight": 0.4929388564739502,
       "num_tokens_processed": 1,
       "error_rate": 0.0,
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.079673,
+      "timestamp": 1755211458.5136666,
       "expert_id": 1,
-      "utilization_rate": 0.5072383772144777,
-      "avg_routing_weight": 0.5072383772144777,
+      "utilization_rate": 0.5532083923507785,
+      "avg_routing_weight": 0.5532083923507785,
       "num_tokens_processed": 1,
       "error_rate": 0.0,
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.0820067,
+      "timestamp": 1755211458.5143473,
       "expert_id": 1,
-      "utilization_rate": 0.48893092205688005,
-      "avg_routing_weight": 0.48893092205688005,
+      "utilization_rate": 0.48404292297818335,
+      "avg_routing_weight": 0.48404292297818335,
       "num_tokens_processed": 1,
       "error_rate": 0.0,
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.0833268,
+      "timestamp": 1755211458.51571,
       "expert_id": 1,
-      "utilization_rate": 0.5189879783614073,
-      "avg_routing_weight": 0.5189879783614073,
+      "utilization_rate": 0.5247450811840617,
+      "avg_routing_weight": 0.5247450811840617,
       "num_tokens_processed": 1,
       "error_rate": 0.0,
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.0843012,
+      "timestamp": 1755211458.516905,
       "expert_id": 1,
-      "utilization_rate": 0.5074086187292582,
-      "avg_routing_weight": 0.5074086187292582,
+      "utilization_rate": 0.475759455529394,
+      "avg_routing_weight": 0.475759455529394,
       "num_tokens_processed": 1,
       "error_rate": 0.0,
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.0852828,
+      "timestamp": 1755211458.5181653,
       "expert_id": 1,
-      "utilization_rate": 0.5012100284483515,
-      "avg_routing_weight": 0.5012100284483515,
+      "utilization_rate": 0.008683215290234818,
+      "avg_routing_weight": 0.008683215290234818,
       "num_tokens_processed": 1,
       "error_rate": 0.0,
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.0880911,
+      "timestamp": 1755211458.519594,
       "expert_id": 1,
-      "utilization_rate": 0.49072821658197285,
-      "avg_routing_weight": 0.49072821658197285,
+      "utilization_rate": 0.49928887509567116,
+      "avg_routing_weight": 0.49928887509567116,
       "num_tokens_processed": 1,
       "error_rate": 0.0,
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.089424,
-      "expert_id": 1,
-      "utilization_rate": 0.5178982172057509,
-      "avg_routing_weight": 0.5178982172057509,
-      "num_tokens_processed": 1,
-      "error_rate": 0.0,
-      "avg_response_time_ms": 0.0
-    },
-    {
-      "timestamp": 1755057038.0902123,
-      "expert_id": 1,
-      "utilization_rate": 0.005395321608789781,
-      "avg_routing_weight": 0.005395321608789781,
-      "num_tokens_processed": 1,
-      "error_rate": 0.0,
-      "avg_response_time_ms": 0.0
-    },
-    {
-      "timestamp": 1755057038.0905242,
-      "expert_id": 1,
-      "utilization_rate": 0.514769442987711,
-      "avg_routing_weight": 0.514769442987711,
-      "num_tokens_processed": 1,
-      "error_rate": 0.0,
-      "avg_response_time_ms": 0.0
-    },
-    {
-      "timestamp": 1755057038.0914066,
+      "timestamp": 1755211458.5207083,
       "expert_id": 1,
       "utilization_rate": NaN,
       "avg_routing_weight": NaN,
@@ -899,469 +962,406 @@
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.0927682,
+      "timestamp": 1755211458.5212648,
       "expert_id": 1,
-      "utilization_rate": 0.4979471925714664,
-      "avg_routing_weight": 0.4979471925714664,
+      "utilization_rate": 0.4812432174959113,
+      "avg_routing_weight": 0.4812432174959113,
       "num_tokens_processed": 1,
       "error_rate": 0.0,
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.0941777,
-      "expert_id": 1,
-      "utilization_rate": 0.535758960468976,
-      "avg_routing_weight": 0.535758960468976,
-      "num_tokens_processed": 1,
-      "error_rate": 0.0,
-      "avg_response_time_ms": 0.0
-    },
-    {
-      "timestamp": 1755057038.0951803,
-      "expert_id": 1,
-      "utilization_rate": 0.5083227518059397,
-      "avg_routing_weight": 0.5083227518059397,
-      "num_tokens_processed": 1,
-      "error_rate": 0.0,
-      "avg_response_time_ms": 0.0
-    },
-    {
-      "timestamp": 1755057038.0963094,
-      "expert_id": 1,
-      "utilization_rate": 0.4798998082938643,
-      "avg_routing_weight": 0.4798998082938643,
-      "num_tokens_processed": 1,
-      "error_rate": 0.0,
-      "avg_response_time_ms": 0.0
-    },
-    {
-      "timestamp": 1755057038.0680573,
-      "expert_id": 2,
-      "utilization_rate": 0.5021154975848549,
-      "avg_routing_weight": 0.5021154975848549,
-      "num_tokens_processed": 1,
-      "error_rate": 0.0,
-      "avg_response_time_ms": 0.0
-    },
-    {
-      "timestamp": 1755057038.0685925,
-      "expert_id": 2,
-      "utilization_rate": 0.5009294160935878,
-      "avg_routing_weight": 0.5009294160935878,
-      "num_tokens_processed": 1,
-      "error_rate": 0.0,
-      "avg_response_time_ms": 0.0
-    },
-    {
-      "timestamp": 1755057038.0698347,
-      "expert_id": 2,
-      "utilization_rate": 0.4721977449161267,
-      "avg_routing_weight": 0.4721977449161267,
-      "num_tokens_processed": 1,
-      "error_rate": 0.0,
-      "avg_response_time_ms": 0.0
-    },
-    {
-      "timestamp": 1755057038.0725675,
-      "expert_id": 2,
-      "utilization_rate": 0.46657425379294365,
-      "avg_routing_weight": 0.46657425379294365,
-      "num_tokens_processed": 1,
-      "error_rate": 0.0,
-      "avg_response_time_ms": 0.0
-    },
-    {
-      "timestamp": 1755057038.0730422,
-      "expert_id": 2,
-      "utilization_rate": 0.4895154232776218,
-      "avg_routing_weight": 0.4895154232776218,
-      "num_tokens_processed": 1,
-      "error_rate": 0.0,
-      "avg_response_time_ms": 0.0
-    },
-    {
-      "timestamp": 1755057038.0733552,
-      "expert_id": 2,
-      "utilization_rate": 0.5009696824101733,
-      "avg_routing_weight": 0.5009696824101733,
-      "num_tokens_processed": 1,
-      "error_rate": 0.0,
-      "avg_response_time_ms": 0.0
-    },
-    {
-      "timestamp": 1755057038.076105,
-      "expert_id": 2,
-      "utilization_rate": 0.4968446736695481,
-      "avg_routing_weight": 0.4968446736695481,
-      "num_tokens_processed": 1,
-      "error_rate": 0.0,
-      "avg_response_time_ms": 0.0
-    },
-    {
-      "timestamp": 1755057038.0763712,
-      "expert_id": 2,
-      "utilization_rate": 0.5269130494493548,
-      "avg_routing_weight": 0.5269130494493548,
-      "num_tokens_processed": 1,
-      "error_rate": 0.0,
-      "avg_response_time_ms": 0.0
-    },
-    {
-      "timestamp": 1755057038.0770962,
-      "expert_id": 2,
-      "utilization_rate": 0.478843201488081,
-      "avg_routing_weight": 0.478843201488081,
-      "num_tokens_processed": 1,
-      "error_rate": 0.0,
-      "avg_response_time_ms": 0.0
-    },
-    {
-      "timestamp": 1755057038.0775952,
-      "expert_id": 2,
-      "utilization_rate": 0.49197133382519453,
-      "avg_routing_weight": 0.49197133382519453,
-      "num_tokens_processed": 1,
-      "error_rate": 0.0,
-      "avg_response_time_ms": 0.0
-    },
-    {
-      "timestamp": 1755057038.0803604,
-      "expert_id": 2,
-      "utilization_rate": 0.4500251076659047,
-      "avg_routing_weight": 0.4500251076659047,
-      "num_tokens_processed": 1,
-      "error_rate": 0.0,
-      "avg_response_time_ms": 0.0
-    },
-    {
-      "timestamp": 1755057038.0806787,
-      "expert_id": 2,
-      "utilization_rate": 0.519108356566741,
-      "avg_routing_weight": 0.519108356566741,
-      "num_tokens_processed": 1,
-      "error_rate": 0.0,
-      "avg_response_time_ms": 0.0
-    },
-    {
-      "timestamp": 1755057038.0825062,
-      "expert_id": 2,
-      "utilization_rate": 0.4782911456734066,
-      "avg_routing_weight": 0.4782911456734066,
-      "num_tokens_processed": 1,
-      "error_rate": 0.0,
-      "avg_response_time_ms": 0.0
-    },
-    {
-      "timestamp": 1755057038.0845246,
-      "expert_id": 2,
-      "utilization_rate": 0.4925913812707418,
-      "avg_routing_weight": 0.4925913812707418,
-      "num_tokens_processed": 1,
-      "error_rate": 0.0,
-      "avg_response_time_ms": 0.0
-    },
-    {
-      "timestamp": 1755057038.0855045,
-      "expert_id": 2,
-      "utilization_rate": 0.4987899715516484,
-      "avg_routing_weight": 0.4987899715516484,
-      "num_tokens_processed": 1,
-      "error_rate": 0.0,
-      "avg_response_time_ms": 0.0
-    },
-    {
-      "timestamp": 1755057038.087897,
-      "expert_id": 2,
-      "utilization_rate": 0.5092717834180271,
-      "avg_routing_weight": 0.5092717834180271,
-      "num_tokens_processed": 1,
-      "error_rate": 0.0,
-      "avg_response_time_ms": 0.0
-    },
-    {
-      "timestamp": 1755057038.0884178,
-      "expert_id": 2,
-      "utilization_rate": 0.5073372486860391,
-      "avg_routing_weight": 0.5073372486860391,
-      "num_tokens_processed": 1,
-      "error_rate": 0.0,
-      "avg_response_time_ms": 0.0
-    },
-    {
-      "timestamp": 1755057038.090747,
-      "expert_id": 2,
-      "utilization_rate": 0.485230557012289,
-      "avg_routing_weight": 0.485230557012289,
-      "num_tokens_processed": 1,
-      "error_rate": 0.0,
-      "avg_response_time_ms": 0.0
-    },
-    {
-      "timestamp": 1755057038.0925696,
-      "expert_id": 2,
-      "utilization_rate": 0.5020528074285335,
-      "avg_routing_weight": 0.5020528074285335,
-      "num_tokens_processed": 1,
-      "error_rate": 0.0,
-      "avg_response_time_ms": 0.0
-    },
-    {
-      "timestamp": 1755057038.0933692,
-      "expert_id": 2,
-      "utilization_rate": 0.050375148482402037,
-      "avg_routing_weight": 0.050375148482402037,
-      "num_tokens_processed": 1,
-      "error_rate": 0.0,
-      "avg_response_time_ms": 0.0
-    },
-    {
-      "timestamp": 1755057038.0943747,
-      "expert_id": 2,
-      "utilization_rate": 0.464241039531024,
-      "avg_routing_weight": 0.464241039531024,
-      "num_tokens_processed": 1,
-      "error_rate": 0.0,
-      "avg_response_time_ms": 0.0
-    },
-    {
-      "timestamp": 1755057038.094681,
-      "expert_id": 2,
-      "utilization_rate": 0.5086115023117539,
-      "avg_routing_weight": 0.5086115023117539,
-      "num_tokens_processed": 1,
-      "error_rate": 0.0,
-      "avg_response_time_ms": 0.0
-    },
-    {
-      "timestamp": 1755057038.095855,
-      "expert_id": 2,
-      "utilization_rate": 0.4702762423796557,
-      "avg_routing_weight": 0.4702762423796557,
-      "num_tokens_processed": 1,
-      "error_rate": 0.0,
-      "avg_response_time_ms": 0.0
-    },
-    {
-      "timestamp": 1755057038.0961165,
-      "expert_id": 2,
-      "utilization_rate": 0.5201001917061356,
-      "avg_routing_weight": 0.5201001917061356,
-      "num_tokens_processed": 1,
-      "error_rate": 0.0,
-      "avg_response_time_ms": 0.0
-    },
-    {
-      "timestamp": 1755057038.0692513,
+      "timestamp": 1755211458.4894345,
       "expert_id": 3,
-      "utilization_rate": 0.45137909819846356,
-      "avg_routing_weight": 0.45137909819846356,
+      "utilization_rate": 0.48061329161535893,
+      "avg_routing_weight": 0.48061329161535893,
       "num_tokens_processed": 1,
       "error_rate": 0.0,
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.0701272,
+      "timestamp": 1755211458.4900048,
       "expert_id": 3,
-      "utilization_rate": 0.5037732418348501,
-      "avg_routing_weight": 0.5037732418348501,
+      "utilization_rate": 0.49580100832544954,
+      "avg_routing_weight": 0.49580100832544954,
       "num_tokens_processed": 1,
       "error_rate": 0.0,
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.0708516,
+      "timestamp": 1755211458.4967275,
       "expert_id": 3,
-      "utilization_rate": 0.4688661141176483,
-      "avg_routing_weight": 0.4688661141176483,
+      "utilization_rate": 0.46741894873275003,
+      "avg_routing_weight": 0.46741894873275003,
       "num_tokens_processed": 1,
       "error_rate": 0.0,
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.0720496,
+      "timestamp": 1755211458.4978137,
       "expert_id": 3,
-      "utilization_rate": 0.45437181893694434,
-      "avg_routing_weight": 0.45437181893694434,
+      "utilization_rate": 0.4879491163613229,
+      "avg_routing_weight": 0.4879491163613229,
       "num_tokens_processed": 1,
       "error_rate": 0.0,
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.0728498,
+      "timestamp": 1755211458.5008945,
       "expert_id": 3,
-      "utilization_rate": 0.5104845767223782,
-      "avg_routing_weight": 0.5104845767223782,
+      "utilization_rate": 0.45447567165818986,
+      "avg_routing_weight": 0.45447567165818986,
       "num_tokens_processed": 1,
       "error_rate": 0.0,
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.073574,
+      "timestamp": 1755211458.5036268,
       "expert_id": 3,
-      "utilization_rate": 0.49903031758982674,
-      "avg_routing_weight": 0.49903031758982674,
+      "utilization_rate": 0.4591706060406351,
+      "avg_routing_weight": 0.4591706060406351,
       "num_tokens_processed": 1,
       "error_rate": 0.0,
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.0740354,
+      "timestamp": 1755211458.504139,
       "expert_id": 3,
-      "utilization_rate": 0.48660010936519577,
-      "avg_routing_weight": 0.48660010936519577,
+      "utilization_rate": 0.4967517087131436,
+      "avg_routing_weight": 0.4967517087131436,
       "num_tokens_processed": 1,
       "error_rate": 0.0,
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.0755928,
+      "timestamp": 1755211458.5049775,
       "expert_id": 3,
-      "utilization_rate": 0.4899358799813538,
-      "avg_routing_weight": 0.4899358799813538,
+      "utilization_rate": 0.503376128875404,
+      "avg_routing_weight": 0.503376128875404,
       "num_tokens_processed": 1,
       "error_rate": 0.0,
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.0778728,
+      "timestamp": 1755211458.505796,
       "expert_id": 3,
-      "utilization_rate": 0.513698022908559,
-      "avg_routing_weight": 0.513698022908559,
+      "utilization_rate": 0.49763669659672816,
+      "avg_routing_weight": 0.49763669659672816,
       "num_tokens_processed": 1,
       "error_rate": 0.0,
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.0810535,
+      "timestamp": 1755211458.5078733,
       "expert_id": 3,
-      "utilization_rate": 0.4808916434332589,
-      "avg_routing_weight": 0.4808916434332589,
+      "utilization_rate": 0.9939003925146185,
+      "avg_routing_weight": 0.9939003925146185,
       "num_tokens_processed": 1,
       "error_rate": 0.0,
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.081334,
+      "timestamp": 1755211458.5095572,
       "expert_id": 3,
-      "utilization_rate": 0.5216358040853118,
-      "avg_routing_weight": 0.5216358040853118,
+      "utilization_rate": 0.5144432010127508,
+      "avg_routing_weight": 0.5144432010127508,
       "num_tokens_processed": 1,
       "error_rate": 0.0,
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.0818233,
+      "timestamp": 1755211458.5100524,
       "expert_id": 3,
-      "utilization_rate": 0.51106907794312,
-      "avg_routing_weight": 0.51106907794312,
+      "utilization_rate": 0.5222903533636192,
+      "avg_routing_weight": 0.5222903533636192,
       "num_tokens_processed": 1,
       "error_rate": 0.0,
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.0829763,
+      "timestamp": 1755211458.5107603,
       "expert_id": 3,
-      "utilization_rate": 0.4905062042046438,
-      "avg_routing_weight": 0.4905062042046438,
+      "utilization_rate": 0.4556195371044739,
+      "avg_routing_weight": 0.4556195371044739,
       "num_tokens_processed": 1,
       "error_rate": 0.0,
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.0840268,
+      "timestamp": 1755211458.5112884,
       "expert_id": 3,
-      "utilization_rate": 0.461591181552109,
-      "avg_routing_weight": 0.461591181552109,
+      "utilization_rate": 0.4798952494342798,
+      "avg_routing_weight": 0.4798952494342798,
       "num_tokens_processed": 1,
       "error_rate": 0.0,
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.0848174,
+      "timestamp": 1755211458.5120845,
       "expert_id": 3,
-      "utilization_rate": 0.5138882436730998,
-      "avg_routing_weight": 0.5138882436730998,
+      "utilization_rate": 0.5203545431311107,
+      "avg_routing_weight": 0.5203545431311107,
       "num_tokens_processed": 1,
       "error_rate": 0.0,
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.0857928,
+      "timestamp": 1755211458.512778,
       "expert_id": 3,
-      "utilization_rate": 0.5170008503404019,
-      "avg_routing_weight": 0.5170008503404019,
+      "utilization_rate": 0.47060999011305915,
+      "avg_routing_weight": 0.47060999011305915,
       "num_tokens_processed": 1,
       "error_rate": 0.0,
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.0886352,
+      "timestamp": 1755211458.52011,
       "expert_id": 3,
-      "utilization_rate": 0.4926627513139609,
-      "avg_routing_weight": 0.4926627513139609,
+      "utilization_rate": 0.4969392272975985,
+      "avg_routing_weight": 0.4969392272975985,
       "num_tokens_processed": 1,
       "error_rate": 0.0,
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.0891097,
-      "expert_id": 3,
-      "utilization_rate": 0.465013676320397,
-      "avg_routing_weight": 0.465013676320397,
+      "timestamp": 1755211458.4908223,
+      "expert_id": 2,
+      "utilization_rate": 0.5104045942223255,
+      "avg_routing_weight": 0.5104045942223255,
       "num_tokens_processed": 1,
       "error_rate": 0.0,
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.0896199,
-      "expert_id": 3,
-      "utilization_rate": 0.4821017827942491,
-      "avg_routing_weight": 0.4821017827942491,
+      "timestamp": 1755211458.4913225,
+      "expert_id": 2,
+      "utilization_rate": 0.5028397998008702,
+      "avg_routing_weight": 0.5028397998008702,
       "num_tokens_processed": 1,
       "error_rate": 0.0,
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.0900104,
-      "expert_id": 3,
-      "utilization_rate": 0.9946046783912101,
-      "avg_routing_weight": 0.9946046783912101,
+      "timestamp": 1755211458.4920955,
+      "expert_id": 2,
+      "utilization_rate": 0.46986281941598607,
+      "avg_routing_weight": 0.46986281941598607,
       "num_tokens_processed": 1,
       "error_rate": 0.0,
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.0938983,
-      "expert_id": 3,
-      "utilization_rate": 0.4650098693574014,
-      "avg_routing_weight": 0.4650098693574014,
+      "timestamp": 1755211458.4923987,
+      "expert_id": 2,
+      "utilization_rate": 0.5186607232658665,
+      "avg_routing_weight": 0.5186607232658665,
       "num_tokens_processed": 1,
       "error_rate": 0.0,
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.094868,
-      "expert_id": 3,
-      "utilization_rate": 0.49138849768824616,
-      "avg_routing_weight": 0.49138849768824616,
+      "timestamp": 1755211458.4954083,
+      "expert_id": 2,
+      "utilization_rate": 0.5273899330504649,
+      "avg_routing_weight": 0.5273899330504649,
       "num_tokens_processed": 1,
       "error_rate": 0.0,
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.0956695,
-      "expert_id": 3,
-      "utilization_rate": 0.5297237576203444,
-      "avg_routing_weight": 0.5297237576203444,
+      "timestamp": 1755211458.4961908,
+      "expert_id": 2,
+      "utilization_rate": 0.48350118671464626,
+      "avg_routing_weight": 0.48350118671464626,
       "num_tokens_processed": 1,
       "error_rate": 0.0,
       "avg_response_time_ms": 0.0
     },
     {
-      "timestamp": 1755057038.096603,
-      "expert_id": 3,
-      "utilization_rate": 0.5066278155658486,
-      "avg_routing_weight": 0.5066278155658486,
+      "timestamp": 1755211458.4965174,
+      "expert_id": 2,
+      "utilization_rate": 0.53258105126725,
+      "avg_routing_weight": 0.53258105126725,
+      "num_tokens_processed": 1,
+      "error_rate": 0.0,
+      "avg_response_time_ms": 0.0
+    },
+    {
+      "timestamp": 1755211458.4972923,
+      "expert_id": 2,
+      "utilization_rate": 0.47848764843202185,
+      "avg_routing_weight": 0.47848764843202185,
+      "num_tokens_processed": 1,
+      "error_rate": 0.0,
+      "avg_response_time_ms": 0.0
+    },
+    {
+      "timestamp": 1755211458.4989457,
+      "expert_id": 2,
+      "utilization_rate": 0.4984184750176562,
+      "avg_routing_weight": 0.4984184750176562,
+      "num_tokens_processed": 1,
+      "error_rate": 0.0,
+      "avg_response_time_ms": 0.0
+    },
+    {
+      "timestamp": 1755211458.4992323,
+      "expert_id": 2,
+      "utilization_rate": 0.5501310572645213,
+      "avg_routing_weight": 0.5501310572645213,
+      "num_tokens_processed": 1,
+      "error_rate": 0.0,
+      "avg_response_time_ms": 0.0
+    },
+    {
+      "timestamp": 1755211458.500397,
+      "expert_id": 2,
+      "utilization_rate": 0.4778617981803524,
+      "avg_routing_weight": 0.4778617981803524,
+      "num_tokens_processed": 1,
+      "error_rate": 0.0,
+      "avg_response_time_ms": 0.0
+    },
+    {
+      "timestamp": 1755211458.5014565,
+      "expert_id": 2,
+      "utilization_rate": 0.4926875255776654,
+      "avg_routing_weight": 0.4926875255776654,
+      "num_tokens_processed": 1,
+      "error_rate": 0.0,
+      "avg_response_time_ms": 0.0
+    },
+    {
+      "timestamp": 1755211458.5033746,
+      "expert_id": 2,
+      "utilization_rate": 0.5408293939593649,
+      "avg_routing_weight": 0.5408293939593649,
+      "num_tokens_processed": 1,
+      "error_rate": 0.0,
+      "avg_response_time_ms": 0.0
+    },
+    {
+      "timestamp": 1755211458.5046484,
+      "expert_id": 2,
+      "utilization_rate": 0.4558855967619584,
+      "avg_routing_weight": 0.4558855967619584,
+      "num_tokens_processed": 1,
+      "error_rate": 0.0,
+      "avg_response_time_ms": 0.0
+    },
+    {
+      "timestamp": 1755211458.506096,
+      "expert_id": 2,
+      "utilization_rate": 0.5028045951740363,
+      "avg_routing_weight": 0.5028045951740363,
+      "num_tokens_processed": 1,
+      "error_rate": 0.0,
+      "avg_response_time_ms": 0.0
+    },
+    {
+      "timestamp": 1755211458.5068295,
+      "expert_id": 2,
+      "utilization_rate": 0.48098618694647893,
+      "avg_routing_weight": 0.48098618694647893,
+      "num_tokens_processed": 1,
+      "error_rate": 0.0,
+      "avg_response_time_ms": 0.0
+    },
+    {
+      "timestamp": 1755211458.5087698,
+      "expert_id": 2,
+      "utilization_rate": 0.518236504170583,
+      "avg_routing_weight": 0.518236504170583,
+      "num_tokens_processed": 1,
+      "error_rate": 0.0,
+      "avg_response_time_ms": 0.0
+    },
+    {
+      "timestamp": 1755211458.5097566,
+      "expert_id": 2,
+      "utilization_rate": 0.4855567989872491,
+      "avg_routing_weight": 0.4855567989872491,
+      "num_tokens_processed": 1,
+      "error_rate": 0.0,
+      "avg_response_time_ms": 0.0
+    },
+    {
+      "timestamp": 1755211458.5102456,
+      "expert_id": 2,
+      "utilization_rate": 0.4777096466363809,
+      "avg_routing_weight": 0.4777096466363809,
+      "num_tokens_processed": 1,
+      "error_rate": 0.0,
+      "avg_response_time_ms": 0.0
+    },
+    {
+      "timestamp": 1755211458.5115998,
+      "expert_id": 2,
+      "utilization_rate": 0.5076569547723595,
+      "avg_routing_weight": 0.5076569547723595,
+      "num_tokens_processed": 1,
+      "error_rate": 0.0,
+      "avg_response_time_ms": 0.0
+    },
+    {
+      "timestamp": 1755211458.5125835,
+      "expert_id": 2,
+      "utilization_rate": 0.5293900098869408,
+      "avg_routing_weight": 0.5293900098869408,
+      "num_tokens_processed": 1,
+      "error_rate": 0.0,
+      "avg_response_time_ms": 0.0
+    },
+    {
+      "timestamp": 1755211458.513862,
+      "expert_id": 2,
+      "utilization_rate": 0.4467916076492215,
+      "avg_routing_weight": 0.4467916076492215,
+      "num_tokens_processed": 1,
+      "error_rate": 0.0,
+      "avg_response_time_ms": 0.0
+    },
+    {
+      "timestamp": 1755211458.5159104,
+      "expert_id": 2,
+      "utilization_rate": 0.4752549188159383,
+      "avg_routing_weight": 0.4752549188159383,
+      "num_tokens_processed": 1,
+      "error_rate": 0.0,
+      "avg_response_time_ms": 0.0
+    },
+    {
+      "timestamp": 1755211458.5164053,
+      "expert_id": 2,
+      "utilization_rate": 0.493518532474487,
+      "avg_routing_weight": 0.493518532474487,
+      "num_tokens_processed": 1,
+      "error_rate": 0.0,
+      "avg_response_time_ms": 0.0
+    },
+    {
+      "timestamp": 1755211458.5174718,
+      "expert_id": 2,
+      "utilization_rate": 0.48122638709715937,
+      "avg_routing_weight": 0.48122638709715937,
+      "num_tokens_processed": 1,
+      "error_rate": 0.0,
+      "avg_response_time_ms": 0.0
+    },
+    {
+      "timestamp": 1755211458.517961,
+      "expert_id": 2,
+      "utilization_rate": 0.9913167847097653,
+      "avg_routing_weight": 0.9913167847097653,
+      "num_tokens_processed": 1,
+      "error_rate": 0.0,
+      "avg_response_time_ms": 0.0
+    },
+    {
+      "timestamp": 1755211458.521002,
+      "expert_id": 2,
+      "utilization_rate": 0.5187567825040886,
+      "avg_routing_weight": 0.5187567825040886,
       "num_tokens_processed": 1,
       "error_rate": 0.0,
       "avg_response_time_ms": 0.0
