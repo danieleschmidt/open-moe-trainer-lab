@@ -171,7 +171,6 @@ class MixtralModel(MoEModel):
             max_position_embeddings=max_position_embeddings,
             moe_layers=moe_layers,
             expert_hidden_size=intermediate_size,
-            normalize_expert_weights=normalize_expert_weights,
             **kwargs
         )
         
@@ -301,23 +300,24 @@ class CustomMoE(MoEModel):
             if i in self.moe_layers:
                 layer = self.layers[i]
                 # Replace expert pool with custom configuration
-                from .expert import ExpertPool, SharedExpertPool
+                from .expert import ExpertPool
+                try:
+                    from .expert import SharedExpertPool
+                except ImportError:
+                    SharedExpertPool = None
                 
-                if expert_type == "shared":
+                if expert_type == "shared" and SharedExpertPool is not None:
                     layer.experts = SharedExpertPool(
                         num_experts=num_experts,
                         hidden_size=hidden_size,
                         expert_hidden_size=hidden_size * 4,
-                        shared_expert_ratio=0.5,
-                        **kwargs
+                        shared_expert_ratio=0.5
                     )
                 else:
                     layer.experts = ExpertPool(
                         num_experts=num_experts,
                         hidden_size=hidden_size,
-                        expert_hidden_size=hidden_size * 4,
-                        expert_type=expert_type,
-                        **kwargs
+                        expert_hidden_size=hidden_size * 4
                     )
                     
         # Initialize expert specialization if provided

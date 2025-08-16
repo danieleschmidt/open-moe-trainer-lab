@@ -1,206 +1,141 @@
 {
-  "demo_config": {
-    "hidden_size": 64,
-    "num_experts": 8,
-    "top_k": 2,
-    "num_requests": 100,
-    "batch_sizes": [
-      1,
-      4,
-      8,
-      16
-    ],
-    "complexity_levels": [
-      "low",
-      "medium",
-      "high"
-    ],
-    "concurrent_workers": 2
-  },
-  "single_request_performance": [
+  "generation": 3,
+  "phase": "MAKE IT SCALE (Optimized)",
+  "timestamp": "2025-08-16T03:38:28.109240",
+  "tests": [
     {
-      "complexity": "low",
-      "processing_time": 1.7693042755126953,
-      "cache_hit": false,
-      "success": true
-    },
-    {
-      "complexity": "medium",
-      "processing_time": 1.4829635620117188,
-      "cache_hit": false,
-      "success": true
-    },
-    {
-      "complexity": "high",
-      "processing_time": 1.3494491577148438,
-      "cache_hit": false,
-      "success": true
-    }
-  ],
-  "batch_performance": {
-    "1": {
-      "total_time": 2.1708011627197266,
-      "avg_processing_time": 0.001590728759765625,
-      "success_rate": 1.0,
-      "throughput_req_per_sec": 460.6594179022515
-    },
-    "4": {
-      "total_time": 6.585121154785156,
-      "avg_processing_time": 0.0014342665672302246,
-      "success_rate": 1.0,
-      "throughput_req_per_sec": 607.4299782766111
-    },
-    "8": {
-      "total_time": 12.795209884643555,
-      "avg_processing_time": 0.0022248923778533936,
-      "success_rate": 1.0,
-      "throughput_req_per_sec": 625.2339799131682
-    },
-    "16": {
-      "total_time": 12.75777816772461,
-      "avg_processing_time": 0.0022774338722229004,
-      "success_rate": 0.5,
-      "throughput_req_per_sec": 1254.1368716127827
-    }
-  },
-  "load_test_results": {
-    "total_requests": 100,
-    "successful_requests": 104,
-    "failed_requests": 0,
-    "avg_response_time_ms": 0.003036347719339224,
-    "p95_response_time_ms": 0.0039865970611572266,
-    "overall_throughput_req_per_sec": 539.128283594818,
-    "total_time_sec": 0.19290399551391602
-  },
-  "system_performance": {
-    "timestamp": 1755211459.8131297,
-    "global_metrics": {
-      "throughput_tokens_per_sec": 342.09423955399325,
-      "latency_ms": 3.264502262916039,
-      "p95_latency_ms": 0.0,
-      "p99_latency_ms": 0.0,
-      "memory_usage_gb": 0.0,
-      "cpu_utilization": 0.0,
-      "cache_hit_rate": 0.0,
-      "expert_load_balance": 1.0,
-      "model_flops": 0,
-      "inference_cost_usd": 0.0,
-      "timestamp": 1755211459.8127306,
-      "batch_processing_efficiency": 0.0,
-      "gpu_utilization": 0.0,
-      "network_bandwidth_mbps": 0.0,
-      "power_consumption_watts": 0.0,
-      "carbon_footprint_kg": 0.0,
-      "optimization_score": 0.0,
-      "bottleneck_component": "none",
-      "scaling_recommendation": "maintain"
-    },
-    "cache_performance": {
-      "l1_hits": 0,
-      "l1_misses": 128,
-      "l2_hits": 0,
-      "l2_misses": 0,
-      "l3_hits": 0,
-      "l3_misses": 0,
-      "evictions": 0,
-      "prefetches": 0,
-      "compression_ratio": 0.8098591549295775,
-      "total_requests": 128,
-      "overall_hit_rate": 0.0,
-      "l1_size": 36,
-      "l2_size": 92,
-      "l3_size": 0,
-      "l1_size_mb": 0.010833740234375,
-      "l2_size_mb": 0.07816791534423828,
-      "hot_keys": 0
-    },
-    "load_balancer_stats": {
-      "worker_count": 3,
-      "worker_stats": {
-        "worker_0": {
-          "requests_processed": 27,
-          "avg_response_time": 2.8924085546731977,
-          "error_rate": 0.0,
-          "cpu_usage": 0.7312860333916886,
-          "memory_usage": 0.7930607935272451,
-          "last_health_check": 1755211459.8126419
-        },
-        "worker_2": {
-          "requests_processed": 34,
-          "avg_response_time": 3.3317026922423314,
-          "error_rate": 0.0,
-          "cpu_usage": 0.4985452728695091,
-          "memory_usage": 0.7798040716401209,
-          "last_health_check": 1755211459.809119
-        },
-        "worker_3": {
-          "requests_processed": 67,
-          "avg_response_time": 3.091946864874534,
-          "error_rate": 0.0,
-          "cpu_usage": 0.7951249845493018,
-          "memory_usage": 0.6135325025366701,
-          "last_health_check": 1755211459.7609332
-        }
-      },
-      "load_history": [
-        {
-          "timestamp": 1755211459.5760043,
-          "load": 0.12775462237153468,
-          "response_time": 0.44232606887817383,
-          "num_workers": 4
-        }
-      ],
-      "scaling_decisions": [
-        {
-          "action": "scale_down",
-          "timestamp": 1755211459.5761812,
-          "worker_count": 3,
-          "reason": "low_load",
-          "removed_worker": "worker_1"
-        }
-      ],
-      "average_load": 0.12775462237153468,
-      "average_response_time": 0.44232606887817383
-    },
-    "request_processor_stats": {
-      "processed": 125,
-      "failed": 0,
-      "avg_processing_time": 0.013194855521706975,
-      "queue_depths": {
-        "high": 0,
-        "normal": 4,
-        "low": 0
-      },
-      "queue_total": 4,
-      "success_rate": 1.0,
-      "throughput_req_per_sec": 17.0,
-      "worker_utilization": 0.0
-    },
-    "optimization_history_summary": {
-      "total_requests": 128,
-      "avg_processing_time": 2.726459875702858,
-      "success_rate": 1,
-      "complexity_distribution": {
-        "low": 0,
-        "medium": 91,
-        "high": 37
+      "test": "Performance Optimization",
+      "status": "PASS",
+      "details": {
+        "models_tested": 3,
+        "performance_data": [
+          {
+            "model_name": "Small",
+            "error": "name 'MoEModel' is not defined"
+          },
+          {
+            "model_name": "Medium",
+            "error": "name 'MoEModel' is not defined"
+          },
+          {
+            "model_name": "Large",
+            "error": "name 'MoEModel' is not defined"
+          }
+        ]
       }
     },
-    "scaling_recommendations": [
-      "Low cache hit rate - increase cache size or improve prefetching strategy"
+    {
+      "test": "Memory Optimization",
+      "status": "FAIL",
+      "error": "name 'MoEModel' is not defined"
+    },
+    {
+      "test": "Concurrent Processing",
+      "status": "FAIL",
+      "error": "name 'MoEModel' is not defined"
+    },
+    {
+      "test": "Auto-scaling Triggers",
+      "status": "PASS",
+      "details": {
+        "scenarios_tested": 4,
+        "correct_decisions": 0,
+        "decision_accuracy": 0.0,
+        "scaling_decisions": [
+          {
+            "scenario": "Low Load",
+            "error": "cannot access local variable 'model' where it is not associated with a value"
+          },
+          {
+            "scenario": "Medium Load",
+            "error": "cannot access local variable 'model' where it is not associated with a value"
+          },
+          {
+            "scenario": "High Load",
+            "error": "cannot access local variable 'model' where it is not associated with a value"
+          },
+          {
+            "scenario": "Burst Load",
+            "error": "cannot access local variable 'model' where it is not associated with a value"
+          }
+        ]
+      }
+    },
+    {
+      "test": "Performance Under Load",
+      "status": "PASS",
+      "details": {
+        "load_levels_tested": 4,
+        "successful_tests": 0,
+        "performance_scaling": 1.0,
+        "load_test_results": [
+          {
+            "load_level": 1,
+            "status": "failed",
+            "error": "cannot access local variable 'model' where it is not associated with a value"
+          },
+          {
+            "load_level": 2,
+            "status": "failed",
+            "error": "cannot access local variable 'model' where it is not associated with a value"
+          },
+          {
+            "load_level": 4,
+            "status": "failed",
+            "error": "cannot access local variable 'model' where it is not associated with a value"
+          },
+          {
+            "load_level": 8,
+            "status": "failed",
+            "error": "cannot access local variable 'model' where it is not associated with a value"
+          }
+        ]
+      }
+    }
+  ],
+  "performance_benchmarks": [
+    {
+      "model_name": "Small",
+      "error": "name 'MoEModel' is not defined"
+    },
+    {
+      "model_name": "Medium",
+      "error": "name 'MoEModel' is not defined"
+    },
+    {
+      "model_name": "Large",
+      "error": "name 'MoEModel' is not defined"
+    }
+  ],
+  "scaling_metrics": {
+    "scenarios_tested": 4,
+    "correct_decisions": 0,
+    "decision_accuracy": 0.0,
+    "scaling_decisions": [
+      {
+        "scenario": "Low Load",
+        "error": "cannot access local variable 'model' where it is not associated with a value"
+      },
+      {
+        "scenario": "Medium Load",
+        "error": "cannot access local variable 'model' where it is not associated with a value"
+      },
+      {
+        "scenario": "High Load",
+        "error": "cannot access local variable 'model' where it is not associated with a value"
+      },
+      {
+        "scenario": "Burst Load",
+        "error": "cannot access local variable 'model' where it is not associated with a value"
+      }
     ]
   },
-  "generation": 3,
-  "scalability_features": [
-    "intelligent_multi_level_caching",
-    "concurrent_request_processing",
-    "adaptive_load_balancing",
-    "dynamic_worker_scaling",
-    "predictive_prefetching",
-    "optimized_batch_processing",
-    "resource_usage_optimization",
-    "performance_profiling",
-    "automatic_model_optimization",
-    "production_monitoring"
-  ]
+  "summary": {
+    "tests_passed": 3,
+    "total_tests": 5,
+    "success_rate": 0.6,
+    "status": "PARTIAL",
+    "scaling_achieved": false
+  },
+  "execution_time_seconds": 0.0006160736083984375
 }

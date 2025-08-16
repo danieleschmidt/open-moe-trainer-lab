@@ -1,9 +1,9 @@
 """MoE model implementations."""
 
 from .moe_model import MoEModel, MoEOutput
-from .router import TopKRouter, ExpertChoice, RoutingInfo
+from .router import TopKRouter, ExpertChoice, RoutingInfo, SwitchRouter
 from .expert import Expert, ExpertPool
-from .architectures import SwitchTransformer, MixtralModel
+from .architectures import SwitchTransformer, MixtralModel, CustomMoE
 
 __all__ = [
     "MoEModel",
@@ -15,4 +15,5 @@ __all__ = [
     "ExpertPool",
     "SwitchTransformer",
     "MixtralModel",
+    "CustomMoE",
 ]
