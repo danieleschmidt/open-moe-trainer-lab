@@ -1,5 +1,5 @@
 {
-  "demo_timestamp": "2025-08-11T17:22:23.016599+00:00",
+  "demo_timestamp": "2025-08-16T03:40:48.223604+00:00",
   "readiness_validation": {
     "overall_score": 0.9444444444444445,
     "production_ready": true,
@@ -123,7 +123,7 @@
             "memory_usage_gb": 8.0,
             "training_time_minutes": 60.0
           },
-          "timestamp": 1754932942.0131245
+          "timestamp": 1755315648.222077
         },
         {
           "benchmark_name": "inference_performance",
@@ -138,7 +138,7 @@
             "throughput_req_per_sec": 1500.0,
             "accuracy": 0.95
           },
-          "timestamp": 1754932942.0131354
+          "timestamp": 1755315648.2220829
         },
         {
           "benchmark_name": "scalability",
@@ -153,7 +153,7 @@
             "scale_down_time_seconds": 30.0,
             "max_replicas_supported": 5
           },
-          "timestamp": 1754932942.0131385
+          "timestamp": 1755315648.222086
         },
         {
           "benchmark_name": "resource_utilization",
@@ -168,7 +168,7 @@
             "memory_utilization_percent": 80.0,
             "disk_io_mbps": 100.0
           },
-          "timestamp": 1754932942.0131812
+          "timestamp": 1755315648.2220957
         }
       ]
     },
@@ -176,47 +176,25 @@
   },
   "deployment_results": {
     "staging": {
-      "deployment_id": "07a15683558faf03",
+      "deployment_id": "2cd5defe3be7a476",
       "stage": "staging",
       "version": "v1.0.0",
-      "timestamp": "2025-08-11T17:22:22.014851+00:00",
-      "success": true,
+      "timestamp": "2025-08-16T03:40:48.223553+00:00",
+      "success": false,
       "steps": {
         "pre_deployment_validation": {
           "step": "pre_deployment_validation",
           "success": true,
-          "duration_seconds": 10.393812798351323,
-          "timestamp": "2025-08-11T17:22:22.014805+00:00"
+          "duration_seconds": 15.09642982574736,
+          "timestamp": "2025-08-16T03:40:48.223528+00:00"
         },
         "container_build": {
           "step": "container_build",
-          "success": true,
-          "duration_seconds": 39.68327508713343,
-          "timestamp": "2025-08-11T17:22:22.014828+00:00"
-        },
-        "security_scan": {
-          "step": "security_scan",
-          "success": true,
-          "duration_seconds": 34.95068445614551,
-          "timestamp": "2025-08-11T17:22:22.014834+00:00"
-        },
-        "deployment_execution": {
-          "step": "deployment_execution",
-          "success": true,
-          "duration_seconds": 22.002936546407113,
-          "timestamp": "2025-08-11T17:22:22.014839+00:00"
-        },
-        "health_check_validation": {
-          "step": "health_check_validation",
-          "success": true,
-          "duration_seconds": 57.86637242526888,
-          "timestamp": "2025-08-11T17:22:22.014843+00:00"
-        },
-        "post_deployment_testing": {
-          "step": "post_deployment_testing",
-          "success": true,
-          "duration_seconds": 48.35424614278234,
-          "timestamp": "2025-08-11T17:22:22.014846+00:00"
+          "success": false,
+          "duration_seconds": 42.35887622136542,
+          "timestamp": "2025-08-16T03:40:48.223545+00:00",
+          "error": "Step container_build failed during execution",
+          "retry_possible": true
         }
       },
       "config": {
@@ -233,75 +211,15 @@
         },
         "health_checks": {},
         "monitoring_config": {}
-      },
-      "current_health": {
-        "deployment_id": "07a15683558faf03",
-        "timestamp": "2025-08-11T17:22:23.016374+00:00",
-        "overall_health": "healthy",
-        "checks": {
-          "liveness": "healthy",
-          "readiness": "ready",
-          "startup": "started"
-        },
-        "response_time_ms": 53.354059240035006
       }
     },
-    "production": {
-      "deployment_id": "3cd6605aba1b8aa9",
-      "stage": "production",
-      "version": "v1.0.0",
-      "timestamp": "2025-08-11T17:22:23.016495+00:00",
-      "success": false,
-      "steps": {
-        "pre_deployment_validation": {
-          "step": "pre_deployment_validation",
-          "success": true,
-          "duration_seconds": 58.23668255029412,
-          "timestamp": "2025-08-11T17:22:23.016480+00:00"
-        },
-        "container_build": {
-          "step": "container_build",
-          "success": false,
-          "duration_seconds": 15.295668694998518,
-          "timestamp": "2025-08-11T17:22:23.016488+00:00",
-          "error": "Step container_build failed during execution",
-          "retry_possible": true
-        }
-      },
-      "config": {
-        "stage": "DeploymentStage.PRODUCTION",
-        "environment": "EnvironmentType.KUBERNETES",
-        "replicas": 5,
-        "resources": {
-          "cpu": "4",
-          "memory": "8Gi"
-        },
-        "environment_variables": {
-          "LOG_LEVEL": "WARN",
-          "ENV": "production"
-        },
-        "health_checks": {},
-        "monitoring_config": {}
-      }
-    }
+    "production": null
   },
   "health_monitoring": {
-    "total_deployments": 1,
+    "total_deployments": 0,
     "healthy_deployments": 0,
-    "unhealthy_deployments": 1,
-    "deployments": {
-      "07a15683558faf03": {
-        "deployment_id": "07a15683558faf03",
-        "timestamp": "2025-08-11T17:22:23.016583+00:00",
-        "overall_health": "unhealthy",
-        "checks": {
-          "liveness": "healthy",
-          "readiness": "not_ready",
-          "startup": "starting"
-        },
-        "response_time_ms": 46.41079199192853
-      }
-    }
+    "unhealthy_deployments": 0,
+    "deployments": {}
   },
   "deployment_configurations": {
     "development": {
