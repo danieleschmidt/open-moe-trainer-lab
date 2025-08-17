@@ -1,0 +1,86 @@
+networks:
+  moe-network:
+    driver: bridge
+services:
+  grafana:
+    container_name: moe-grafana
+    environment:
+    - GF_SECURITY_ADMIN_PASSWORD=admin123
+    image: grafana/grafana:latest
+    networks:
+    - moe-network
+    ports:
+    - 3000:3000
+    restart: unless-stopped
+    volumes:
+    - grafana_data:/var/lib/grafana
+    - ./monitoring/grafana:/etc/grafana/provisioning
+  moe-trainer:
+    build:
+      context: .
+      dockerfile: Dockerfile.production
+      target: production
+    container_name: moe-trainer-production
+    deploy:
+      resources:
+        limits:
+          cpus: '4.0'
+          memory: 8G
+        reservations:
+          cpus: '2.0'
+          memory: 4G
+    environment:
+    - PRODUCTION=true
+    - LOG_LEVEL=INFO
+    - METRICS_ENABLED=true
+    healthcheck:
+      interval: 30s
+      retries: 3
+      start_period: 60s
+      test:
+      - CMD
+      - curl
+      - -f
+      - http://localhost:8000/health
+      timeout: 10s
+    image: moe-trainer-lab:latest
+    networks:
+    - moe-network
+    ports:
+    - 8000:8000
+    restart: unless-stopped
+    volumes:
+    - ./models:/app/models:ro
+    - ./data:/app/data:ro
+    - ./logs:/app/logs
+  prometheus:
+    command:
+    - --config.file=/etc/prometheus/prometheus.yml
+    - --storage.tsdb.path=/prometheus
+    - --web.console.libraries=/etc/prometheus/console_libraries
+    - --web.console.templates=/etc/prometheus/consoles
+    - --web.enable-lifecycle
+    container_name: moe-prometheus
+    image: prom/prometheus:latest
+    networks:
+    - moe-network
+    ports:
+    - 9090:9090
+    restart: unless-stopped
+    volumes:
+    - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+  redis:
+    command: redis-server --appendonly yes
+    container_name: moe-redis
+    image: redis:7-alpine
+    networks:
+    - moe-network
+    ports:
+    - 6379:6379
+    restart: unless-stopped
+    volumes:
+    - redis_data:/data
+version: '3.8'
+volumes:
+  grafana_data: {}
+  redis_data: {}

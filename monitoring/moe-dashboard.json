@@ -1,0 +1,51 @@
+{
+  "dashboard": {
+    "id": null,
+    "title": "MoE Trainer Lab Dashboard",
+    "tags": [
+      "moe",
+      "machine-learning"
+    ],
+    "timezone": "browser",
+    "panels": [
+      {
+        "id": 1,
+        "title": "Training Loss",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "training_loss",
+            "legendFormat": "Training Loss"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Expert Utilization",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "expert_utilization_ratio",
+            "legendFormat": "Expert {{expert_id}}"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "title": "Memory Usage",
+        "type": "graph",
+        "targets": [
+          {
+            "expr": "memory_usage_bytes",
+            "legendFormat": "Memory Usage"
+          }
+        ]
+      }
+    ],
+    "time": {
+      "from": "now-1h",
+      "to": "now"
+    },
+    "refresh": "5s"
+  }
+}
