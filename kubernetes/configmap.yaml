@@ -1,0 +1,10 @@
+apiVersion: v1
+data:
+  LOG_LEVEL: INFO
+  METRICS_ENABLED: 'true'
+  PRODUCTION: 'true'
+  REDIS_URL: redis://redis-service:6379
+kind: ConfigMap
+metadata:
+  name: moe-trainer-config
+  namespace: moe-trainer-lab

@@ -1,0 +1,27 @@
+groups:
+- name: moe-trainer-alerts
+  rules:
+  - alert: HighTrainingLoss
+    annotations:
+      description: Training loss has been above 10 for more than 5 minutes
+      summary: Training loss is abnormally high
+    expr: training_loss > 10
+    for: 5m
+    labels:
+      severity: warning
+  - alert: ExpertImbalance
+    annotations:
+      description: Expert utilization variance is too high
+      summary: Expert load is imbalanced
+    expr: expert_load_variance > 0.5
+    for: 2m
+    labels:
+      severity: warning
+  - alert: HighMemoryUsage
+    annotations:
+      description: Memory usage has exceeded 8GB
+      summary: High memory usage detected
+    expr: memory_usage_bytes > 8000000000
+    for: 1m
+    labels:
+      severity: critical
