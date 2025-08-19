@@ -1,0 +1,139 @@
+{
+  "CADR": {
+    "Conservative": {
+      "avg_routing_time": 7.033348083496094e-05,
+      "avg_experts_per_token": 1.375,
+      "complexity_mean": 0.4757786936810557,
+      "complexity_std": 0.3885379034909876,
+      "total_routing_calls": 3,
+      "computational_efficiency": 0.625
+    },
+    "Balanced": {
+      "avg_routing_time": 5.284945170084635e-05,
+      "avg_experts_per_token": 2.5,
+      "complexity_mean": 0.47991333577146594,
+      "complexity_std": 0.40631037728321406,
+      "total_routing_calls": 3,
+      "computational_efficiency": 1.5
+    },
+    "Aggressive": {
+      "avg_routing_time": 5.5789947509765625e-05,
+      "avg_experts_per_token": 4.0,
+      "complexity_mean": 0.487444313414797,
+      "complexity_std": 0.4051863193649395,
+      "total_routing_calls": 3,
+      "computational_efficiency": 2.0
+    }
+  },
+  "HMR": {
+    "4x4 Hierarchy": {
+      "avg_routing_time": 0.00010236104329427083,
+      "group_utilization_balance": 0.9666666666666667,
+      "total_routing_calls": 3,
+      "theoretical_complexity_reduction": "16 -> 4",
+      "communication_efficiency": 0.9733333333333334
+    },
+    "6x4 Hierarchy": {
+      "avg_routing_time": 0.00013430913289388022,
+      "group_utilization_balance": 0.8666666666666667,
+      "total_routing_calls": 3,
+      "theoretical_complexity_reduction": "24 -> 4",
+      "communication_efficiency": 0.8933333333333333
+    },
+    "8x4 Hierarchy": {
+      "avg_routing_time": 0.00011030832926432292,
+      "group_utilization_balance": 0.8166666666666667,
+      "total_routing_calls": 3,
+      "theoretical_complexity_reduction": "32 -> 5",
+      "communication_efficiency": 0.8533333333333333
+    }
+  },
+  "CASR": {
+    "Sequence_1": {
+      "avg_routing_time": 0.0006749629974365234,
+      "avg_context_influence": 1.1211979166666666,
+      "context_utilization": 0.13256827013150513,
+      "total_sequences_processed": 1,
+      "interpretability_score": 1.1211979166666666
+    },
+    "Sequence_2": {
+      "avg_routing_time": 0.0003647804260253906,
+      "avg_context_influence": 1.182578125,
+      "context_utilization": 0.22187389811688438,
+      "total_sequences_processed": 1,
+      "interpretability_score": 1.182578125
+    },
+    "Sequence_3": {
+      "avg_routing_time": 0.0003924369812011719,
+      "avg_context_influence": 1.295125,
+      "context_utilization": 0.18302927437373995,
+      "total_sequences_processed": 1,
+      "interpretability_score": 1.295125
+    }
+  },
+  "PEC": {
+    "Small Cache": {
+      "cache_hit_rate": 0.41304347826086957,
+      "total_accesses": 46,
+      "cache_hits": 19,
+      "cache_misses": 27,
+      "cache_utilization": 1.0,
+      "prefetch_accuracy": 0,
+      "prefetch_hits": 0,
+      "access_pattern_diversity": 9
+    },
+    "Large Cache": {
+      "cache_hit_rate": 0.717391304347826,
+      "total_accesses": 46,
+      "cache_hits": 33,
+      "cache_misses": 13,
+      "cache_utilization": 1.0,
+      "prefetch_accuracy": 0,
+      "prefetch_hits": 0,
+      "access_pattern_diversity": 9
+    },
+    "Conservative": {
+      "cache_hit_rate": 0.5652173913043478,
+      "total_accesses": 46,
+      "cache_hits": 26,
+      "cache_misses": 20,
+      "cache_utilization": 1.0,
+      "prefetch_accuracy": 0,
+      "prefetch_hits": 0,
+      "access_pattern_diversity": 9
+    }
+  },
+  "DEA": {
+    "Overall": {
+      "current_experts": 4,
+      "max_experts": 12,
+      "avg_adaptation_time": 1.2795130411783854e-05,
+      "expert_utilization": 0.0,
+      "allocation_efficiency": 0.991237037037037,
+      "total_adaptations": 3,
+      "expert_pool_diversity": 1
+    }
+  },
+  "Baseline_Comparison": {
+    "CADR": {
+      "routing_time": 8.320808410644531e-05,
+      "avg_experts_per_token": 2.5555555555555554,
+      "efficiency": 1.4444444444444446
+    },
+    "Random": {
+      "routing_time": 6.651878356933594e-05,
+      "avg_experts_per_token": 2.0,
+      "efficiency": 0.0
+    },
+    "Round_Robin": {
+      "routing_time": 3.647804260253906e-05,
+      "avg_experts_per_token": 2.0,
+      "efficiency": 0.0
+    },
+    "HMR": {
+      "routing_time": 4.38690185546875e-05,
+      "avg_experts_per_token": 1.0,
+      "efficiency": 0.7333333333333334
+    }
+  }
+}
