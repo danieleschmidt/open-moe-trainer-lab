@@ -17,6 +17,7 @@ from .models import (
 )
 from .training import MoETrainer, TrainingResult, EvalResult
 from .inference import OptimizedMoEModel
+from .analytics import RouterMonitor, RouterAnalyzer, MoECostAnalyzer
 
 __all__ = [
     "MoEModel",
@@ -32,5 +33,8 @@ __all__ = [
     "TrainingResult",
     "EvalResult",
     "OptimizedMoEModel",
+    "RouterMonitor",
+    "RouterAnalyzer",
+    "MoECostAnalyzer",
     "__version__",
 ]
