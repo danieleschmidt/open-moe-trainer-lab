@@ -1,0 +1,77 @@
+# Multi-stage optimized Dockerfile for MoE Lab production deployment
+FROM python:3.11-slim as base
+
+# Set environment variables
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PIP_NO_CACHE_DIR=1
+ENV PIP_DISABLE_PIP_VERSION_CHECK=1
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    curl \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create non-root user
+RUN useradd --create-home --shell /bin/bash moe_user
+WORKDIR /app
+RUN chown moe_user:moe_user /app
+
+# Install Python dependencies
+FROM base as dependencies
+
+# Copy requirements first for better caching
+COPY pyproject.toml ./
+RUN pip install --upgrade pip setuptools wheel
+RUN pip install -e .
+
+# Development stage
+FROM dependencies as development
+
+USER moe_user
+COPY --chown=moe_user:moe_user . .
+
+# Install development dependencies
+RUN pip install -e ".[dev,gpu,distributed,visualization,benchmarking]"
+
+EXPOSE 8000 8080
+
+CMD ["python", "-m", "moe_lab.serving.server"]
+
+# Production stage
+FROM dependencies as production
+
+USER moe_user
+
+# Copy only necessary files
+COPY --chown=moe_user:moe_user moe_lab/ ./moe_lab/
+COPY --chown=moe_user:moe_user scripts/ ./scripts/
+COPY --chown=moe_user:moe_user monitoring/ ./monitoring/
+COPY --chown=moe_user:moe_user pyproject.toml ./
+COPY --chown=moe_user:moe_user README.md ./
+
+# Install production dependencies only
+RUN pip install -e ".[gpu,distributed]" --no-deps
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+    CMD python monitoring/health-check.py || exit 1
+
+EXPOSE 8000
+
+# Production command
+CMD ["python", "-m", "moe_lab.serving.server", "--host", "0.0.0.0", "--port", "8000"]
+
+# GPU-enabled production stage
+FROM production as gpu-production
+
+# Install CUDA-related dependencies
+RUN pip install torch[gpu] torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+
+# Optimized for GPU inference
+ENV CUDA_VISIBLE_DEVICES=0
+ENV PYTORCH_CUDA_ALLOC_CONF=max_split_size_mb:512
+
+CMD ["python", "-m", "moe_lab.serving.server", "--host", "0.0.0.0", "--port", "8000", "--device", "cuda"]
