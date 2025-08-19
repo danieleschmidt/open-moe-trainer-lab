@@ -1,0 +1,95 @@
+{
+  "validation_timestamp": 1755581638.2688553,
+  "validation_summary": {
+    "phases_completed": 4,
+    "statistical_methods_used": [
+      "Welch's t-test",
+      "Cohen's d effect size",
+      "Confidence intervals",
+      "Multi-run reproducibility testing",
+      "Ablation component analysis"
+    ],
+    "validation_rigor": "High - Multiple statistical measures with confidence intervals"
+  },
+  "key_findings": {
+    "algorithm_performance": {
+      "best_performing_algorithm": "Random_Baseline",
+      "algorithm_ranking": [
+        "Random_Baseline",
+        "HMR",
+        "CADR"
+      ],
+      "performance_gaps": [
+        {
+          "between": "Random_Baseline and HMR",
+          "gap": 0.3333333333333335
+        },
+        {
+          "between": "HMR and CADR",
+          "gap": 0.6666666666666667
+        }
+      ],
+      "consistent_performers": [
+        {
+          "algorithm": "Random_Baseline",
+          "rank_variance": 0.0,
+          "average_rank": 1.3333333333333333
+        },
+        {
+          "algorithm": "HMR",
+          "rank_variance": 0.0,
+          "average_rank": 1.6666666666666667
+        },
+        {
+          "algorithm": "CADR",
+          "rank_variance": 0.0,
+          "average_rank": 2.3333333333333335
+        }
+      ]
+    },
+    "statistical_significance": {
+      "overall_significance_rate": 0.6666666666666666,
+      "total_statistical_tests": 9,
+      "significant_results": 6,
+      "statistical_power": "Adequate"
+    },
+    "reproducibility": {
+      "overall_reproducibility": 0.8372525105512517,
+      "reproducibility_rating": "Good",
+      "most_reproducible_algorithm": {
+        "algorithm": "CADR",
+        "reproducibility_score": 0.9294356317483058
+      },
+      "variability_concerns": []
+    },
+    "component_contributions": {
+      "component_importance": [
+        {
+          "component": "CADR_No_Adaptive_K",
+          "average_impact": 0.5777452415812592,
+          "importance_level": "High"
+        },
+        {
+          "component": "CADR_No_Complexity_Prediction",
+          "average_impact": 0.48491947291361637,
+          "importance_level": "High"
+        }
+      ],
+      "critical_components": [
+        "CADR_No_Complexity_Prediction",
+        "CADR_No_Adaptive_K"
+      ],
+      "optimization_opportunities": []
+    }
+  },
+  "research_validity": {
+    "internal_validity": "High - Controlled experimental conditions",
+    "external_validity": "Medium - Multiple test datasets",
+    "construct_validity": "High - Theoretically grounded metrics",
+    "statistical_conclusion_validity": "High - Appropriate statistical tests"
+  },
+  "recommendations": [
+    "Prioritize Random_Baseline for production deployment based on performance ranking",
+    "Focus optimization efforts on critical components: CADR_No_Complexity_Prediction, CADR_No_Adaptive_K"
+  ]
+}
