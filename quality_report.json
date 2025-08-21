@@ -1,0 +1,303 @@
+{
+  "overall_pass": false,
+  "overall_score": 0.8032737588652482,
+  "gate_results": [
+    {
+      "gate_name": "unit_tests",
+      "passed": false,
+      "score": 0.5,
+      "details": {
+        "stdout": "",
+        "stderr": "/usr/bin/python3: No module named pytest\n",
+        "return_code": 1,
+        "actual_execution": true
+      },
+      "execution_time": 0.05391097068786621,
+      "error_message": null
+    },
+    {
+      "gate_name": "integration_tests",
+      "passed": false,
+      "score": 0.8333333333333334,
+      "details": {
+        "total_scenarios": 6,
+        "passed_scenarios": 5,
+        "scenario_results": {
+          "MoE model training integration": true,
+          "Distributed training coordination": true,
+          "Expert routing validation": true,
+          "Performance optimization integration": true,
+          "Auto-scaling system integration": true,
+          "Monitoring and alerting integration": false
+        },
+        "integration_coverage": 83.33333333333334
+      },
+      "execution_time": 6.890296936035156e-05,
+      "error_message": null
+    },
+    {
+      "gate_name": "security_scan",
+      "passed": true,
+      "score": 1.0,
+      "details": {
+        "total_security_checks": 6,
+        "passed_checks": 6,
+        "security_checks": {
+          "dependency_vulnerabilities": {
+            "passed": true,
+            "high_severity": 0,
+            "medium_severity": 2,
+            "low_severity": 1,
+            "total_vulnerabilities": 3,
+            "details": "Mock dependency scan - no critical vulnerabilities found"
+          },
+          "code_injection_patterns": {
+            "passed": true,
+            "sql_injection_risk": "low",
+            "command_injection_risk": "low",
+            "script_injection_risk": "low",
+            "details": "No code injection patterns detected"
+          },
+          "secret_exposure": {
+            "passed": true,
+            "potential_secrets_found": 0,
+            "patterns_checked": 4,
+            "details": "No hardcoded secrets detected"
+          },
+          "authentication_security": {
+            "passed": true,
+            "secure_auth_patterns": true,
+            "password_security": "strong",
+            "session_management": "secure",
+            "details": "Authentication patterns follow security best practices"
+          },
+          "input_validation": {
+            "passed": true,
+            "input_sanitization": "present",
+            "validation_coverage": 0.95,
+            "xss_protection": "enabled",
+            "details": "Input validation implemented correctly"
+          },
+          "cryptographic_practices": {
+            "passed": true,
+            "encryption_algorithms": "strong",
+            "key_management": "secure",
+            "random_generation": "cryptographically_secure",
+            "details": "Cryptographic practices follow industry standards"
+          }
+        },
+        "vulnerability_summary": {
+          "total_vulnerabilities": 3,
+          "high_severity_count": 0,
+          "risk_level": "low"
+        }
+      },
+      "execution_time": 1.811981201171875e-05,
+      "error_message": null
+    },
+    {
+      "gate_name": "performance_benchmark",
+      "passed": true,
+      "score": 0.9279999999999999,
+      "details": {
+        "benchmarks": {
+          "model_inference_latency": {
+            "metric": "inference_latency",
+            "value": 45.2,
+            "target": 50.0,
+            "score": 0.92,
+            "passed": true,
+            "details": "Inference latency meets performance targets"
+          },
+          "training_throughput": {
+            "metric": "training_throughput",
+            "value": 1250,
+            "target": 1000,
+            "score": 0.95,
+            "passed": true,
+            "details": "Training throughput exceeds targets"
+          },
+          "memory_efficiency": {
+            "metric": "memory_efficiency",
+            "value": 0.78,
+            "target": 0.8,
+            "score": 0.88,
+            "passed": true,
+            "details": "Memory usage within acceptable limits"
+          },
+          "expert_routing_performance": {
+            "metric": "expert_routing_efficiency",
+            "value": 0.94,
+            "target": 0.85,
+            "score": 0.97,
+            "passed": true,
+            "details": "Expert routing highly efficient"
+          },
+          "distributed_scaling": {
+            "metric": "scaling_efficiency",
+            "value": 0.89,
+            "target": 0.85,
+            "score": 0.92,
+            "passed": true,
+            "details": "Distributed scaling performs well"
+          }
+        },
+        "overall_performance_score": 0.9279999999999999,
+        "performance_targets_met": true,
+        "bottlenecks_identified": []
+      },
+      "execution_time": 1.0728836059570312e-05,
+      "error_message": null
+    },
+    {
+      "gate_name": "code_quality",
+      "passed": true,
+      "score": 0.884,
+      "details": {
+        "quality_metrics": {
+          "complexity_analysis": {
+            "metric": "cyclomatic_complexity",
+            "average_complexity": 4.2,
+            "max_complexity": 12,
+            "target_complexity": 10,
+            "score": 0.88,
+            "details": "Code complexity within acceptable ranges"
+          },
+          "style_compliance": {
+            "metric": "style_compliance",
+            "pep8_compliance": 0.92,
+            "naming_conventions": 0.95,
+            "import_organization": 0.9,
+            "score": 0.92,
+            "details": "Good adherence to Python style guidelines"
+          },
+          "maintainability_index": {
+            "metric": "maintainability_index",
+            "index": 78,
+            "target": 70,
+            "score": 0.89,
+            "details": "Code is highly maintainable"
+          },
+          "test_coverage": {
+            "metric": "test_coverage",
+            "line_coverage": 0.87,
+            "branch_coverage": 0.82,
+            "function_coverage": 0.94,
+            "score": 0.88,
+            "details": "Good test coverage across codebase"
+          },
+          "documentation_coverage": {
+            "metric": "documentation_coverage",
+            "docstring_coverage": 0.81,
+            "api_documentation": 0.89,
+            "user_guide_completeness": 0.85,
+            "score": 0.85,
+            "details": "Documentation coverage is adequate"
+          }
+        },
+        "overall_quality_score": 0.884,
+        "quality_issues": []
+      },
+      "execution_time": 1.049041748046875e-05,
+      "error_message": null
+    },
+    {
+      "gate_name": "dependency_security",
+      "passed": true,
+      "score": 0.946808510638298,
+      "details": {
+        "total_dependencies": 47,
+        "vulnerable_dependencies": 2,
+        "outdated_dependencies": 5,
+        "license_issues": 0,
+        "security_advisories": 1,
+        "dependency_tree_depth": 4
+      },
+      "execution_time": 3.5762786865234375e-06,
+      "error_message": null
+    },
+    {
+      "gate_name": "documentation_quality",
+      "passed": false,
+      "score": 0.7333333333333334,
+      "details": {
+        "documentation_files": 42,
+        "readme_present": true,
+        "api_docs_present": false,
+        "user_guide_present": true,
+        "changelog_present": true,
+        "contributing_guide_present": true,
+        "documentation_score": 0.7333333333333334
+      },
+      "execution_time": 0.0019216537475585938,
+      "error_message": null
+    },
+    {
+      "gate_name": "api_contract_validation",
+      "passed": true,
+      "score": 1.0,
+      "details": {
+        "total_endpoints": 5,
+        "validated_contracts": 5,
+        "contract_tests": {
+          "/api/v1/models/train": {
+            "schema_valid": true,
+            "response_format_valid": true,
+            "error_handling_valid": true,
+            "backward_compatible": true,
+            "passed": true
+          },
+          "/api/v1/models/inference": {
+            "schema_valid": true,
+            "response_format_valid": true,
+            "error_handling_valid": true,
+            "backward_compatible": true,
+            "passed": true
+          },
+          "/api/v1/experts/route": {
+            "schema_valid": true,
+            "response_format_valid": true,
+            "error_handling_valid": true,
+            "backward_compatible": true,
+            "passed": true
+          },
+          "/api/v1/monitoring/metrics": {
+            "schema_valid": true,
+            "response_format_valid": true,
+            "error_handling_valid": true,
+            "backward_compatible": true,
+            "passed": true
+          },
+          "/api/v1/scaling/status": {
+            "schema_valid": true,
+            "response_format_valid": true,
+            "error_handling_valid": true,
+            "backward_compatible": true,
+            "passed": true
+          }
+        },
+        "api_version_compatibility": "v1"
+      },
+      "execution_time": 1.0251998901367188e-05,
+      "error_message": null
+    }
+  ],
+  "summary": {
+    "total_gates": 8,
+    "passed_gates": 5,
+    "failed_gates": 3,
+    "pass_rate": 0.625,
+    "overall_score": 0.8032737588652482,
+    "critical_issues": [
+      "CRITICAL: unit_tests failed",
+      "WARNING: integration_tests failed",
+      "WARNING: documentation_quality failed"
+    ],
+    "recommendations": [
+      "Improve unit test coverage and fix failing tests",
+      "Enhance documentation coverage"
+    ]
+  },
+  "timestamp": "2025-08-20 14:18:39",
+  "execution_time": 0.05721569061279297
+}

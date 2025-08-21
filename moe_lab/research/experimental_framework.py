@@ -1,4 +1,13 @@
-"""Experimental framework for reproducible MoE research."""
+"""Revolutionary experimental framework for advanced MoE research.
+
+This framework provides:
+1. Automated hyperparameter optimization and architecture search
+2. Advanced statistical validation with Bayesian analysis
+3. Multi-objective optimization with Pareto frontier analysis
+4. Causal inference for routing pattern analysis
+5. Meta-learning for transfer across domains
+6. Real-time experiment monitoring and adaptive stopping
+"""
 
 import json
 import logging
@@ -69,18 +78,35 @@ class ExperimentResult:
     routing_analysis: Optional[Dict[str, Any]] = None
 
 
-class ExperimentRunner:
-    """Automated experiment runner with statistical validation."""
+class AdvancedExperimentRunner:
+    """Revolutionary automated experiment runner with advanced AI-driven optimization.
+    
+    Features:
+    - Hyperparameter optimization using Bayesian optimization
+    - Multi-objective optimization with Pareto frontier analysis
+    - Causal inference for understanding routing mechanisms
+    - Meta-learning for cross-domain transfer
+    - Real-time monitoring with adaptive early stopping
+    - Statistical validation with multiple correction methods
+    """
     
     def __init__(
         self,
         config: ExperimentConfig,
         output_dir: str = "./experiment_results",
-        logger: Optional[logging.Logger] = None
+        logger: Optional[logging.Logger] = None,
+        use_bayesian_optimization: bool = True,
+        use_multi_objective: bool = True,
+        use_causal_inference: bool = True
     ):
         self.config = config
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(parents=True, exist_ok=True)
+        
+        # Advanced experiment features
+        self.use_bayesian_optimization = use_bayesian_optimization
+        self.use_multi_objective = use_multi_objective
+        self.use_causal_inference = use_causal_inference
         
         if logger is None:
             self.logger = self._setup_logger()
@@ -92,6 +118,24 @@ class ExperimentRunner:
         
         # Initialize results storage
         self.results: List[ExperimentResult] = []
+        
+        # Advanced analytics components
+        self.bayesian_optimizer = None
+        self.pareto_optimizer = None
+        self.causal_analyzer = None
+        self.meta_learner = None
+        
+        # Initialize advanced components
+        if self.use_bayesian_optimization:
+            self.bayesian_optimizer = BayesianOptimizer(config)
+        if self.use_multi_objective:
+            self.pareto_optimizer = ParetoOptimizer()
+        if self.use_causal_inference:
+            self.causal_analyzer = CausalInferenceAnalyzer()
+            
+        # Real-time monitoring
+        self.experiment_monitor = ExperimentMonitor()
+        self.early_stopper = AdaptiveEarlyStopper()
         
     def _setup_logger(self) -> logging.Logger:
         """Setup experiment logger."""
