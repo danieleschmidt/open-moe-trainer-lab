@@ -1,0 +1,25 @@
+{
+  "scan_timestamp": "2025-08-22 01:50:42",
+  "security_score": 0,
+  "total_vulnerabilities": 368,
+  "vulnerability_breakdown": {
+    "critical": 93,
+    "high": 203,
+    "medium": 62,
+    "low": 10
+  },
+  "compliance_status": {
+    "OWASP_TOP_10": false,
+    "PCI_DSS": false,
+    "GDPR": false,
+    "SOX": false,
+    "HIPAA": false
+  },
+  "top_recommendations": [
+    "URGENT: Fix 93 critical vulnerabilities immediately",
+    "High Priority: Address 203 high-severity vulnerabilities",
+    "Implement secure secret management system",
+    "Review all system command executions for security",
+    "Implement automated security testing in CI/CD pipeline"
+  ]
+}
