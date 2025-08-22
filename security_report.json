@@ -1,0 +1,3705 @@
+{
+  "scan_timestamp": "2025-08-22 01:50:42",
+  "total_files_scanned": 2252,
+  "vulnerabilities": [
+    {
+      "severity": "LOW",
+      "category": "information_disclosure",
+      "file_path": "generation2_optimized.py",
+      "line_number": 278,
+      "description": "Information Disclosure detected: traceback.print_exc()",
+      "recommendation": "Remove sensitive information from logs and error messages",
+      "cwe_id": "CWE-209",
+      "cvss_score": 2.5
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "weak_crypto",
+      "file_path": "generation3_scale_optimized.py",
+      "line_number": 79,
+      "description": "Weak Crypto detected: md5(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 5.0
+    },
+    {
+      "severity": "LOW",
+      "category": "information_disclosure",
+      "file_path": "generation3_scaling_demo.py",
+      "line_number": 519,
+      "description": "Information Disclosure detected: traceback.print_exc()",
+      "recommendation": "Remove sensitive information from logs and error messages",
+      "cwe_id": "CWE-209",
+      "cvss_score": 2.5
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "insecure_deserialization",
+      "file_path": "quality_gates_validation.py",
+      "line_number": 306,
+      "description": "Insecure Deserialization detected: yaml.load(",
+      "recommendation": "Use safe deserialization methods or validate input",
+      "cwe_id": "CWE-502",
+      "cvss_score": 5.0
+    },
+    {
+      "severity": "LOW",
+      "category": "information_disclosure",
+      "file_path": "quality_gates_validation.py",
+      "line_number": 386,
+      "description": "Information Disclosure detected: traceback.print_exc()",
+      "recommendation": "Remove sensitive information from logs and error messages",
+      "cwe_id": "CWE-209",
+      "cvss_score": 2.5
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "weak_crypto",
+      "file_path": "robust_moe_demo.py",
+      "line_number": 379,
+      "description": "Weak Crypto detected: md5(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 5.0
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "weak_crypto",
+      "file_path": "scalable_moe_demo.py",
+      "line_number": 674,
+      "description": "Weak Crypto detected: md5(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 5.0
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "weak_crypto",
+      "file_path": "security_scan.py",
+      "line_number": 148,
+      "description": "Weak Crypto detected: md5(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 5.0
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "weak_crypto",
+      "file_path": "generation3_scaling_optimization.py",
+      "line_number": 198,
+      "description": "Weak Crypto detected: md5(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 5.0
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "weak_crypto",
+      "file_path": "generation2_robust_enhancement.py",
+      "line_number": 40,
+      "description": "Weak Crypto detected: md5(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 5.0
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "weak_crypto",
+      "file_path": ".terragon/autonomous_sdlc.py",
+      "line_number": 165,
+      "description": "Weak Crypto detected: md5(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 5.0
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "weak_crypto",
+      "file_path": ".terragon/autonomous_sdlc.py",
+      "line_number": 212,
+      "description": "Weak Crypto detected: md5(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 5.0
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "weak_crypto",
+      "file_path": ".terragon/value_discovery_simple.py",
+      "line_number": 136,
+      "description": "Weak Crypto detected: md5(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 5.0
+    },
+    {
+      "severity": "LOW",
+      "category": "information_disclosure",
+      "file_path": "examples/generation2_robust_demo.py",
+      "line_number": 522,
+      "description": "Information Disclosure detected: traceback.print_exc()",
+      "recommendation": "Remove sensitive information from logs and error messages",
+      "cwe_id": "CWE-209",
+      "cvss_score": 2.5
+    },
+    {
+      "severity": "LOW",
+      "category": "information_disclosure",
+      "file_path": "examples/generation3_scaling_demo.py",
+      "line_number": 750,
+      "description": "Information Disclosure detected: traceback.print_exc()",
+      "recommendation": "Remove sensitive information from logs and error messages",
+      "cwe_id": "CWE-209",
+      "cvss_score": 2.5
+    },
+    {
+      "severity": "LOW",
+      "category": "information_disclosure",
+      "file_path": "examples/research_experiments.py",
+      "line_number": 1180,
+      "description": "Information Disclosure detected: traceback.print_exc()",
+      "recommendation": "Remove sensitive information from logs and error messages",
+      "cwe_id": "CWE-209",
+      "cvss_score": 2.5
+    },
+    {
+      "severity": "LOW",
+      "category": "information_disclosure",
+      "file_path": "examples/research_experiments_demo.py",
+      "line_number": 405,
+      "description": "Information Disclosure detected: traceback.print_exc()",
+      "recommendation": "Remove sensitive information from logs and error messages",
+      "cwe_id": "CWE-209",
+      "cvss_score": 2.5
+    },
+    {
+      "severity": "LOW",
+      "category": "information_disclosure",
+      "file_path": "examples/research_validation.py",
+      "line_number": 710,
+      "description": "Information Disclosure detected: traceback.print_exc()",
+      "recommendation": "Remove sensitive information from logs and error messages",
+      "cwe_id": "CWE-209",
+      "cvss_score": 2.5
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "weak_crypto",
+      "file_path": "examples/scalable_moe_demo.py",
+      "line_number": 281,
+      "description": "Weak Crypto detected: md5(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 5.0
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "weak_crypto",
+      "file_path": "examples/scalable_moe_demo.py",
+      "line_number": 533,
+      "description": "Weak Crypto detected: md5(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 5.0
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "weak_crypto",
+      "file_path": "examples/scalable_moe_demo.py",
+      "line_number": 1502,
+      "description": "Weak Crypto detected: md5(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 5.0
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "weak_crypto",
+      "file_path": "examples/scalable_moe_demo.py",
+      "line_number": 1506,
+      "description": "Weak Crypto detected: md5(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 5.0
+    },
+    {
+      "severity": "HIGH",
+      "category": "insecure_deserialization",
+      "file_path": "examples/scalable_moe_demo.py",
+      "line_number": 69,
+      "description": "Insecure Deserialization detected: pickle.loads(",
+      "recommendation": "Use safe deserialization methods or validate input",
+      "cwe_id": "CWE-502",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "insecure_deserialization",
+      "file_path": "examples/scalable_moe_demo.py",
+      "line_number": 306,
+      "description": "Insecure Deserialization detected: pickle.loads(",
+      "recommendation": "Use safe deserialization methods or validate input",
+      "cwe_id": "CWE-502",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "insecure_deserialization",
+      "file_path": "examples/scalable_moe_demo.py",
+      "line_number": 310,
+      "description": "Insecure Deserialization detected: pickle.loads(",
+      "recommendation": "Use safe deserialization methods or validate input",
+      "cwe_id": "CWE-502",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "insecure_deserialization",
+      "file_path": "examples/scalable_moe_demo.py",
+      "line_number": 321,
+      "description": "Insecure Deserialization detected: pickle.load(",
+      "recommendation": "Use safe deserialization methods or validate input",
+      "cwe_id": "CWE-502",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "hardcoded_secrets",
+      "file_path": "security/compliance-report.py",
+      "line_number": 252,
+      "description": "Hardcoded Secrets detected: password=\",\n                    \"",
+      "recommendation": "Store secrets in environment variables or secure vaults",
+      "cwe_id": "CWE-798",
+      "cvss_score": 9.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "hardcoded_secrets",
+      "file_path": "security/compliance-report.py",
+      "line_number": 256,
+      "description": "Hardcoded Secrets detected: api_key=\"\n                ]\n                \n                for pattern in suspicious_patterns:\n   ",
+      "recommendation": "Store secrets in environment variables or secure vaults",
+      "cwe_id": "CWE-798",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "insecure_deserialization",
+      "file_path": "tests/utils.py",
+      "line_number": 401,
+      "description": "Insecure Deserialization detected: pickle.load(",
+      "recommendation": "Use safe deserialization methods or validate input",
+      "cwe_id": "CWE-502",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "moe_lab/distributed/distributed_trainer.py",
+      "line_number": 439,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "moe_lab/distributed/distributed_trainer.py",
+      "line_number": 443,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "moe_lab/distributed/distributed_trainer.py",
+      "line_number": 484,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "moe_lab/distributed/distributed_trainer.py",
+      "line_number": 496,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "moe_lab/distributed/scaling_manager.py",
+      "line_number": 276,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "moe_lab/distributed/scaling_manager.py",
+      "line_number": 296,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "moe_lab/distributed/scaling_manager.py",
+      "line_number": 306,
+      "description": "Weak Crypto detected: des (",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "weak_crypto",
+      "file_path": "moe_lab/optimization/performance_optimizer.py",
+      "line_number": 285,
+      "description": "Weak Crypto detected: md5(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 5.0
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "weak_crypto",
+      "file_path": "moe_lab/optimization/performance_optimizer.py",
+      "line_number": 600,
+      "description": "Weak Crypto detected: md5(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 5.0
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "weak_crypto",
+      "file_path": "moe_lab/optimization/performance_optimizer.py",
+      "line_number": 604,
+      "description": "Weak Crypto detected: md5(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 5.0
+    },
+    {
+      "severity": "HIGH",
+      "category": "insecure_deserialization",
+      "file_path": "moe_lab/optimization/performance_optimizer.py",
+      "line_number": 195,
+      "description": "Insecure Deserialization detected: pickle.loads(",
+      "recommendation": "Use safe deserialization methods or validate input",
+      "cwe_id": "CWE-502",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "insecure_deserialization",
+      "file_path": "moe_lab/optimization/performance_optimizer.py",
+      "line_number": 201,
+      "description": "Insecure Deserialization detected: pickle.load(",
+      "recommendation": "Use safe deserialization methods or validate input",
+      "cwe_id": "CWE-502",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_internal/cli/cmdoptions.py",
+      "line_number": 478,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_internal/cli/cmdoptions.py",
+      "line_number": 489,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_internal/models/format_control.py",
+      "line_number": 39,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_internal/models/format_control.py",
+      "line_number": 74,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "hardcoded_secrets",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_internal/network/auth.py",
+      "line_number": 462,
+      "description": "Hardcoded Secrets detected: Password: \")\n        return username, password, True\n\n    # Factored out to allow for easy patching ",
+      "recommendation": "Store secrets in environment variables or secure vaults",
+      "cwe_id": "CWE-798",
+      "cvss_score": 9.5
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "information_disclosure",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_internal/network/auth.py",
+      "line_number": 92,
+      "description": "Information Disclosure detected: logger.debug(\"Getting password from keyring for %s\", url)",
+      "recommendation": "Remove sensitive information from logs and error messages",
+      "cwe_id": "CWE-200",
+      "cvss_score": 5.0
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_vendor/colorama/ansi.py",
+      "line_number": 25,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_vendor/distlib/database.py",
+      "line_number": 1026,
+      "description": "Weak Crypto detected: md5(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 5.0
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_vendor/distlib/database.py",
+      "line_number": 1032,
+      "description": "Weak Crypto detected: md5(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 5.0
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_vendor/distlib/database.py",
+      "line_number": 1052,
+      "description": "Weak Crypto detected: md5(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 5.0
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_vendor/distlib/database.py",
+      "line_number": 379,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_vendor/distlib/index.py",
+      "line_number": 269,
+      "description": "Weak Crypto detected: md5(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 5.0
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_vendor/distlib/metadata.py",
+      "line_number": 820,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_vendor/distlib/metadata.py",
+      "line_number": 831,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_vendor/distro/distro.py",
+      "line_number": 184,
+      "description": "Weak Crypto detected: des (",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_vendor/requests/auth.py",
+      "line_number": 148,
+      "description": "Weak Crypto detected: md5(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 5.0
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_vendor/requests/auth.py",
+      "line_number": 156,
+      "description": "Weak Crypto detected: sha1(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 5.0
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_vendor/requests/auth.py",
+      "line_number": 205,
+      "description": "Weak Crypto detected: sha1(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 5.0
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_vendor/resolvelib/providers.py",
+      "line_number": 42,
+      "description": "Weak Crypto detected: des (",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_vendor/rich/_inspect.py",
+      "line_number": 235,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_vendor/rich/color.py",
+      "line_number": 485,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_vendor/rich/console.py",
+      "line_number": 1585,
+      "description": "Weak Crypto detected: des (",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_vendor/rich/control.py",
+      "line_number": 58,
+      "description": "Weak Crypto detected: des (",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_vendor/rich/control.py",
+      "line_number": 97,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_vendor/rich/control.py",
+      "line_number": 110,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_vendor/rich/control.py",
+      "line_number": 187,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_vendor/rich/control.py",
+      "line_number": 201,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_vendor/rich/pretty.py",
+      "line_number": 180,
+      "description": "Weak Crypto detected: des (",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_vendor/rich/pretty.py",
+      "line_number": 253,
+      "description": "Weak Crypto detected: des (",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_vendor/rich/pretty.py",
+      "line_number": 322,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_vendor/rich/pretty.py",
+      "line_number": 915,
+      "description": "Weak Crypto detected: des (",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "information_disclosure",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_vendor/rich/prompt.py",
+      "line_number": 369,
+      "description": "Information Disclosure detected: print(\"[prompt.invalid]password too short\")",
+      "recommendation": "Remove sensitive information from logs and error messages",
+      "cwe_id": "CWE-200",
+      "cvss_score": 5.0
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "information_disclosure",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_vendor/rich/prompt.py",
+      "line_number": 370,
+      "description": "Information Disclosure detected: print(f\"password={password!r}\")",
+      "recommendation": "Remove sensitive information from logs and error messages",
+      "cwe_id": "CWE-200",
+      "cvss_score": 5.0
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_vendor/rich/scope.py",
+      "line_number": 29,
+      "description": "Weak Crypto detected: des (",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_vendor/rich/style.py",
+      "line_number": 335,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_vendor/rich/style.py",
+      "line_number": 368,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_vendor/rich/style.py",
+      "line_number": 371,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_vendor/rich/style.py",
+      "line_number": 712,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_vendor/rich/syntax.py",
+      "line_number": 244,
+      "description": "Weak Crypto detected: des (",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_vendor/rich/syntax.py",
+      "line_number": 336,
+      "description": "Weak Crypto detected: des (",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_vendor/rich/syntax.py",
+      "line_number": 652,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_vendor/rich/syntax.py",
+      "line_number": 690,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_vendor/rich/text.py",
+      "line_number": 139,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_vendor/rich/text.py",
+      "line_number": 393,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_vendor/rich/text.py",
+      "line_number": 931,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_vendor/rich/text.py",
+      "line_number": 1233,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_vendor/rich/traceback.py",
+      "line_number": 82,
+      "description": "Weak Crypto detected: des (",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_vendor/rich/traceback.py",
+      "line_number": 222,
+      "description": "Weak Crypto detected: des (",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_vendor/rich/traceback.py",
+      "line_number": 323,
+      "description": "Weak Crypto detected: des (",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_vendor/colorama/tests/ansitowin32_test.py",
+      "line_number": 232,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/mpmath/calculus/quadrature.py",
+      "line_number": 35,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/mpmath/calculus/quadrature.py",
+      "line_number": 43,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/mpmath/calculus/quadrature.py",
+      "line_number": 64,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/mpmath/calculus/quadrature.py",
+      "line_number": 67,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/mpmath/calculus/quadrature.py",
+      "line_number": 76,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/mpmath/calculus/quadrature.py",
+      "line_number": 78,
+      "description": "Weak Crypto detected: des (",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/mpmath/calculus/quadrature.py",
+      "line_number": 125,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/mpmath/calculus/quadrature.py",
+      "line_number": 229,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/mpmath/calculus/quadrature.py",
+      "line_number": 284,
+      "description": "Weak Crypto detected: des (",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/mpmath/calculus/quadrature.py",
+      "line_number": 311,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/mpmath/calculus/quadrature.py",
+      "line_number": 413,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/mpmath/calculus/quadrature.py",
+      "line_number": 453,
+      "description": "Weak Crypto detected: des (",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/mpmath/matrices/eigen_symmetric.py",
+      "line_number": 740,
+      "description": "Weak Crypto detected: des (",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "LOW",
+      "category": "information_disclosure",
+      "file_path": "venv/lib/python3.12/site-packages/mpmath/tests/runtests.py",
+      "line_number": 135,
+      "description": "Information Disclosure detected: traceback.print_exc()",
+      "recommendation": "Remove sensitive information from logs and error messages",
+      "cwe_id": "CWE-209",
+      "cvss_score": 2.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "insecure_deserialization",
+      "file_path": "venv/lib/python3.12/site-packages/mpmath/tests/test_pickle.py",
+      "line_number": 15,
+      "description": "Insecure Deserialization detected: pickle.load(",
+      "recommendation": "Use safe deserialization methods or validate input",
+      "cwe_id": "CWE-502",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/assumptions/assume.py",
+      "line_number": 156,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/codegen/cfunctions.py",
+      "line_number": 71,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/codegen/cfunctions.py",
+      "line_number": 142,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/codegen/cfunctions.py",
+      "line_number": 266,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/codegen/cfunctions.py",
+      "line_number": 370,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/combinatorics/generators.py",
+      "line_number": 122,
+      "description": "Weak Crypto detected: des (",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/combinatorics/prufer.py",
+      "line_number": 83,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/core/basic.py",
+      "line_number": 1139,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/core/function.py",
+      "line_number": 309,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/core/mul.py",
+      "line_number": 1148,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/core/mul.py",
+      "line_number": 1195,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/core/sorting.py",
+      "line_number": 179,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/core/sorting.py",
+      "line_number": 191,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/core/sorting.py",
+      "line_number": 192,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/core/sorting.py",
+      "line_number": 195,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/core/sorting.py",
+      "line_number": 197,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/core/sorting.py",
+      "line_number": 197,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/geometry/polygon.py",
+      "line_number": 617,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/geometry/polygon.py",
+      "line_number": 2340,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/integrals/prde.py",
+      "line_number": 138,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/integrals/prde.py",
+      "line_number": 138,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/integrals/prde.py",
+      "line_number": 138,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/integrals/rde.py",
+      "line_number": 233,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/integrals/rde.py",
+      "line_number": 233,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/integrals/rde.py",
+      "line_number": 233,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/integrals/rde.py",
+      "line_number": 245,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/integrals/rde.py",
+      "line_number": 245,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/integrals/rde.py",
+      "line_number": 245,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/integrals/rde.py",
+      "line_number": 246,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/integrals/rde.py",
+      "line_number": 246,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/integrals/rde.py",
+      "line_number": 246,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/integrals/risch.py",
+      "line_number": 1197,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/logic/boolalg.py",
+      "line_number": 1439,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/multipledispatch/conflict.py",
+      "line_number": 7,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/multipledispatch/conflict.py",
+      "line_number": 21,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/multipledispatch/conflict.py",
+      "line_number": 21,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/multipledispatch/conflict.py",
+      "line_number": 30,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/multipledispatch/conflict.py",
+      "line_number": 30,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/multipledispatch/conflict.py",
+      "line_number": 48,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/multipledispatch/conflict.py",
+      "line_number": 49,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/physics/secondquant.py",
+      "line_number": 114,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/physics/secondquant.py",
+      "line_number": 1440,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/distributedmodules.py",
+      "line_number": 97,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/distributedmodules.py",
+      "line_number": 116,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/distributedmodules.py",
+      "line_number": 121,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/distributedmodules.py",
+      "line_number": 126,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/distributedmodules.py",
+      "line_number": 133,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/distributedmodules.py",
+      "line_number": 138,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/distributedmodules.py",
+      "line_number": 143,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/distributedmodules.py",
+      "line_number": 517,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/distributedmodules.py",
+      "line_number": 562,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/distributedmodules.py",
+      "line_number": 667,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/distributedmodules.py",
+      "line_number": 668,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/distributedmodules.py",
+      "line_number": 680,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/distributedmodules.py",
+      "line_number": 731,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/groebnertools.py",
+      "line_number": 134,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/groebnertools.py",
+      "line_number": 141,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/groebnertools.py",
+      "line_number": 142,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/groebnertools.py",
+      "line_number": 509,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/groebnertools.py",
+      "line_number": 515,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/groebnertools.py",
+      "line_number": 558,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/groebnertools.py",
+      "line_number": 724,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/groebnertools.py",
+      "line_number": 759,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/groebnertools.py",
+      "line_number": 780,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/monomials.py",
+      "line_number": 289,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/monomials.py",
+      "line_number": 297,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/monomials.py",
+      "line_number": 299,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/polyquinticconst.py",
+      "line_number": 159,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/polyquinticconst.py",
+      "line_number": 167,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/polyquinticconst.py",
+      "line_number": 168,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/polyquinticconst.py",
+      "line_number": 169,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/polyquinticconst.py",
+      "line_number": 170,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/polyquinticconst.py",
+      "line_number": 176,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/polyquinticconst.py",
+      "line_number": 182,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/polyroots.py",
+      "line_number": 797,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/polyroots.py",
+      "line_number": 1037,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/polytools.py",
+      "line_number": 607,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/polytools.py",
+      "line_number": 2457,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/polytools.py",
+      "line_number": 2467,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/polytools.py",
+      "line_number": 2479,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/polytools.py",
+      "line_number": 2490,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/polytools.py",
+      "line_number": 2514,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/printing/tree.py",
+      "line_number": 1,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/printing/tree.py",
+      "line_number": 9,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/printing/tree.py",
+      "line_number": 69,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/printing/tree.py",
+      "line_number": 92,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/simplify/trigsimp.py",
+      "line_number": 1185,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/solvers/polysys.py",
+      "line_number": 457,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/tensor/indexed.py",
+      "line_number": 523,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/assumptions/relation/binrel.py",
+      "line_number": 200,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/assumptions/relation/binrel.py",
+      "line_number": 206,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "HIGH",
+      "category": "command_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/external/tests/test_codegen.py",
+      "line_number": 122,
+      "description": "subprocess call with shell=True detected",
+      "recommendation": "Use shell=False and pass command as list",
+      "cwe_id": "CWE-78",
+      "cvss_score": 8.1
+    },
+    {
+      "severity": "HIGH",
+      "category": "insecure_deserialization",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/external/tests/test_pythonmpq.py",
+      "line_number": 97,
+      "description": "Insecure Deserialization detected: pickle.loads(",
+      "recommendation": "Use safe deserialization methods or validate input",
+      "cwe_id": "CWE-502",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/functions/combinatorial/numbers.py",
+      "line_number": 123,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/functions/elementary/hyperbolic.py",
+      "line_number": 1012,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/functions/elementary/piecewise.py",
+      "line_number": 148,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/functions/elementary/trigonometric.py",
+      "line_number": 1613,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/functions/combinatorial/tests/test_comb_numbers.py",
+      "line_number": 1183,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/functions/combinatorial/tests/test_comb_numbers.py",
+      "line_number": 1184,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/geometry/tests/test_entity.py",
+      "line_number": 72,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/integrals/tests/test_intpoly.py",
+      "line_number": 519,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/multipledispatch/tests/test_conflict.py",
+      "line_number": 10,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/multipledispatch/tests/test_conflict.py",
+      "line_number": 11,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/multipledispatch/tests/test_conflict.py",
+      "line_number": 12,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/multipledispatch/tests/test_conflict.py",
+      "line_number": 13,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/multipledispatch/tests/test_conflict.py",
+      "line_number": 14,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/parsing/autolev/_listener_autolev_antlr.py",
+      "line_number": 404,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/parsing/autolev/_listener_autolev_antlr.py",
+      "line_number": 502,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "command_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/parsing/tests/test_autolev.py",
+      "line_number": 140,
+      "description": "Command Injection detected: exec(sympy_input, g, l)",
+      "recommendation": "Validate input and use safe command execution methods",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/physics/continuum_mechanics/truss.py",
+      "line_number": 78,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/physics/continuum_mechanics/truss.py",
+      "line_number": 829,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/physics/continuum_mechanics/truss.py",
+      "line_number": 863,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/physics/mechanics/joint.py",
+      "line_number": 214,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/physics/mechanics/joint.py",
+      "line_number": 252,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/physics/mechanics/joint.py",
+      "line_number": 464,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/physics/mechanics/jointsmethod.py",
+      "line_number": 113,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/physics/mechanics/jointsmethod.py",
+      "line_number": 138,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/physics/mechanics/jointsmethod.py",
+      "line_number": 201,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/physics/mechanics/system.py",
+      "line_number": 426,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/physics/mechanics/system.py",
+      "line_number": 434,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/physics/mechanics/system.py",
+      "line_number": 630,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/physics/mechanics/system.py",
+      "line_number": 773,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/physics/quantum/anticommutator.py",
+      "line_number": 92,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/physics/quantum/commutator.py",
+      "line_number": 106,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/physics/quantum/hilbert.py",
+      "line_number": 146,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/physics/quantum/hilbert.py",
+      "line_number": 329,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/physics/quantum/hilbert.py",
+      "line_number": 473,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/physics/quantum/hilbert.py",
+      "line_number": 591,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/physics/tests/test_secondquant.py",
+      "line_number": 273,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/physics/mechanics/tests/test_kane5.py",
+      "line_number": 119,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/physics/mechanics/tests/test_kane5.py",
+      "line_number": 128,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/physics/mechanics/tests/test_system_class.py",
+      "line_number": 53,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/physics/mechanics/tests/test_system_class.py",
+      "line_number": 295,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/physics/mechanics/tests/test_system_class.py",
+      "line_number": 297,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/physics/mechanics/tests/test_system_class.py",
+      "line_number": 312,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/physics/mechanics/tests/test_system_class.py",
+      "line_number": 456,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/physics/mechanics/tests/test_system_class.py",
+      "line_number": 464,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/physics/mechanics/tests/test_system_class.py",
+      "line_number": 590,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/physics/mechanics/tests/test_system_class.py",
+      "line_number": 594,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/physics/mechanics/tests/test_system_class.py",
+      "line_number": 628,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "insecure_deserialization",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/physics/vector/tests/test_frame.py",
+      "line_number": 759,
+      "description": "Insecure Deserialization detected: pickle.loads(",
+      "recommendation": "Use safe deserialization methods or validate input",
+      "cwe_id": "CWE-502",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/tests/test_distributedmodules.py",
+      "line_number": 29,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/tests/test_distributedmodules.py",
+      "line_number": 30,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/tests/test_distributedmodules.py",
+      "line_number": 31,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/tests/test_distributedmodules.py",
+      "line_number": 32,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/tests/test_distributedmodules.py",
+      "line_number": 34,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/tests/test_distributedmodules.py",
+      "line_number": 35,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/tests/test_distributedmodules.py",
+      "line_number": 36,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/tests/test_monomials.py",
+      "line_number": 201,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/tests/test_monomials.py",
+      "line_number": 202,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/tests/test_monomials.py",
+      "line_number": 203,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/tests/test_polyclasses.py",
+      "line_number": 221,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/tests/test_polyclasses.py",
+      "line_number": 221,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "HIGH",
+      "category": "insecure_deserialization",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/tests/test_polytools.py",
+      "line_number": 3960,
+      "description": "Insecure Deserialization detected: pickle.loads(",
+      "recommendation": "Use safe deserialization methods or validate input",
+      "cwe_id": "CWE-502",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/tests/test_polytools.py",
+      "line_number": 1640,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/tests/test_polytools.py",
+      "line_number": 1641,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/tests/test_polytools.py",
+      "line_number": 1642,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/tests/test_polytools.py",
+      "line_number": 1644,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/tests/test_polytools.py",
+      "line_number": 1645,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/tests/test_polytools.py",
+      "line_number": 1646,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/tests/test_polytools.py",
+      "line_number": 1648,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/tests/test_polytools.py",
+      "line_number": 1649,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/tests/test_polytools.py",
+      "line_number": 1650,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/tests/test_polytools.py",
+      "line_number": 1652,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/tests/test_polytools.py",
+      "line_number": 1653,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/tests/test_polytools.py",
+      "line_number": 1654,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/tests/test_polytools.py",
+      "line_number": 1656,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/tests/test_polytools.py",
+      "line_number": 1657,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/tests/test_polytools.py",
+      "line_number": 1658,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/tests/test_polytools.py",
+      "line_number": 1660,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/tests/test_polytools.py",
+      "line_number": 1661,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/tests/test_polytools.py",
+      "line_number": 1662,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/tests/test_polytools.py",
+      "line_number": 1664,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/tests/test_polytools.py",
+      "line_number": 1665,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/tests/test_polytools.py",
+      "line_number": 1666,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/tests/test_polytools.py",
+      "line_number": 1668,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/tests/test_polytools.py",
+      "line_number": 1669,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/tests/test_polytools.py",
+      "line_number": 1670,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/tests/test_polytools.py",
+      "line_number": 1672,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/tests/test_polytools.py",
+      "line_number": 1673,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/tests/test_polytools.py",
+      "line_number": 1675,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/tests/test_polytools.py",
+      "line_number": 1676,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/tests/test_polytools.py",
+      "line_number": 1678,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/tests/test_polytools.py",
+      "line_number": 1679,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/tests/test_polytools.py",
+      "line_number": 1681,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/tests/test_polytools.py",
+      "line_number": 1682,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/tests/test_polytools.py",
+      "line_number": 1684,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/tests/test_polytools.py",
+      "line_number": 1685,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/tests/test_polytools.py",
+      "line_number": 1692,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "CRITICAL",
+      "category": "code_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/tests/test_polytools.py",
+      "line_number": 1695,
+      "description": "Dangerous eval usage detected",
+      "recommendation": "Avoid eval/exec or use ast.literal_eval for safe evaluation",
+      "cwe_id": "CWE-94",
+      "cvss_score": 9.3
+    },
+    {
+      "severity": "HIGH",
+      "category": "insecure_deserialization",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/matrices/tests/test_domainmatrix.py",
+      "line_number": 1366,
+      "description": "Insecure Deserialization detected: pickle.loads(",
+      "recommendation": "Use safe deserialization methods or validate input",
+      "cwe_id": "CWE-502",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "insecure_deserialization",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/polys/matrices/tests/test_domainmatrix.py",
+      "line_number": 1368,
+      "description": "Insecure Deserialization detected: pickle.loads(",
+      "recommendation": "Use safe deserialization methods or validate input",
+      "cwe_id": "CWE-502",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "insecure_deserialization",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/printing/tests/test_latex.py",
+      "line_number": 3139,
+      "description": "Insecure Deserialization detected: pickle.loads(",
+      "recommendation": "Use safe deserialization methods or validate input",
+      "cwe_id": "CWE-502",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/printing/tests/test_mathml.py",
+      "line_number": 81,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/printing/tests/test_pycode.py",
+      "line_number": 290,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/solvers/ode/systems.py",
+      "line_number": 811,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/solvers/ode/systems.py",
+      "line_number": 813,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/solvers/ode/systems.py",
+      "line_number": 1009,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/solvers/ode/systems.py",
+      "line_number": 1051,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/solvers/ode/systems.py",
+      "line_number": 1057,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/solvers/ode/systems.py",
+      "line_number": 1273,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/solvers/ode/systems.py",
+      "line_number": 1424,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/solvers/ode/systems.py",
+      "line_number": 1871,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/solvers/ode/systems.py",
+      "line_number": 1926,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/solvers/ode/systems.py",
+      "line_number": 2100,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/solvers/ode/tests/test_riccati.py",
+      "line_number": 196,
+      "description": "Weak Crypto detected: DEs\n    (",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/solvers/ode/tests/test_riccati.py",
+      "line_number": 247,
+      "description": "Weak Crypto detected: DEs\n    (",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/solvers/ode/tests/test_riccati.py",
+      "line_number": 261,
+      "description": "Weak Crypto detected: DEs\n    (",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "LOW",
+      "category": "information_disclosure",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/solvers/ode/tests/test_single.py",
+      "line_number": 247,
+      "description": "Information Disclosure detected: traceback.print_exc()",
+      "recommendation": "Remove sensitive information from logs and error messages",
+      "cwe_id": "CWE-209",
+      "cvss_score": 2.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/solvers/ode/tests/test_systems.py",
+      "line_number": 504,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/solvers/ode/tests/test_systems.py",
+      "line_number": 511,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/solvers/ode/tests/test_systems.py",
+      "line_number": 516,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/solvers/ode/tests/test_systems.py",
+      "line_number": 1923,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/solvers/ode/tests/test_systems.py",
+      "line_number": 1963,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/solvers/ode/tests/test_systems.py",
+      "line_number": 2005,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "weak_crypto",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/solvers/ode/tests/test_systems.py",
+      "line_number": 2047,
+      "description": "Weak Crypto detected: des(",
+      "recommendation": "Use strong cryptographic algorithms like SHA-256 or AES",
+      "cwe_id": "CWE-327",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "command_injection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/utilities/_compilation/runners.py",
+      "line_number": 190,
+      "description": "subprocess call with shell=True detected",
+      "recommendation": "Use shell=False and pass command as list",
+      "cwe_id": "CWE-78",
+      "cvss_score": 8.1
+    },
+    {
+      "severity": "HIGH",
+      "category": "insecure_deserialization",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/utilities/tests/test_matchpy_connector.py",
+      "line_number": 151,
+      "description": "Insecure Deserialization detected: pickle.loads(",
+      "recommendation": "Use safe deserialization methods or validate input",
+      "cwe_id": "CWE-502",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "insecure_deserialization",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/utilities/tests/test_matchpy_connector.py",
+      "line_number": 155,
+      "description": "Insecure Deserialization detected: pickle.loads(",
+      "recommendation": "Use safe deserialization methods or validate input",
+      "cwe_id": "CWE-502",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "insecure_deserialization",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/utilities/tests/test_matchpy_connector.py",
+      "line_number": 159,
+      "description": "Insecure Deserialization detected: pickle.loads(",
+      "recommendation": "Use safe deserialization methods or validate input",
+      "cwe_id": "CWE-502",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "insecure_deserialization",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/utilities/tests/test_matchpy_connector.py",
+      "line_number": 163,
+      "description": "Insecure Deserialization detected: pickle.loads(",
+      "recommendation": "Use safe deserialization methods or validate input",
+      "cwe_id": "CWE-502",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "insecure_deserialization",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/utilities/tests/test_pickling.py",
+      "line_number": 74,
+      "description": "Insecure Deserialization detected: pickle.loads(",
+      "recommendation": "Use safe deserialization methods or validate input",
+      "cwe_id": "CWE-502",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "insecure_deserialization",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/utilities/tests/test_pickling.py",
+      "line_number": 197,
+      "description": "Insecure Deserialization detected: pickle.loads(",
+      "recommendation": "Use safe deserialization methods or validate input",
+      "cwe_id": "CWE-502",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "insecure_deserialization",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/utilities/tests/test_pickling.py",
+      "line_number": 200,
+      "description": "Insecure Deserialization detected: pickle.loads(",
+      "recommendation": "Use safe deserialization methods or validate input",
+      "cwe_id": "CWE-502",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "insecure_deserialization",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/utilities/tests/test_pickling.py",
+      "line_number": 712,
+      "description": "Insecure Deserialization detected: pickle.loads(",
+      "recommendation": "Use safe deserialization methods or validate input",
+      "cwe_id": "CWE-502",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "HIGH",
+      "category": "insecure_deserialization",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/utilities/tests/test_pickling.py",
+      "line_number": 723,
+      "description": "Insecure Deserialization detected: pickle.loads(",
+      "recommendation": "Use safe deserialization methods or validate input",
+      "cwe_id": "CWE-502",
+      "cvss_score": 7.5
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "vulnerable_dependency",
+      "file_path": "pyproject.toml",
+      "line_number": 1,
+      "description": "Potentially vulnerable dependency: pyyaml",
+      "recommendation": "Update pyyaml to latest version",
+      "cwe_id": "CWE-1104",
+      "cvss_score": null
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "insecure_configuration",
+      "file_path": "docker-compose.override.yml",
+      "line_number": 1,
+      "description": "Debug mode enabled in production",
+      "recommendation": "Review and secure configuration",
+      "cwe_id": "CWE-16",
+      "cvss_score": null
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "insecure_configuration",
+      "file_path": "deployment/production/docker-compose.prod.yml",
+      "line_number": 1,
+      "description": "Debug mode enabled in production",
+      "recommendation": "Review and secure configuration",
+      "cwe_id": "CWE-16",
+      "cvss_score": null
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "insecure_configuration",
+      "file_path": "docker-compose.override.yml",
+      "line_number": 1,
+      "description": "Debug mode enabled in production",
+      "recommendation": "Review and secure configuration",
+      "cwe_id": "CWE-16",
+      "cvss_score": null
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "insecure_configuration",
+      "file_path": "deployment/production/docker-compose.prod.yml",
+      "line_number": 1,
+      "description": "Debug mode enabled in production",
+      "recommendation": "Review and secure configuration",
+      "cwe_id": "CWE-16",
+      "cvss_score": null
+    },
+    {
+      "severity": "HIGH",
+      "category": "docker_security",
+      "file_path": "Dockerfile",
+      "line_number": 1,
+      "description": "Running as root user",
+      "recommendation": "Follow Docker security best practices",
+      "cwe_id": "CWE-16",
+      "cvss_score": null
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "data_protection",
+      "file_path": "autonomous_production_deployment.py",
+      "line_number": 518,
+      "description": "Unencrypted backup operation",
+      "recommendation": "Implement data protection measures",
+      "cwe_id": "CWE-200",
+      "cvss_score": null
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "data_protection",
+      "file_path": "autonomous_production_deployment.py",
+      "line_number": 784,
+      "description": "Unencrypted backup operation",
+      "recommendation": "Implement data protection measures",
+      "cwe_id": "CWE-200",
+      "cvss_score": null
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "data_protection",
+      "file_path": "global_first_features.py",
+      "line_number": 65,
+      "description": "Unencrypted backup operation",
+      "recommendation": "Implement data protection measures",
+      "cwe_id": "CWE-200",
+      "cvss_score": null
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "data_protection",
+      "file_path": "production_deployment.py",
+      "line_number": 252,
+      "description": "Unencrypted backup operation",
+      "recommendation": "Implement data protection measures",
+      "cwe_id": "CWE-200",
+      "cvss_score": null
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "data_protection",
+      "file_path": "advanced_security_scanner.py",
+      "line_number": 525,
+      "description": "PII in print statements",
+      "recommendation": "Implement data protection measures",
+      "cwe_id": "CWE-200",
+      "cvss_score": null
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "data_protection",
+      "file_path": "advanced_security_scanner.py",
+      "line_number": 526,
+      "description": "PII in logs",
+      "recommendation": "Implement data protection measures",
+      "cwe_id": "CWE-200",
+      "cvss_score": null
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "data_protection",
+      "file_path": "advanced_security_scanner.py",
+      "line_number": 528,
+      "description": "Unencrypted backup operation",
+      "recommendation": "Implement data protection measures",
+      "cwe_id": "CWE-200",
+      "cvss_score": null
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "data_protection",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_internal/cli/spinners.py",
+      "line_number": 47,
+      "description": "Unencrypted backup operation",
+      "recommendation": "Implement data protection measures",
+      "cwe_id": "CWE-200",
+      "cvss_score": null
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "data_protection",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_internal/cli/spinners.py",
+      "line_number": 48,
+      "description": "Unencrypted backup operation",
+      "recommendation": "Implement data protection measures",
+      "cwe_id": "CWE-200",
+      "cvss_score": null
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "data_protection",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_internal/commands/completion.py",
+      "line_number": 52,
+      "description": "Unencrypted backup operation",
+      "recommendation": "Implement data protection measures",
+      "cwe_id": "CWE-200",
+      "cvss_score": null
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "data_protection",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_internal/commands/completion.py",
+      "line_number": 53,
+      "description": "Unencrypted backup operation",
+      "recommendation": "Implement data protection measures",
+      "cwe_id": "CWE-200",
+      "cvss_score": null
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "data_protection",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_internal/commands/completion.py",
+      "line_number": 66,
+      "description": "Unencrypted backup operation",
+      "recommendation": "Implement data protection measures",
+      "cwe_id": "CWE-200",
+      "cvss_score": null
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "data_protection",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_internal/commands/completion.py",
+      "line_number": 68,
+      "description": "Unencrypted backup operation",
+      "recommendation": "Implement data protection measures",
+      "cwe_id": "CWE-200",
+      "cvss_score": null
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "data_protection",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_internal/req/req_install.py",
+      "line_number": 48,
+      "description": "Unencrypted backup operation",
+      "recommendation": "Implement data protection measures",
+      "cwe_id": "CWE-200",
+      "cvss_score": null
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "data_protection",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_internal/req/req_install.py",
+      "line_number": 769,
+      "description": "Unencrypted backup operation",
+      "recommendation": "Implement data protection measures",
+      "cwe_id": "CWE-200",
+      "cvss_score": null
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "data_protection",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_internal/utils/misc.py",
+      "line_number": 51,
+      "description": "Unencrypted backup operation",
+      "recommendation": "Implement data protection measures",
+      "cwe_id": "CWE-200",
+      "cvss_score": null
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "data_protection",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_internal/utils/misc.py",
+      "line_number": 207,
+      "description": "Unencrypted backup operation",
+      "recommendation": "Implement data protection measures",
+      "cwe_id": "CWE-200",
+      "cvss_score": null
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "data_protection",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_internal/vcs/versioncontrol.py",
+      "line_number": 27,
+      "description": "Unencrypted backup operation",
+      "recommendation": "Implement data protection measures",
+      "cwe_id": "CWE-200",
+      "cvss_score": null
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "data_protection",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_internal/vcs/versioncontrol.py",
+      "line_number": 581,
+      "description": "Unencrypted backup operation",
+      "recommendation": "Implement data protection measures",
+      "cwe_id": "CWE-200",
+      "cvss_score": null
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "data_protection",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_vendor/pyparsing/helpers.py",
+      "line_number": 857,
+      "description": "Unencrypted backup operation",
+      "recommendation": "Implement data protection measures",
+      "cwe_id": "CWE-200",
+      "cvss_score": null
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "data_protection",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_vendor/pyparsing/helpers.py",
+      "line_number": 943,
+      "description": "Unencrypted backup operation",
+      "recommendation": "Implement data protection measures",
+      "cwe_id": "CWE-200",
+      "cvss_score": null
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "data_protection",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_vendor/pyparsing/helpers.py",
+      "line_number": 946,
+      "description": "Unencrypted backup operation",
+      "recommendation": "Implement data protection measures",
+      "cwe_id": "CWE-200",
+      "cvss_score": null
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "data_protection",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_vendor/pyparsing/helpers.py",
+      "line_number": 991,
+      "description": "Unencrypted backup operation",
+      "recommendation": "Implement data protection measures",
+      "cwe_id": "CWE-200",
+      "cvss_score": null
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "data_protection",
+      "file_path": "venv/lib/python3.12/site-packages/pip/_vendor/pyparsing/helpers.py",
+      "line_number": 993,
+      "description": "Unencrypted backup operation",
+      "recommendation": "Implement data protection measures",
+      "cwe_id": "CWE-200",
+      "cvss_score": null
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "data_protection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/plotting/series.py",
+      "line_number": 362,
+      "description": "Unencrypted backup operation",
+      "recommendation": "Implement data protection measures",
+      "cwe_id": "CWE-200",
+      "cvss_score": null
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "data_protection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/plotting/series.py",
+      "line_number": 378,
+      "description": "Unencrypted backup operation",
+      "recommendation": "Implement data protection measures",
+      "cwe_id": "CWE-200",
+      "cvss_score": null
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "data_protection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/printing/tests/test_aesaracode.py",
+      "line_number": 514,
+      "description": "Unencrypted backup operation",
+      "recommendation": "Implement data protection measures",
+      "cwe_id": "CWE-200",
+      "cvss_score": null
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "data_protection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/printing/tests/test_aesaracode.py",
+      "line_number": 526,
+      "description": "Unencrypted backup operation",
+      "recommendation": "Implement data protection measures",
+      "cwe_id": "CWE-200",
+      "cvss_score": null
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "data_protection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/printing/tests/test_theanocode.py",
+      "line_number": 502,
+      "description": "Unencrypted backup operation",
+      "recommendation": "Implement data protection measures",
+      "cwe_id": "CWE-200",
+      "cvss_score": null
+    },
+    {
+      "severity": "MEDIUM",
+      "category": "data_protection",
+      "file_path": "venv/lib/python3.12/site-packages/sympy/printing/tests/test_theanocode.py",
+      "line_number": 514,
+      "description": "Unencrypted backup operation",
+      "recommendation": "Implement data protection measures",
+      "cwe_id": "CWE-200",
+      "cvss_score": null
+    }
+  ],
+  "security_score": 0,
+  "compliance_status": {
+    "OWASP_TOP_10": false,
+    "PCI_DSS": false,
+    "GDPR": false,
+    "SOX": false,
+    "HIPAA": false
+  },
+  "recommendations": [
+    "URGENT: Fix 93 critical vulnerabilities immediately",
+    "High Priority: Address 203 high-severity vulnerabilities",
+    "Implement secure secret management system",
+    "Review all system command executions for security",
+    "Implement automated security testing in CI/CD pipeline",
+    "Regular security training for development team",
+    "Establish security code review process",
+    "Implement security monitoring and alerting"
+  ],
+  "false_positives": 0
+}
