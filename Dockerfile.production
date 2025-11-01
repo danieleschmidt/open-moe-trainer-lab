@@ -1,5 +1,5 @@
 # Multi-stage production Dockerfile for Open MoE Trainer Lab
-FROM python:3.11-slim as builder
+FROM python:3.14-slim as builder
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
@@ -18,7 +18,7 @@ RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -e .
 
 # Production stage
-FROM python:3.11-slim as production
+FROM python:3.14-slim as production
 
 # Create non-root user for security
 RUN groupadd -r moe && useradd -r -g moe moe
