@@ -157,31 +157,36 @@ class ExpertPool(nn.Module):
         return self.experts[expert_idx](hidden_states)
         
     def forward_all(
-        self, 
+        self,
         hidden_states: torch.Tensor,
         expert_weights: torch.Tensor,
-        selected_experts: torch.Tensor
+        selected_experts: torch.Tensor,
     ) -> torch.Tensor:
-        """Forward through multiple experts with routing weights."""
-        batch_size, hidden_size = hidden_states.shape
+        """Forward through multiple experts with routing weights.
+
+        Vectorised dispatch: groups tokens by expert to avoid a Python loop
+        over individual tokens, which was O(batch_size * top_k) Python calls.
+        """
+        num_tokens, hidden_size = hidden_states.shape
         output = torch.zeros_like(hidden_states)
-        
-        # Process each token through its selected experts
-        for batch_idx in range(batch_size):
-            token_hidden_states = hidden_states[batch_idx:batch_idx+1]  # Keep batch dim
-            token_experts = selected_experts[batch_idx]
-            token_weights = expert_weights[batch_idx]
-            
-            # Aggregate outputs from selected experts
-            token_output = torch.zeros_like(token_hidden_states)
-            for k in range(len(token_experts)):
-                expert_idx = token_experts[k].item()
-                if expert_idx >= 0:  # Valid expert (not dropped)
-                    expert_output = self.forward(token_hidden_states, expert_idx)
-                    token_output += token_weights[k] * expert_output
-                    
-            output[batch_idx] = token_output.squeeze(0)
-            
+
+        # selected_experts: (num_tokens, top_k)
+        # expert_weights:   (num_tokens, top_k)
+        top_k = selected_experts.shape[1]
+
+        for k in range(top_k):
+            expert_ids = selected_experts[:, k]   # (num_tokens,)
+            weights_k = expert_weights[:, k]       # (num_tokens,)
+
+            for expert_idx in range(self.num_experts):
+                mask = (expert_ids == expert_idx)  # bool (num_tokens,)
+                if not mask.any():
+                    continue
+
+                tokens_for_expert = hidden_states[mask]           # (n, hidden)
+                expert_out = self.experts[expert_idx](tokens_for_expert)  # (n, hidden)
+                output[mask] += weights_k[mask].unsqueeze(-1) * expert_out
+
         return output
         
     def get_weights(self) -> Dict[int, torch.Tensor]:

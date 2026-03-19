@@ -1,29 +1,26 @@
-"""Open MoE Trainer Lab - End-to-end training toolkit for Mixture of Experts models."""
+"""Open MoE Trainer Lab — end-to-end training toolkit for Mixture of Experts models."""
 
 __version__ = "0.1.0"
 __author__ = "Daniel Schmidt"
-__email__ = "daniel@example.com"
 
 from .models import (
-    MoEModel, 
+    MoEModel,
     MoEOutput,
-    TopKRouter, 
-    ExpertChoice, 
-    Expert, 
+    TopKRouter,
+    ExpertChoice,
+    Expert,
     ExpertPool,
     SwitchTransformer,
     MixtralModel,
-    CustomMoE
+    CustomMoE,
 )
 from .training import MoETrainer, TrainingResult, EvalResult
-from .inference import OptimizedMoEModel
-from .analytics import RouterMonitor, RouterAnalyzer, MoECostAnalyzer
 
 __all__ = [
     "MoEModel",
     "MoEOutput",
     "TopKRouter",
-    "ExpertChoice", 
+    "ExpertChoice",
     "Expert",
     "ExpertPool",
     "SwitchTransformer",
@@ -32,9 +29,5 @@ __all__ = [
     "MoETrainer",
     "TrainingResult",
     "EvalResult",
-    "OptimizedMoEModel",
-    "RouterMonitor",
-    "RouterAnalyzer",
-    "MoECostAnalyzer",
     "__version__",
 ]

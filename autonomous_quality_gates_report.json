@@ -1,7 +1,0 @@
-{
-  "timestamp": 1755454500.0797908,
-  "overall_status": "FAILED",
-  "overall_score": 0.0,
-  "error": "embed_dim must be divisible by num_heads",
-  "execution_time_seconds": 0.01572251319885254
-}
